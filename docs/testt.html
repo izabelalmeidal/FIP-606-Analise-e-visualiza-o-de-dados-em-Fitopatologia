@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Maria Izabel de Almeida Leite">
+
+<title>FIP_606 - Análise e Visualização de Dados em Fitopatologia -</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">FIP_606 - Análise e Visualização de Dados em Fitopatologia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target=""><i class="bi bi-info-circle" role="img">
+</i> 
+ <span class="menu-text">Sobre</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./introducao.html" rel="" target="">
+ <span class="menu-text">Introdução ao R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./aula2.html" rel="" target="">
+ <span class="menu-text">Manipulação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dataframe.html" rel="" target="">
+ <span class="menu-text">Dataframe</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./graficodisp.qmd" rel="" target="">
+ <span class="menu-text">Dispersão, Histograma e Densidade</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ggplot2.html" rel="" target="">
+ <span class="menu-text">BoxPlot</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./boxcox.html" rel="" target="">
+ <span class="menu-text">Box-Cox</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./hipotese.html" rel="" target="">
+ <span class="menu-text">Teste de Hipótese</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./transformacao.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./testt.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Teste T</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./anova.html" rel="" target="">
+ <span class="menu-text">ANOVA</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./correlacao.html" rel="" target="">
+ <span class="menu-text">Correlação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./regressao.html" rel="" target="">
+ <span class="menu-text">Regressão</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/izabelalmeidal/FIP-606-Analise-e-visualiza-o-de-dados-em-Fitopatologia" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Maria Izabel</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:maria.a.leite@ufv.br" rel="" target=""><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#análises-estatísticas" id="toc-análises-estatísticas" class="nav-link active" data-scroll-target="#análises-estatísticas">ANÁLISES ESTATÍSTICAS</a></li>
+  <li><a href="#teste-t" id="toc-teste-t" class="nav-link" data-scroll-target="#teste-t"><strong>Teste T</strong></a>
+  <ul class="collapse">
+  <li><a href="#etapas-iniciais-preparação-para-a-análise" id="toc-etapas-iniciais-preparação-para-a-análise" class="nav-link" data-scroll-target="#etapas-iniciais-preparação-para-a-análise">Etapas iniciais: preparação para a análise</a></li>
+  <li><a href="#visualização-dos-dados" id="toc-visualização-dos-dados" class="nav-link" data-scroll-target="#visualização-dos-dados">Visualização dos dados</a></li>
+  <li><a href="#intervalo-de-confiança" id="toc-intervalo-de-confiança" class="nav-link" data-scroll-target="#intervalo-de-confiança">Intervalo de Confiança</a></li>
+  <li><a href="#homocedasticidade" id="toc-homocedasticidade" class="nav-link" data-scroll-target="#homocedasticidade">Homocedasticidade</a></li>
+  <li><a href="#verificação-da-homocedasticidade" id="toc-verificação-da-homocedasticidade" class="nav-link" data-scroll-target="#verificação-da-homocedasticidade">Verificação da Homocedasticidade</a></li>
+  <li><a href="#avaliação-da-normalidade" id="toc-avaliação-da-normalidade" class="nav-link" data-scroll-target="#avaliação-da-normalidade">Avaliação da Normalidade</a></li>
+  <li><a href="#análise-visual-da-normalidade" id="toc-análise-visual-da-normalidade" class="nav-link" data-scroll-target="#análise-visual-da-normalidade">Análise Visual da Normalidade</a></li>
+  <li><a href="#dois-tratamentos-dependentes" id="toc-dois-tratamentos-dependentes" class="nav-link" data-scroll-target="#dois-tratamentos-dependentes"><strong>Dois tratamentos dependentes</strong></a></li>
+  <li><a href="#quando-as-premissas-de-normalidade-não-são-atendidas" id="toc-quando-as-premissas-de-normalidade-não-são-atendidas" class="nav-link" data-scroll-target="#quando-as-premissas-de-normalidade-não-são-atendidas">Quando as premissas de normalidade não são atendidas</a></li>
+  <li><a href="#etapas-iniciais-preparação-dos-dados" id="toc-etapas-iniciais-preparação-dos-dados" class="nav-link" data-scroll-target="#etapas-iniciais-preparação-dos-dados">Etapas iniciais: preparação dos dados</a></li>
+  <li><a href="#teste-t-paramétrico-para-amostras-pareadas" id="toc-teste-t-paramétrico-para-amostras-pareadas" class="nav-link" data-scroll-target="#teste-t-paramétrico-para-amostras-pareadas">Teste T paramétrico para amostras pareadas</a></li>
+  <li><a href="#teste-para-dados-não-paramétricos" id="toc-teste-para-dados-não-paramétricos" class="nav-link" data-scroll-target="#teste-para-dados-não-paramétricos">Teste para Dados Não Paramétricos</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><div class="quarto-title-block"><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+
+
+
+<section id="análises-estatísticas" class="level2">
+<h2 class="anchored" data-anchor-id="análises-estatísticas">ANÁLISES ESTATÍSTICAS</h2>
+<p>Aqui veremos como determinar oo tipo de analise de acordo com o numero e tipo de variavel independente (niveis do Fator, numero de tratamentos ou grupos que serão observados e comparados.</p>
+<p>Nós veremos o Test T, Teste T paramétrico e Teste para dados não paramétricos. Vamos lá?</p>
+</section>
+<section id="teste-t" class="level2">
+<h2 class="anchored" data-anchor-id="teste-t"><strong>Teste T</strong></h2>
+<p>O teste t é uma ferramenta estatística usada para comparar duas médias provenientes de dois tratamentos ou grupos distintos, com o objetivo de avaliar se a diferença entre elas é estatisticamente significativa. Assim como outros testes estatísticos, o teste t fornece um valor de p, que representa a probabilidade de a diferença observada entre as médias ter ocorrido ao acaso.</p>
+<p>Existem dois tipos principais de teste t:</p>
+<ul>
+<li><p><strong>Teste t para amostras dependentes (pareadas):</strong> utilizado quando as duas médias comparadas vêm da mesma população, mas em momentos diferentes (por exemplo, antes e depois de um tratamento).</p></li>
+<li><p><strong>Teste t para amostras independentes (não pareadas):</strong> indicado quando se comparam duas populações distintas, sem relação entre si.</p></li>
+</ul>
+<p><strong>Exemplo prático: comparação entre dois tratamentos independentes</strong></p>
+<p>Para esse xemplo usaremos um conjunto de dados, no qual, um pesquisador realizou um experimento para avaliar o impacto do magnésio (Mg), adicionado à solução nutritiva do solo, no controle de uma doença fúngica em plantas de arroz. O experimento seguiu um delineamento inteiramente casualizado, com 10 repetições, sendo cada repetição representada por um vaso com uma planta.</p>
+<p>Dois tratamentos foram aplicados:</p>
+<ol type="1">
+<li><p><strong>Controle (testemunha):</strong> sem adição de magnésio.</p></li>
+<li><p><strong>Tratamento com Mg:</strong> suplementado com magnésio na concentração de 2 mM.</p></li>
+</ol>
+<p>Para cada vaso, foi registrada a média do comprimento das lesões em um determinado tempo após a inoculação do patógeno. O objetivo é verificar se há diferença significativa entre os dois grupos.</p>
+<section id="etapas-iniciais-preparação-para-a-análise" class="level3">
+<h3 class="anchored" data-anchor-id="etapas-iniciais-preparação-para-a-análise">Etapas iniciais: preparação para a análise</h3>
+<p>Antes da análise estatística, é necessário:</p>
+<ol type="1">
+<li><p>Carregar os pacotes estatísticos apropriados.</p></li>
+<li><p>Importar o conjunto de dados com os resultados do experimento.</p></li>
+</ol>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(magrittr) </span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggplot2) </span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>dados <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=983033137#gid=983033137"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="fu">head</span>(dados)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  trat    rep  comp
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Mg2       1   9  
+2 Mg2       2  12.5
+3 Mg2       3  10  
+4 Mg2       4   8  
+5 Mg2       5  13.2
+6 Mg2       6  11  </code></pre>
+</div>
+</div>
+<p>Vamos iniciar a exploração dos dados realizando análises estatísticas descritivas, que nos permitem entender melhor as características gerais do conjunto de dados. Neste contexto, iremos calcular medidas de tendência central e de dispersão, como:</p>
+<ul>
+<li><p><strong>Média (mean)</strong>: representa o valor médio dos dados;</p></li>
+<li><p><strong>Variância (var)</strong>: indica o quanto os valores se afastam da média;</p></li>
+<li><p><strong>Desvio padrão (sd)</strong>: mede a dispersão dos dados em torno da média;</p></li>
+<li><p><strong>Erro padrão (se)</strong>: estima a variabilidade da média em diferentes amostras;</p></li>
+<li><p><strong>Intervalo de confiança (ci)</strong>: utilizado aqui com finalidade visual, para indicar a margem de variação esperada da média.</p></li>
+</ul>
+<p>Essas métricas ajudam a resumir e visualizar os dados de forma clara e fundamentada, servindo como base para análises comparativas ou inferenciais.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>data2 <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(trat) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="at">mean_com =</span> <span class="fu">mean</span>(comp),</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">sd_comp =</span> <span class="fu">sd</span>(comp),</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">var_comp =</span> <span class="fu">var</span>(comp),</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="at">se_comp =</span> sd_comp <span class="sc">/</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">1</span>),</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="at">ci =</span> se_comp <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">0</span>,<span class="dv">025</span>, <span class="at">df =</span> <span class="dv">9</span>))</span>
+<span id="cb3-10"><a href="#cb3-10"></a>data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 7
+  trat    mean_com sd_comp var_comp     n se_comp    ci
+  &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 Mg2         10.5    1.54     2.39    10   0.515  -Inf
+2 control     15.7    1.27     1.61    10   0.424  -Inf</code></pre>
+</div>
+</div>
+</section>
+<section id="visualização-dos-dados" class="level3">
+<h3 class="anchored" data-anchor-id="visualização-dos-dados">Visualização dos dados</h3>
+<p>Uma das formas mais diretas de interpretar um conjunto de dados é por meio da visualização gráfica. Quando há mais de seis repetições por grupo, uma alternativa eficiente é utilizar boxplots acompanhados dos pontos individuais, o que permite observar a distribuição, tendência central e possíveis outliers.</p>
+<p>No entanto, neste caso, optaremos por representar os resultados em um gráfico de barras verticais, utilizando a média de cada grupo e adicionando o erro padrão (SE) como barra de erro. Essa abordagem facilita a comparação entre os grupos e fornece uma ideia da variabilidade dos dados, mantendo a clareza visual.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>data2 <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, mean_com)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.5</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>           <span class="at">fill =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">ymin =</span> mean_com <span class="sc">-</span> se_comp,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="at">ymax =</span> mean_com <span class="sc">+</span> se_comp),</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Trat"</span>, <span class="at">y =</span> <span class="st">"Comp (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="testt_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="intervalo-de-confiança" class="level3">
+<h3 class="anchored" data-anchor-id="intervalo-de-confiança">Intervalo de Confiança</h3>
+<p>Agora, os dados são representados com a inclusão do intervalo de confiança (IC). No gráfico a seguir, as barras verticais indicam o intervalo de confiança de 95% em torno da média de cada grupo. Essa visualização oferece uma noção da precisão das estimativas e permite avaliar, de forma gráfica, a sobreposição ou distinção entre os grupos analisados.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>data2 <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, mean_com)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">ymin =</span> mean_com <span class="sc">-</span> ci,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">ymax =</span> mean_com <span class="sc">+</span> ci),</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Trat"</span>, <span class="at">y =</span> <span class="st">"Comp (mm)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="testt_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O conjunto de dados está organizado no formato <strong>largo</strong>, onde a variável de interesse (resposta) está concentrada em uma única coluna. Para facilitar a análise comparativa entre os tratamentos, é comum transformar esses dados em um formato que separe as respostas em colunas distintas para cada tratamento. Uma forma eficiente de fazer isso é utilizando a função <strong><code>pivot_wider()</code></strong>, que reorganiza os dados criando uma coluna para cada grupo de tratamento.</p>
+<p>Dessa forma, geramos um novo conjunto chamado <strong><code>data_mg2</code></strong>, que apresenta as respostas (como o tamanho da lesão) distribuídas em colunas separadas para cada tratamento. No entanto, para criar gráficos com o <code>ggplot2</code>, é necessário trabalhar com os dados no formato <strong>longo</strong>, ou seja, com uma coluna contendo as respostas e outra indicando o tratamento. Portanto, é possível visualizar diretamente as respostas usando o conjunto original, que já está estruturado no formato adequado para o <code>ggplot2</code>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">names</span>(dados)<span class="co"># ver nomes nas colunas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "trat" "rep"  "comp"</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>data_mg2 <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">id_cols =</span> <span class="dv">1</span>,          </span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">names_from =</span> trat,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">values_from =</span> comp,</span>
+<span id="cb9-7"><a href="#cb9-7"></a>  )</span>
+<span id="cb9-8"><a href="#cb9-8"></a>data_mg2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+     rep   Mg2 control
+   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+ 1     1   9      13.7
+ 2     2  12.5    15.9
+ 3     3  10      15.7
+ 4     4   8      14.2
+ 5     5  13.2    15.9
+ 6     6  11      16.5
+ 7     7  10.8    18  
+ 8     8   9.5    14.4
+ 9     9  10.8    16.4
+10    10  10.4    16  </code></pre>
+</div>
+</div>
+<section id="teste-de-hipótese---teste-t" class="level4">
+<h4 class="anchored" data-anchor-id="teste-de-hipótese---teste-t">Teste de hipótese - teste t</h4>
+<p>O teste t é uma análise estatística do tipo paramétrica, o que significa que sua aplicação depende do cumprimento de duas premissas fundamentais: a normalidade dos dados e a homogeneidade das variâncias entre os grupos (também chamada de homocedasticidade).</p>
+<p>Se os dados não atenderem à distribuição normal, é possível aplicar transformações apropriadas (como logaritmo, raiz quadrada, entre outras) para aproximá-los da normalidade, tornando o uso do teste t estatisticamente válido.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">t.test</span>(data_mg2<span class="sc">$</span>Mg2, data_mg2<span class="sc">$</span>control, </span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="at">paired =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  data_mg2$Mg2 and data_mg2$control
+t = -8.1549, df = 17.354, p-value = 2.423e-07
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -6.490393 -3.825607
+sample estimates:
+mean of x mean of y 
+   10.520    15.678 </code></pre>
+</div>
+</div>
+<p>A ordem correta para a aplicação do teste t envolve a verificação prévia de suas premissas. O procedimento recomendado é o seguinte:</p>
+<ol type="1">
+<li><p>Teste de normalidade: utilize a função <code>shapiro.test()</code> para avaliar se os dados seguem uma distribuição normal;</p></li>
+<li><p>Teste de homogeneidade das variâncias: aplique <code>var.test()</code> para verificar se os grupos possuem variâncias semelhantes (homocedasticidade);</p></li>
+</ol>
+<p>Aplicação do teste t: se ambas as premissas forem atendidas (p &gt; 0,05 nos testes anteriores), então o <code>t.test()</code> pode ser utilizado com segurança.</p>
+<p>Caso o teste de variância indique heterocedasticidade (p &lt; 0,05), ainda é possível realizar o teste t, mas com o argumento <code>var.equal = FALSE</code>, o que ajusta o teste para variâncias diferentes.</p>
+<p>Além disso, quando os dados são pareados (por exemplo, medidas antes e depois em um mesmo indivíduo), deve-se incluir o argumento <code>paired = TRUE</code> na função <code>t.test()</code>.</p>
+</section>
+</section>
+<section id="homocedasticidade" class="level3">
+<h3 class="anchored" data-anchor-id="homocedasticidade">Homocedasticidade</h3>
+<p>A homocedasticidade — ou homogeneidade das variâncias — é uma premissa essencial para a aplicação do teste t. Para verificar essa condição no caso de dois grupos, utiliza-se o teste F, que compara as variâncias dos grupos.</p>
+<p>No R, essa análise pode ser realizada por meio da função <code>var.test()</code>, que deve ser aplicada a dois vetores numéricos representando os grupos a serem comparados. Para isso, os dados devem estar organizados em formato largo, de modo que cada grupo esteja em uma coluna separada.</p>
+<p>Após executar o teste, observe o valor de p na saída da função. Um p-valor maior que 0,05 indica que não há diferença significativa entre as variâncias (homocedasticidade), permitindo o uso do teste t com o argumento <code>var.equal = TRUE</code>. Caso contrário, considera-se que há heterocedasticidade, e deve-se utilizar <code>var.equal = FALSE</code>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">attach</span>(data_mg2)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">var.test</span>(Mg2, control)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  Mg2 and control
+F = 1.4781, num df = 9, denom df = 9, p-value = 0.5698
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.3671417 5.9508644
+sample estimates:
+ratio of variances 
+          1.478111 </code></pre>
+</div>
+</div>
+</section>
+<section id="verificação-da-homocedasticidade" class="level3">
+<h3 class="anchored" data-anchor-id="verificação-da-homocedasticidade">Verificação da Homocedasticidade</h3>
+<p>Além do teste estatístico de variância, a homocedasticidade também pode ser avaliada de forma gráfica. Uma abordagem comum é a utilização de um boxplot dos resíduos em relação aos tratamentos. Quando as variâncias são homogêneas, espera-se que os boxplots tenham tamanhos e amplitudes semelhantes entre os grupos, indicando distribuição equilibrada dos resíduos.</p>
+</section>
+<section id="avaliação-da-normalidade" class="level3">
+<h3 class="anchored" data-anchor-id="avaliação-da-normalidade">Avaliação da Normalidade</h3>
+<p>A normalidade dos dados é outro pressuposto fundamental para testes paramétricos. Ela pode ser verificada tanto por métodos gráficos — como histogramas, Q-Q plots e densidade — quanto por testes estatísticos específicos. Um dos mais utilizados é o teste de Shapiro-Wilk, acessado no R pela função <code>shapiro.test()</code>, que avalia se os dados seguem uma distribuição normal.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">shapiro.test</span>(Mg2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  Mg2
+W = 0.97269, p-value = 0.9146</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">shapiro.test</span>(control)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  control
+W = 0.93886, p-value = 0.5404</code></pre>
+</div>
+</div>
+</section>
+<section id="análise-visual-da-normalidade" class="level3">
+<h3 class="anchored" data-anchor-id="análise-visual-da-normalidade">Análise Visual da Normalidade</h3>
+<p>A verificação visual da normalidade pode ser feita por meio do QQ-Plot (Quantile-Quantile Plot), uma ferramenta gráfica que compara os quantis observados da amostra com os quantis esperados de uma distribuição normal. Se os pontos do gráfico se alinharem aproximadamente sobre a linha de referência, é um indicativo de que os dados seguem uma distribuição gaussiana.</p>
+<p>No R, esse tipo de gráfico pode ser facilmente construído com as funções <strong><code>qqnorm()</code></strong> (que gera o gráfico) e <strong><code>qqline()</code></strong> (que adiciona a linha teórica de referência). Recomenda-se aplicar essas funções individualmente para cada variável que se deseja avaliar.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">qqnorm</span> (Mg2)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">qqline</span>(Mg2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="testt_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">qqnorm</span>(control)</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">qqline</span>(control)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="testt_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="dois-tratamentos-dependentes" class="level3">
+<h3 class="anchored" data-anchor-id="dois-tratamentos-dependentes"><strong>Dois tratamentos dependentes</strong></h3>
+<p>Feito isso vamos partir para tratamentos dependentes.</p>
+</section>
+<section id="quando-as-premissas-de-normalidade-não-são-atendidas" class="level3">
+<h3 class="anchored" data-anchor-id="quando-as-premissas-de-normalidade-não-são-atendidas">Quando as premissas de normalidade não são atendidas</h3>
+<p>Caso os dados não atendam às premissas de normalidade, é necessário utilizar métodos alternativos que não dependem da suposição de distribuição normal. No caso de comparações entre dois grupos, existem duas abordagens principais:</p>
+<ol type="1">
+<li><p>Testes não paramétricos, como o teste de Wilcoxon para amostras pareadas ou o teste de Mann-Whitney para amostras independentes;</p></li>
+<li><p>Métodos baseados em reamostragem, como o bootstrapping, que permitem inferências estatísticas sem depender da forma da distribuição dos dados</p></li>
+</ol>
+<p>Para isso vamos usar um conjunto no qual, foi realizado um experimento para avaliar o impacto do uso de uma escala na acurácia e precisão de avaliações visuais da severidade de uma doença, feitas por diferentes avaliadores. A hipótese em teste é que o uso da escala melhora a acurácia das estimativas em comparação com avaliações realizadas sem esse auxílio visual.<br>
+Vamos usar conjunto de dados de um experimento, no qual dez avaliadores foram selecionados aleatoriamente e realizaram duas avaliações, uma com o uso da escala e outra sem. Foram obtidas cinco variáveis relacionadas à concordância entre as estimativas e os valores reais da severidade. Como cada avaliador foi avaliado duas vezes ao longo do tempo, os dados são considerados pareados, caracterizando amostras dependentes.</p>
+</section>
+<section id="etapas-iniciais-preparação-dos-dados" class="level3">
+<h3 class="anchored" data-anchor-id="etapas-iniciais-preparação-dos-dados">Etapas iniciais: preparação dos dados</h3>
+<p>O primeiro passo da análise é realizar a importação dos dados e o preparo do conjunto para as análises subsequentes, assegurando que as variáveis estejam corretamente estruturadas para aplicar os testes apropriados.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>escala <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados-diversos.xlsx"</span>, <span class="st">"escala"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">head</span>(escala)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  assessment rater acuracia precisao vies_geral vies_sistematico vies_constante
+  &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+1 Unaided    A        0.809    0.826      0.979            1.19         0.112  
+2 Unaided    B        0.722    0.728      0.991            0.922       -0.106  
+3 Unaided    C        0.4      0.715      0.783            1.16         0.730  
+4 Unaided    D        0.818    0.819      0.999            0.948       -0.00569
+5 Unaided    E        0.748    0.753      0.993            1.10         0.0719 
+6 Unaided    F        0.45     0.751      0.925            0.802        0.336  </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>escala2 <span class="ot">&lt;-</span> escala <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">select</span>(assessment, rater, acuracia)</span>
+<span id="cb23-3"><a href="#cb23-3"></a>escala3 <span class="ot">&lt;-</span> escala2<span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">pivot_wider</span>(<span class="dv">1</span>,</span>
+<span id="cb23-5"><a href="#cb23-5"></a>              <span class="at">names_from =</span> assessment,</span>
+<span id="cb23-6"><a href="#cb23-6"></a>              <span class="at">values_from =</span> acuracia)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Agora iremos checar as premissias, comecando pela homocedasticidade:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">attach</span>(escala3)</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">var.test</span>(Aided1, Unaided)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    F test to compare two variances
+
+data:  Aided1 and Unaided
+F = 0.047894, num df = 9, denom df = 9, p-value = 0.0001082
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.01189625 0.19282187
+sample estimates:
+ratio of variances 
+        0.04789423 </code></pre>
+</div>
+</div>
+<p>Normalidade:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">shapiro.test</span>(Aided1)<span class="sc">$</span>p.valu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4260888</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">shapiro.test</span>(Unaided)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.006910227</code></pre>
+</div>
+</div>
+<p>Vamos plotar um grafico, para cada um e visualizarmos:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">qqnorm</span>(Aided1)</span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">qqline</span>(Aided1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="testt_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">qqnorm</span>(Unaided)</span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">qqline</span>(Unaided)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="testt_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="teste-t-paramétrico-para-amostras-pareadas" class="level3">
+<h3 class="anchored" data-anchor-id="teste-t-paramétrico-para-amostras-pareadas">Teste T paramétrico para amostras pareadas</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>t_escala <span class="ot">&lt;-</span> <span class="fu">t.test</span>(escala3<span class="sc">$</span>Aided1, escala3<span class="sc">$</span>Unaided,</span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="at">var.equal =</span> F</span>
+<span id="cb32-4"><a href="#cb32-4"></a>)</span>
+<span id="cb32-5"><a href="#cb32-5"></a></span>
+<span id="cb32-6"><a href="#cb32-6"></a>t_escala</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  escala3$Aided1 and escala3$Unaided
+t = 4.4266, df = 9, p-value = 0.001655
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 0.1159591 0.3583453
+sample estimates:
+mean difference 
+      0.2371522 </code></pre>
+</div>
+</div>
+</section>
+<section id="teste-para-dados-não-paramétricos" class="level3">
+<h3 class="anchored" data-anchor-id="teste-para-dados-não-paramétricos">Teste para Dados Não Paramétricos</h3>
+<p>Testes não paramétricos são métodos estatísticos que não dependem de premissas sobre a distribuição dos dados, como a normalidade, e são especialmente úteis quando se trabalha com amostras pequenas ou quando não é possível verificar ou satisfazer as suposições dos testes paramétricos.</p>
+<p>Para comparar duas amostras pareadas ou dependentes quando a distribuição não é normal, utiliza-se o teste de Wilcoxon para amostras pareadas, implementado no R pela função <code>wilcox.test()</code>. Ele é considerado o equivalente não paramétrico ao teste t pareado, sendo usado para avaliar se há diferença significativa entre as medianas das duas condições analisadas.</p>
+<p>Esse teste é recomendado sempre que os dados violarem a normalidade ou não permitirem a verificação dessa premissa, oferecendo uma alternativa robusta e confiável para comparação de grupos.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">wilcox.test</span>(escala3<span class="sc">$</span>Aided1, escala3<span class="sc">$</span>Unaided, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon signed rank exact test
+
+data:  escala3$Aided1 and escala3$Unaided
+V = 55, p-value = 0.001953
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb36" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1"></a><span class="co">---</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="an">title:</span><span class="co"> ""</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a><span class="co">---</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a></span>
+<span id="cb36-5"><a href="#cb36-5"></a><span class="fu">## ANÁLISES ESTATÍSTICAS</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a></span>
+<span id="cb36-7"><a href="#cb36-7"></a>Aqui veremos como determinar oo tipo de analise de acordo com o numero e tipo de variavel independente (niveis do Fator, numero de tratamentos ou grupos que serão observados e comparados.</span>
+<span id="cb36-8"><a href="#cb36-8"></a></span>
+<span id="cb36-9"><a href="#cb36-9"></a>Nós veremos o Test T, Teste T paramétrico e Teste para dados não paramétricos. Vamos lá?</span>
+<span id="cb36-10"><a href="#cb36-10"></a></span>
+<span id="cb36-11"><a href="#cb36-11"></a><span class="fu">## **Teste T**</span></span>
+<span id="cb36-12"><a href="#cb36-12"></a></span>
+<span id="cb36-13"><a href="#cb36-13"></a>O teste t é uma ferramenta estatística usada para comparar duas médias provenientes de dois tratamentos ou grupos distintos, com o objetivo de avaliar se a diferença entre elas é estatisticamente significativa. Assim como outros testes estatísticos, o teste t fornece um valor de p, que representa a probabilidade de a diferença observada entre as médias ter ocorrido ao acaso.</span>
+<span id="cb36-14"><a href="#cb36-14"></a></span>
+<span id="cb36-15"><a href="#cb36-15"></a>Existem dois tipos principais de teste t:</span>
+<span id="cb36-16"><a href="#cb36-16"></a></span>
+<span id="cb36-17"><a href="#cb36-17"></a><span class="ss">-   </span>**Teste t para amostras dependentes (pareadas):** utilizado quando as duas médias comparadas vêm da mesma população, mas em momentos diferentes (por exemplo, antes e depois de um tratamento).</span>
+<span id="cb36-18"><a href="#cb36-18"></a></span>
+<span id="cb36-19"><a href="#cb36-19"></a><span class="ss">-   </span>**Teste t para amostras independentes (não pareadas):** indicado quando se comparam duas populações distintas, sem relação entre si.</span>
+<span id="cb36-20"><a href="#cb36-20"></a></span>
+<span id="cb36-21"><a href="#cb36-21"></a>**Exemplo prático: comparação entre dois tratamentos independentes**</span>
+<span id="cb36-22"><a href="#cb36-22"></a></span>
+<span id="cb36-23"><a href="#cb36-23"></a>Para esse xemplo usaremos um conjunto de dados, no qual, um pesquisador realizou um experimento para avaliar o impacto do magnésio (Mg), adicionado à solução nutritiva do solo, no controle de uma doença fúngica em plantas de arroz. O experimento seguiu um delineamento inteiramente casualizado, com 10 repetições, sendo cada repetição representada por um vaso com uma planta.</span>
+<span id="cb36-24"><a href="#cb36-24"></a></span>
+<span id="cb36-25"><a href="#cb36-25"></a>Dois tratamentos foram aplicados:</span>
+<span id="cb36-26"><a href="#cb36-26"></a></span>
+<span id="cb36-27"><a href="#cb36-27"></a><span class="ss">1.  </span>**Controle (testemunha):** sem adição de magnésio.</span>
+<span id="cb36-28"><a href="#cb36-28"></a></span>
+<span id="cb36-29"><a href="#cb36-29"></a><span class="ss">2.  </span>**Tratamento com Mg:** suplementado com magnésio na concentração de 2 mM.</span>
+<span id="cb36-30"><a href="#cb36-30"></a></span>
+<span id="cb36-31"><a href="#cb36-31"></a>Para cada vaso, foi registrada a média do comprimento das lesões em um determinado tempo após a inoculação do patógeno. O objetivo é verificar se há diferença significativa entre os dois grupos.</span>
+<span id="cb36-32"><a href="#cb36-32"></a></span>
+<span id="cb36-33"><a href="#cb36-33"></a><span class="fu">### Etapas iniciais: preparação para a análise</span></span>
+<span id="cb36-34"><a href="#cb36-34"></a></span>
+<span id="cb36-35"><a href="#cb36-35"></a>Antes da análise estatística, é necessário:</span>
+<span id="cb36-36"><a href="#cb36-36"></a></span>
+<span id="cb36-37"><a href="#cb36-37"></a><span class="ss">1.  </span>Carregar os pacotes estatísticos apropriados.</span>
+<span id="cb36-38"><a href="#cb36-38"></a></span>
+<span id="cb36-39"><a href="#cb36-39"></a><span class="ss">2.  </span>Importar o conjunto de dados com os resultados do experimento.</span>
+<span id="cb36-40"><a href="#cb36-40"></a></span>
+<span id="cb36-43"><a href="#cb36-43"></a><span class="in">```{r}</span></span>
+<span id="cb36-44"><a href="#cb36-44"></a><span class="fu">library</span>(magrittr) </span>
+<span id="cb36-45"><a href="#cb36-45"></a><span class="fu">library</span>(ggplot2) </span>
+<span id="cb36-46"><a href="#cb36-46"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb36-47"><a href="#cb36-47"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb36-48"><a href="#cb36-48"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb36-49"><a href="#cb36-49"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb36-50"><a href="#cb36-50"></a></span>
+<span id="cb36-51"><a href="#cb36-51"></a></span>
+<span id="cb36-52"><a href="#cb36-52"></a>dados <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=983033137#gid=983033137"</span>)</span>
+<span id="cb36-53"><a href="#cb36-53"></a></span>
+<span id="cb36-54"><a href="#cb36-54"></a></span>
+<span id="cb36-55"><a href="#cb36-55"></a><span class="fu">head</span>(dados)</span>
+<span id="cb36-56"><a href="#cb36-56"></a></span>
+<span id="cb36-57"><a href="#cb36-57"></a></span>
+<span id="cb36-58"><a href="#cb36-58"></a><span class="in">```</span></span>
+<span id="cb36-59"><a href="#cb36-59"></a></span>
+<span id="cb36-60"><a href="#cb36-60"></a>Vamos iniciar a exploração dos dados realizando análises estatísticas descritivas, que nos permitem entender melhor as características gerais do conjunto de dados. Neste contexto, iremos calcular medidas de tendência central e de dispersão, como:</span>
+<span id="cb36-61"><a href="#cb36-61"></a></span>
+<span id="cb36-62"><a href="#cb36-62"></a><span class="ss">-   </span>**Média (mean)**: representa o valor médio dos dados;</span>
+<span id="cb36-63"><a href="#cb36-63"></a></span>
+<span id="cb36-64"><a href="#cb36-64"></a><span class="ss">-   </span>**Variância (var)**: indica o quanto os valores se afastam da média;</span>
+<span id="cb36-65"><a href="#cb36-65"></a></span>
+<span id="cb36-66"><a href="#cb36-66"></a><span class="ss">-   </span>**Desvio padrão (sd)**: mede a dispersão dos dados em torno da média;</span>
+<span id="cb36-67"><a href="#cb36-67"></a></span>
+<span id="cb36-68"><a href="#cb36-68"></a><span class="ss">-   </span>**Erro padrão (se)**: estima a variabilidade da média em diferentes amostras;</span>
+<span id="cb36-69"><a href="#cb36-69"></a></span>
+<span id="cb36-70"><a href="#cb36-70"></a><span class="ss">-   </span>**Intervalo de confiança (ci)**: utilizado aqui com finalidade visual, para indicar a margem de variação esperada da média.</span>
+<span id="cb36-71"><a href="#cb36-71"></a></span>
+<span id="cb36-72"><a href="#cb36-72"></a>Essas métricas ajudam a resumir e visualizar os dados de forma clara e fundamentada, servindo como base para análises comparativas ou inferenciais.</span>
+<span id="cb36-73"><a href="#cb36-73"></a></span>
+<span id="cb36-76"><a href="#cb36-76"></a><span class="in">```{r}</span></span>
+<span id="cb36-77"><a href="#cb36-77"></a>data2 <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
+<span id="cb36-78"><a href="#cb36-78"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(trat) <span class="sc">%&gt;%</span></span>
+<span id="cb36-79"><a href="#cb36-79"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb36-80"><a href="#cb36-80"></a>    <span class="at">mean_com =</span> <span class="fu">mean</span>(comp),</span>
+<span id="cb36-81"><a href="#cb36-81"></a>    <span class="at">sd_comp =</span> <span class="fu">sd</span>(comp),</span>
+<span id="cb36-82"><a href="#cb36-82"></a>    <span class="at">var_comp =</span> <span class="fu">var</span>(comp),</span>
+<span id="cb36-83"><a href="#cb36-83"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb36-84"><a href="#cb36-84"></a>    <span class="at">se_comp =</span> sd_comp <span class="sc">/</span> <span class="fu">sqrt</span>(n <span class="sc">-</span> <span class="dv">1</span>),</span>
+<span id="cb36-85"><a href="#cb36-85"></a>    <span class="at">ci =</span> se_comp <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">0</span>,<span class="dv">025</span>, <span class="at">df =</span> <span class="dv">9</span>))</span>
+<span id="cb36-86"><a href="#cb36-86"></a>data2</span>
+<span id="cb36-87"><a href="#cb36-87"></a><span class="in">```</span></span>
+<span id="cb36-88"><a href="#cb36-88"></a></span>
+<span id="cb36-89"><a href="#cb36-89"></a><span class="fu">### Visualização dos dados</span></span>
+<span id="cb36-90"><a href="#cb36-90"></a></span>
+<span id="cb36-91"><a href="#cb36-91"></a>Uma das formas mais diretas de interpretar um conjunto de dados é por meio da visualização gráfica. Quando há mais de seis repetições por grupo, uma alternativa eficiente é utilizar boxplots acompanhados dos pontos individuais, o que permite observar a distribuição, tendência central e possíveis outliers.</span>
+<span id="cb36-92"><a href="#cb36-92"></a></span>
+<span id="cb36-93"><a href="#cb36-93"></a>No entanto, neste caso, optaremos por representar os resultados em um gráfico de barras verticais, utilizando a média de cada grupo e adicionando o erro padrão (SE) como barra de erro. Essa abordagem facilita a comparação entre os grupos e fornece uma ideia da variabilidade dos dados, mantendo a clareza visual.</span>
+<span id="cb36-94"><a href="#cb36-94"></a></span>
+<span id="cb36-97"><a href="#cb36-97"></a><span class="in">```{r}</span></span>
+<span id="cb36-98"><a href="#cb36-98"></a>data2 <span class="sc">|&gt;</span> </span>
+<span id="cb36-99"><a href="#cb36-99"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, mean_com)) <span class="sc">+</span></span>
+<span id="cb36-100"><a href="#cb36-100"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.5</span>,</span>
+<span id="cb36-101"><a href="#cb36-101"></a>           <span class="at">fill =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb36-102"><a href="#cb36-102"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(</span>
+<span id="cb36-103"><a href="#cb36-103"></a>    <span class="at">ymin =</span> mean_com <span class="sc">-</span> se_comp,</span>
+<span id="cb36-104"><a href="#cb36-104"></a>    <span class="at">ymax =</span> mean_com <span class="sc">+</span> se_comp),</span>
+<span id="cb36-105"><a href="#cb36-105"></a>    <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb36-106"><a href="#cb36-106"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb36-107"><a href="#cb36-107"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Trat"</span>, <span class="at">y =</span> <span class="st">"Comp (mm)"</span>)</span>
+<span id="cb36-108"><a href="#cb36-108"></a><span class="in">```</span></span>
+<span id="cb36-109"><a href="#cb36-109"></a></span>
+<span id="cb36-110"><a href="#cb36-110"></a><span class="fu">### Intervalo de Confiança</span></span>
+<span id="cb36-111"><a href="#cb36-111"></a></span>
+<span id="cb36-112"><a href="#cb36-112"></a>Agora, os dados são representados com a inclusão do intervalo de confiança (IC). No gráfico a seguir, as barras verticais indicam o intervalo de confiança de 95% em torno da média de cada grupo. Essa visualização oferece uma noção da precisão das estimativas e permite avaliar, de forma gráfica, a sobreposição ou distinção entre os grupos analisados.</span>
+<span id="cb36-113"><a href="#cb36-113"></a></span>
+<span id="cb36-116"><a href="#cb36-116"></a><span class="in">```{r}</span></span>
+<span id="cb36-117"><a href="#cb36-117"></a>data2 <span class="sc">|&gt;</span> </span>
+<span id="cb36-118"><a href="#cb36-118"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, mean_com)) <span class="sc">+</span></span>
+<span id="cb36-119"><a href="#cb36-119"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb36-120"><a href="#cb36-120"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(</span>
+<span id="cb36-121"><a href="#cb36-121"></a>    <span class="at">ymin =</span> mean_com <span class="sc">-</span> ci,</span>
+<span id="cb36-122"><a href="#cb36-122"></a>    <span class="at">ymax =</span> mean_com <span class="sc">+</span> ci),</span>
+<span id="cb36-123"><a href="#cb36-123"></a>    <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb36-124"><a href="#cb36-124"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb36-125"><a href="#cb36-125"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Trat"</span>, <span class="at">y =</span> <span class="st">"Comp (mm)"</span>)</span>
+<span id="cb36-126"><a href="#cb36-126"></a><span class="in">```</span></span>
+<span id="cb36-127"><a href="#cb36-127"></a></span>
+<span id="cb36-128"><a href="#cb36-128"></a>O conjunto de dados está organizado no formato **largo**, onde a variável de interesse (resposta) está concentrada em uma única coluna. Para facilitar a análise comparativa entre os tratamentos, é comum transformar esses dados em um formato que separe as respostas em colunas distintas para cada tratamento. Uma forma eficiente de fazer isso é utilizando a função **`pivot_wider()`**, que reorganiza os dados criando uma coluna para cada grupo de tratamento.</span>
+<span id="cb36-129"><a href="#cb36-129"></a></span>
+<span id="cb36-130"><a href="#cb36-130"></a>Dessa forma, geramos um novo conjunto chamado **`data_mg2`**, que apresenta as respostas (como o tamanho da lesão) distribuídas em colunas separadas para cada tratamento. No entanto, para criar gráficos com o `ggplot2`, é necessário trabalhar com os dados no formato **longo**, ou seja, com uma coluna contendo as respostas e outra indicando o tratamento. Portanto, é possível visualizar diretamente as respostas usando o conjunto original, que já está estruturado no formato adequado para o <span class="in">`ggplot2`</span>.</span>
+<span id="cb36-131"><a href="#cb36-131"></a></span>
+<span id="cb36-134"><a href="#cb36-134"></a><span class="in">```{r}</span></span>
+<span id="cb36-135"><a href="#cb36-135"></a><span class="fu">names</span>(dados)<span class="co"># ver nomes nas colunas</span></span>
+<span id="cb36-136"><a href="#cb36-136"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb36-137"><a href="#cb36-137"></a>data_mg2 <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span></span>
+<span id="cb36-138"><a href="#cb36-138"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb36-139"><a href="#cb36-139"></a>    <span class="at">id_cols =</span> <span class="dv">1</span>,          </span>
+<span id="cb36-140"><a href="#cb36-140"></a>    <span class="at">names_from =</span> trat,</span>
+<span id="cb36-141"><a href="#cb36-141"></a>    <span class="at">values_from =</span> comp,</span>
+<span id="cb36-142"><a href="#cb36-142"></a>  )</span>
+<span id="cb36-143"><a href="#cb36-143"></a>data_mg2</span>
+<span id="cb36-144"><a href="#cb36-144"></a><span class="in">```</span></span>
+<span id="cb36-145"><a href="#cb36-145"></a></span>
+<span id="cb36-146"><a href="#cb36-146"></a><span class="fu">#### Teste de hipótese - teste t</span></span>
+<span id="cb36-147"><a href="#cb36-147"></a></span>
+<span id="cb36-148"><a href="#cb36-148"></a>O teste t é uma análise estatística do tipo paramétrica, o que significa que sua aplicação depende do cumprimento de duas premissas fundamentais: a normalidade dos dados e a homogeneidade das variâncias entre os grupos (também chamada de homocedasticidade).</span>
+<span id="cb36-149"><a href="#cb36-149"></a></span>
+<span id="cb36-150"><a href="#cb36-150"></a>Se os dados não atenderem à distribuição normal, é possível aplicar transformações apropriadas (como logaritmo, raiz quadrada, entre outras) para aproximá-los da normalidade, tornando o uso do teste t estatisticamente válido.</span>
+<span id="cb36-151"><a href="#cb36-151"></a></span>
+<span id="cb36-154"><a href="#cb36-154"></a><span class="in">```{r}</span></span>
+<span id="cb36-155"><a href="#cb36-155"></a><span class="fu">t.test</span>(data_mg2<span class="sc">$</span>Mg2, data_mg2<span class="sc">$</span>control, </span>
+<span id="cb36-156"><a href="#cb36-156"></a><span class="at">paired =</span> F)</span>
+<span id="cb36-157"><a href="#cb36-157"></a><span class="in">```</span></span>
+<span id="cb36-158"><a href="#cb36-158"></a></span>
+<span id="cb36-159"><a href="#cb36-159"></a>A ordem correta para a aplicação do teste t envolve a verificação prévia de suas premissas. O procedimento recomendado é o seguinte:</span>
+<span id="cb36-160"><a href="#cb36-160"></a></span>
+<span id="cb36-161"><a href="#cb36-161"></a><span class="ss">1.  </span>Teste de normalidade: utilize a função <span class="in">`shapiro.test()`</span> para avaliar se os dados seguem uma distribuição normal;</span>
+<span id="cb36-162"><a href="#cb36-162"></a></span>
+<span id="cb36-163"><a href="#cb36-163"></a><span class="ss">2.  </span>Teste de homogeneidade das variâncias: aplique <span class="in">`var.test()`</span> para verificar se os grupos possuem variâncias semelhantes (homocedasticidade);</span>
+<span id="cb36-164"><a href="#cb36-164"></a></span>
+<span id="cb36-165"><a href="#cb36-165"></a>Aplicação do teste t: se ambas as premissas forem atendidas (p <span class="sc">\&gt;</span> 0,05 nos testes anteriores), então o <span class="in">`t.test()`</span> pode ser utilizado com segurança.</span>
+<span id="cb36-166"><a href="#cb36-166"></a></span>
+<span id="cb36-167"><a href="#cb36-167"></a>Caso o teste de variância indique heterocedasticidade (p <span class="sc">\&lt;</span> 0,05), ainda é possível realizar o teste t, mas com o argumento <span class="in">`var.equal = FALSE`</span>, o que ajusta o teste para variâncias diferentes.</span>
+<span id="cb36-168"><a href="#cb36-168"></a></span>
+<span id="cb36-169"><a href="#cb36-169"></a>Além disso, quando os dados são pareados (por exemplo, medidas antes e depois em um mesmo indivíduo), deve-se incluir o argumento <span class="in">`paired = TRUE`</span> na função <span class="in">`t.test()`</span>.</span>
+<span id="cb36-170"><a href="#cb36-170"></a></span>
+<span id="cb36-171"><a href="#cb36-171"></a><span class="fu">### Homocedasticidade</span></span>
+<span id="cb36-172"><a href="#cb36-172"></a></span>
+<span id="cb36-173"><a href="#cb36-173"></a>A homocedasticidade --- ou homogeneidade das variâncias --- é uma premissa essencial para a aplicação do teste t. Para verificar essa condição no caso de dois grupos, utiliza-se o teste F, que compara as variâncias dos grupos.</span>
+<span id="cb36-174"><a href="#cb36-174"></a></span>
+<span id="cb36-175"><a href="#cb36-175"></a>No R, essa análise pode ser realizada por meio da função <span class="in">`var.test()`</span>, que deve ser aplicada a dois vetores numéricos representando os grupos a serem comparados. Para isso, os dados devem estar organizados em formato largo, de modo que cada grupo esteja em uma coluna separada.</span>
+<span id="cb36-176"><a href="#cb36-176"></a></span>
+<span id="cb36-177"><a href="#cb36-177"></a>Após executar o teste, observe o valor de p na saída da função. Um p-valor maior que 0,05 indica que não há diferença significativa entre as variâncias (homocedasticidade), permitindo o uso do teste t com o argumento <span class="in">`var.equal = TRUE`</span>. Caso contrário, considera-se que há heterocedasticidade, e deve-se utilizar <span class="in">`var.equal = FALSE`</span>.</span>
+<span id="cb36-178"><a href="#cb36-178"></a></span>
+<span id="cb36-181"><a href="#cb36-181"></a><span class="in">```{r}</span></span>
+<span id="cb36-182"><a href="#cb36-182"></a><span class="fu">attach</span>(data_mg2)</span>
+<span id="cb36-183"><a href="#cb36-183"></a><span class="fu">var.test</span>(Mg2, control)</span>
+<span id="cb36-184"><a href="#cb36-184"></a><span class="in">```</span></span>
+<span id="cb36-185"><a href="#cb36-185"></a></span>
+<span id="cb36-186"><a href="#cb36-186"></a><span class="fu">### Verificação da Homocedasticidade</span></span>
+<span id="cb36-187"><a href="#cb36-187"></a></span>
+<span id="cb36-188"><a href="#cb36-188"></a>Além do teste estatístico de variância, a homocedasticidade também pode ser avaliada de forma gráfica. Uma abordagem comum é a utilização de um boxplot dos resíduos em relação aos tratamentos. Quando as variâncias são homogêneas, espera-se que os boxplots tenham tamanhos e amplitudes semelhantes entre os grupos, indicando distribuição equilibrada dos resíduos.</span>
+<span id="cb36-189"><a href="#cb36-189"></a></span>
+<span id="cb36-190"><a href="#cb36-190"></a><span class="fu">### Avaliação da Normalidade</span></span>
+<span id="cb36-191"><a href="#cb36-191"></a></span>
+<span id="cb36-192"><a href="#cb36-192"></a>A normalidade dos dados é outro pressuposto fundamental para testes paramétricos. Ela pode ser verificada tanto por métodos gráficos --- como histogramas, Q-Q plots e densidade --- quanto por testes estatísticos específicos. Um dos mais utilizados é o teste de Shapiro-Wilk, acessado no R pela função <span class="in">`shapiro.test()`</span>, que avalia se os dados seguem uma distribuição normal.</span>
+<span id="cb36-193"><a href="#cb36-193"></a></span>
+<span id="cb36-196"><a href="#cb36-196"></a><span class="in">```{r}</span></span>
+<span id="cb36-197"><a href="#cb36-197"></a><span class="fu">shapiro.test</span>(Mg2)</span>
+<span id="cb36-198"><a href="#cb36-198"></a><span class="in">```</span></span>
+<span id="cb36-199"><a href="#cb36-199"></a></span>
+<span id="cb36-202"><a href="#cb36-202"></a><span class="in">```{r}</span></span>
+<span id="cb36-203"><a href="#cb36-203"></a><span class="fu">shapiro.test</span>(control)</span>
+<span id="cb36-204"><a href="#cb36-204"></a><span class="in">```</span></span>
+<span id="cb36-205"><a href="#cb36-205"></a></span>
+<span id="cb36-206"><a href="#cb36-206"></a><span class="fu">### Análise Visual da Normalidade</span></span>
+<span id="cb36-207"><a href="#cb36-207"></a></span>
+<span id="cb36-208"><a href="#cb36-208"></a>A verificação visual da normalidade pode ser feita por meio do QQ-Plot (Quantile-Quantile Plot), uma ferramenta gráfica que compara os quantis observados da amostra com os quantis esperados de uma distribuição normal. Se os pontos do gráfico se alinharem aproximadamente sobre a linha de referência, é um indicativo de que os dados seguem uma distribuição gaussiana.</span>
+<span id="cb36-209"><a href="#cb36-209"></a></span>
+<span id="cb36-210"><a href="#cb36-210"></a>No R, esse tipo de gráfico pode ser facilmente construído com as funções **`qqnorm()`** (que gera o gráfico) e **`qqline()`** (que adiciona a linha teórica de referência). Recomenda-se aplicar essas funções individualmente para cada variável que se deseja avaliar.</span>
+<span id="cb36-211"><a href="#cb36-211"></a></span>
+<span id="cb36-214"><a href="#cb36-214"></a><span class="in">```{r}</span></span>
+<span id="cb36-215"><a href="#cb36-215"></a><span class="fu">qqnorm</span> (Mg2)</span>
+<span id="cb36-216"><a href="#cb36-216"></a><span class="fu">qqline</span>(Mg2)</span>
+<span id="cb36-217"><a href="#cb36-217"></a><span class="in">```</span></span>
+<span id="cb36-218"><a href="#cb36-218"></a></span>
+<span id="cb36-221"><a href="#cb36-221"></a><span class="in">```{r}</span></span>
+<span id="cb36-222"><a href="#cb36-222"></a><span class="fu">qqnorm</span>(control)</span>
+<span id="cb36-223"><a href="#cb36-223"></a><span class="fu">qqline</span>(control)</span>
+<span id="cb36-224"><a href="#cb36-224"></a><span class="in">```</span></span>
+<span id="cb36-225"><a href="#cb36-225"></a></span>
+<span id="cb36-226"><a href="#cb36-226"></a><span class="fu">### **Dois tratamentos dependentes**</span></span>
+<span id="cb36-227"><a href="#cb36-227"></a></span>
+<span id="cb36-228"><a href="#cb36-228"></a>Feito isso vamos partir para tratamentos dependentes.</span>
+<span id="cb36-229"><a href="#cb36-229"></a></span>
+<span id="cb36-230"><a href="#cb36-230"></a><span class="fu">### Quando as premissas de normalidade não são atendidas</span></span>
+<span id="cb36-231"><a href="#cb36-231"></a></span>
+<span id="cb36-232"><a href="#cb36-232"></a>Caso os dados não atendam às premissas de normalidade, é necessário utilizar métodos alternativos que não dependem da suposição de distribuição normal. No caso de comparações entre dois grupos, existem duas abordagens principais:</span>
+<span id="cb36-233"><a href="#cb36-233"></a></span>
+<span id="cb36-234"><a href="#cb36-234"></a><span class="ss">1.  </span>Testes não paramétricos, como o teste de Wilcoxon para amostras pareadas ou o teste de Mann-Whitney para amostras independentes;</span>
+<span id="cb36-235"><a href="#cb36-235"></a></span>
+<span id="cb36-236"><a href="#cb36-236"></a><span class="ss">2.  </span>Métodos baseados em reamostragem, como o bootstrapping, que permitem inferências estatísticas sem depender da forma da distribuição dos dados</span>
+<span id="cb36-237"><a href="#cb36-237"></a></span>
+<span id="cb36-238"><a href="#cb36-238"></a>Para isso vamos usar um conjunto no qual, foi realizado um experimento para avaliar o impacto do uso de uma escala na acurácia e precisão de avaliações visuais da severidade de uma doença, feitas por diferentes avaliadores. A hipótese em teste é que o uso da escala melhora a acurácia das estimativas em comparação com avaliações realizadas sem esse auxílio visual.\</span>
+<span id="cb36-239"><a href="#cb36-239"></a>Vamos usar conjunto de dados de um experimento, no qual dez avaliadores foram selecionados aleatoriamente e realizaram duas avaliações, uma com o uso da escala e outra sem. Foram obtidas cinco variáveis relacionadas à concordância entre as estimativas e os valores reais da severidade. Como cada avaliador foi avaliado duas vezes ao longo do tempo, os dados são considerados pareados, caracterizando amostras dependentes.</span>
+<span id="cb36-240"><a href="#cb36-240"></a></span>
+<span id="cb36-241"><a href="#cb36-241"></a><span class="fu">### Etapas iniciais: preparação dos dados</span></span>
+<span id="cb36-242"><a href="#cb36-242"></a></span>
+<span id="cb36-243"><a href="#cb36-243"></a>O primeiro passo da análise é realizar a importação dos dados e o preparo do conjunto para as análises subsequentes, assegurando que as variáveis estejam corretamente estruturadas para aplicar os testes apropriados.</span>
+<span id="cb36-244"><a href="#cb36-244"></a></span>
+<span id="cb36-247"><a href="#cb36-247"></a><span class="in">```{r}</span></span>
+<span id="cb36-248"><a href="#cb36-248"></a>escala <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados-diversos.xlsx"</span>, <span class="st">"escala"</span>)</span>
+<span id="cb36-249"><a href="#cb36-249"></a><span class="fu">head</span>(escala)</span>
+<span id="cb36-250"><a href="#cb36-250"></a><span class="in">```</span></span>
+<span id="cb36-251"><a href="#cb36-251"></a></span>
+<span id="cb36-254"><a href="#cb36-254"></a><span class="in">```{r}</span></span>
+<span id="cb36-255"><a href="#cb36-255"></a>escala2 <span class="ot">&lt;-</span> escala <span class="sc">|&gt;</span> </span>
+<span id="cb36-256"><a href="#cb36-256"></a>  <span class="fu">select</span>(assessment, rater, acuracia)</span>
+<span id="cb36-257"><a href="#cb36-257"></a>escala3 <span class="ot">&lt;-</span> escala2<span class="sc">|&gt;</span></span>
+<span id="cb36-258"><a href="#cb36-258"></a>  <span class="fu">pivot_wider</span>(<span class="dv">1</span>,</span>
+<span id="cb36-259"><a href="#cb36-259"></a>              <span class="at">names_from =</span> assessment,</span>
+<span id="cb36-260"><a href="#cb36-260"></a>              <span class="at">values_from =</span> acuracia)</span>
+<span id="cb36-261"><a href="#cb36-261"></a><span class="in">```</span></span>
+<span id="cb36-262"><a href="#cb36-262"></a></span>
+<span id="cb36-263"><a href="#cb36-263"></a>Agora iremos checar as premissias, comecando pela homocedasticidade:</span>
+<span id="cb36-264"><a href="#cb36-264"></a></span>
+<span id="cb36-267"><a href="#cb36-267"></a><span class="in">```{r}</span></span>
+<span id="cb36-268"><a href="#cb36-268"></a><span class="fu">attach</span>(escala3)</span>
+<span id="cb36-269"><a href="#cb36-269"></a><span class="fu">var.test</span>(Aided1, Unaided)</span>
+<span id="cb36-270"><a href="#cb36-270"></a><span class="in">```</span></span>
+<span id="cb36-271"><a href="#cb36-271"></a></span>
+<span id="cb36-272"><a href="#cb36-272"></a>Normalidade:</span>
+<span id="cb36-273"><a href="#cb36-273"></a></span>
+<span id="cb36-276"><a href="#cb36-276"></a><span class="in">```{r}</span></span>
+<span id="cb36-277"><a href="#cb36-277"></a><span class="fu">shapiro.test</span>(Aided1)<span class="sc">$</span>p.valu</span>
+<span id="cb36-278"><a href="#cb36-278"></a><span class="in">```</span></span>
+<span id="cb36-279"><a href="#cb36-279"></a></span>
+<span id="cb36-282"><a href="#cb36-282"></a><span class="in">```{r}</span></span>
+<span id="cb36-283"><a href="#cb36-283"></a><span class="fu">shapiro.test</span>(Unaided)<span class="sc">$</span>p.value</span>
+<span id="cb36-284"><a href="#cb36-284"></a><span class="in">```</span></span>
+<span id="cb36-285"><a href="#cb36-285"></a></span>
+<span id="cb36-286"><a href="#cb36-286"></a>Vamos plotar um grafico, para cada um e visualizarmos:</span>
+<span id="cb36-287"><a href="#cb36-287"></a></span>
+<span id="cb36-290"><a href="#cb36-290"></a><span class="in">```{r}</span></span>
+<span id="cb36-291"><a href="#cb36-291"></a><span class="fu">qqnorm</span>(Aided1)</span>
+<span id="cb36-292"><a href="#cb36-292"></a><span class="fu">qqline</span>(Aided1)</span>
+<span id="cb36-293"><a href="#cb36-293"></a><span class="in">```</span></span>
+<span id="cb36-294"><a href="#cb36-294"></a></span>
+<span id="cb36-297"><a href="#cb36-297"></a><span class="in">```{r}</span></span>
+<span id="cb36-298"><a href="#cb36-298"></a><span class="fu">qqnorm</span>(Unaided)</span>
+<span id="cb36-299"><a href="#cb36-299"></a><span class="fu">qqline</span>(Unaided)</span>
+<span id="cb36-300"><a href="#cb36-300"></a><span class="in">```</span></span>
+<span id="cb36-301"><a href="#cb36-301"></a></span>
+<span id="cb36-302"><a href="#cb36-302"></a><span class="fu">### Teste T paramétrico para amostras pareadas</span></span>
+<span id="cb36-303"><a href="#cb36-303"></a></span>
+<span id="cb36-306"><a href="#cb36-306"></a><span class="in">```{r}</span></span>
+<span id="cb36-307"><a href="#cb36-307"></a>t_escala <span class="ot">&lt;-</span> <span class="fu">t.test</span>(escala3<span class="sc">$</span>Aided1, escala3<span class="sc">$</span>Unaided,</span>
+<span id="cb36-308"><a href="#cb36-308"></a>  <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-309"><a href="#cb36-309"></a>  <span class="at">var.equal =</span> F</span>
+<span id="cb36-310"><a href="#cb36-310"></a>)</span>
+<span id="cb36-311"><a href="#cb36-311"></a></span>
+<span id="cb36-312"><a href="#cb36-312"></a>t_escala</span>
+<span id="cb36-313"><a href="#cb36-313"></a><span class="in">```</span></span>
+<span id="cb36-314"><a href="#cb36-314"></a></span>
+<span id="cb36-315"><a href="#cb36-315"></a><span class="fu">### Teste para Dados Não Paramétricos</span></span>
+<span id="cb36-316"><a href="#cb36-316"></a></span>
+<span id="cb36-317"><a href="#cb36-317"></a>Testes não paramétricos são métodos estatísticos que não dependem de premissas sobre a distribuição dos dados, como a normalidade, e são especialmente úteis quando se trabalha com amostras pequenas ou quando não é possível verificar ou satisfazer as suposições dos testes paramétricos.</span>
+<span id="cb36-318"><a href="#cb36-318"></a></span>
+<span id="cb36-319"><a href="#cb36-319"></a>Para comparar duas amostras pareadas ou dependentes quando a distribuição não é normal, utiliza-se o teste de Wilcoxon para amostras pareadas, implementado no R pela função <span class="in">`wilcox.test()`</span>. Ele é considerado o equivalente não paramétrico ao teste t pareado, sendo usado para avaliar se há diferença significativa entre as medianas das duas condições analisadas.</span>
+<span id="cb36-320"><a href="#cb36-320"></a></span>
+<span id="cb36-321"><a href="#cb36-321"></a>Esse teste é recomendado sempre que os dados violarem a normalidade ou não permitirem a verificação dessa premissa, oferecendo uma alternativa robusta e confiável para comparação de grupos.</span>
+<span id="cb36-322"><a href="#cb36-322"></a></span>
+<span id="cb36-325"><a href="#cb36-325"></a><span class="in">```{r}</span></span>
+<span id="cb36-326"><a href="#cb36-326"></a><span class="fu">wilcox.test</span>(escala3<span class="sc">$</span>Aided1, escala3<span class="sc">$</span>Unaided, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-327"><a href="#cb36-327"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2025 - Maria Izabel de Almeida Leite — Feito com <a href="https://quarto.org">Quarto</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

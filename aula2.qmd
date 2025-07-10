@@ -1,0 +1,128 @@
+---
+title: ""
+---
+
+## Instalação de Pacotes e Comandos básicos
+
+### O que são pacotes no R?
+
+No R, **pacotes** são conjuntos organizados de funções, dados e documentação que ampliam as capacidades da linguagem. Eles funcionam como extensões modulares que podem ser instaladas conforme a necessidade, permitindo realizar análises específicas, criar gráficos, importar dados e muito mais. Em outras palavras, um pacote é uma forma prática de acessar códigos já prontos e úteis para diversas tarefas analíticas.
+
+Esses pacotes são distribuídos em repositórios, sendo os mais utilizados:
+
+-   **CRAN (Comprehensive R Archive Network)** -- é o repositório oficial e mais utilizado para distribuição de pacotes criados pela comunidade.
+
+-   **Bioconductor** -- voltado especialmente para aplicações em bioinformática e análise de dados genômicos.
+
+-   **GitHub** -- uma plataforma que hospeda projetos de código aberto, incluindo versões em desenvolvimento ou alternativas de pacotes R que ainda não estão disponíveis no CRAN.
+
+A escolha dos pacotes depende do tipo de análise a ser realizada. No entanto, alguns pacotes são amplamente utilizados em diferentes contextos por oferecerem ferramentas fundamentais para manipulação e visualização de dados. Entre os principais, destacam-se:
+
+-   **`tidyverse`** -- uma coleção de pacotes que compartilham uma filosofia comum de manipulação de dados;
+
+-   **`dplyr`** -- facilita o trabalho com data frames por meio de verbos como `filter()`, `select()` e `mutate()`;
+
+-   **`readxl`** -- permite importar planilhas do Excel de forma simples;
+
+-   **`ggplot2`** -- pacote poderoso para criação de gráficos personalizados.
+
+### Instalação e Carregamento de Pacotes no R
+
+Para utilizar recursos adicionais no R, é necessário instalar e carregar pacotes específicos. **Pacotes** são coleções organizadas de funções, dados e documentação que estendem as funcionalidades básicas do R. Eles podem ser instalados e carregados tanto por meio da interface gráfica do RStudio quanto por comandos no console.
+
+#### Instalação de pacotes
+
+A instalação pode ser feita de duas formas:
+
+-   **Via menu gráfico (GUI)**:
+
+    1.  Acesse o menu **Tools \> Install Packages** ou clique na aba **Packages \> Install**.
+
+    2.  Digite o nome do(s) pacote(s) que deseja instalar.
+
+    3.  Clique em "Install" e o RStudio irá baixar e instalar automaticamente a partir do repositório CRAN (ou outro repositório, se especificado).
+
+-   **Via comando no console**:\
+    Utilize a função `install.packages()` passando o nome do pacote entre aspas:
+
+```{r}
+#install.packages("ggplot2")
+
+##Instalar múltiplos pacotes
+
+#install.packages(c("dplyr", "readxl", "tidyverse", "GWalkR", "tidyr", "readr", "caret"))
+
+```
+
+**Atenção**: A instalação de pacotes precisa ser feita apenas uma vez. Porém, sempre que iniciar um novo projeto ou sessão no R, será necessário carregá-los novamente.
+
+#### Carregamento de pacotes
+
+Após a instalação, é necessário **carregar o pacote** para utilizá-lo na sessão atual. ndefinedndefinedndefinedIsso pode ser feito de duas formas:
+
+-   **Via menu gráfico**:
+
+1.  Vá até a aba **Packages** no painel inferior direito do RStudio.
+
+2.  Use a barra de busca para localizar o pacote desejado.
+
+3.  Marque a caixa ao lado do nome do pacote para ativá-lo (carregá-lo).
+
+-   **Via comando no console**:\
+    É possível carregar vários pacotes na mesma célula (chunk) ou bloco de código, separando os comandos em linhas diferentes
+
+    Utilize a função `library()` com o nome do pacote (sem aspas):
+
+```{r}
+library(tidyverse)
+library(metafor) 
+library(gsheet) 
+library(remotes) 
+library(ggplot2) 
+library(dplyr)
+```
+
+#### Silenciar mensagens e avisos
+
+Alguns pacotes exibem mensagens e **avisos (warnings)** extensos ao serem carregados, o que pode deixar o script visualmente poluído. Para evitar isso, é comum utilizar argumentos especiais dentro de blocos de código no R Markdown, como:
+
+```{r}
+{warning(FALSE)}
+```
+
+Esses parâmetros ocultam mensagens e avisos durante a execução, tornando a saída do código mais limpa e organizada --- especialmente útil em relatórios e apresentações geradas via R Markdown ou Quarto.
+
+------------------------------------------------------------------------
+
+#### Dicas importantes
+
+-   Sempre **carregue os pacotes no início do script** ou notebook. Isso garante que todas as funções estarão disponíveis ao longo da análise.
+-   Verifique se o nome do pacote está digitado corretamente. O R é **case sensitive**, ou seja, diferencia letras maiúsculas e minúsculas.
+-   Se um pacote estiver ausente ou não carregar corretamente, reinstale-o com `install.packages()`.
+
+------------------------------------------------------------------------
+
+## Funções de pacotes
+
+### Chamando Funções de Pacotes no R
+
+As funções contidas em pacotes do R são diversas e poderosas, e serão exploradas com mais profundidade nas próximas aulas --- especialmente no tema **data frames**. Por ora, vamos conhecer rapidamente como utilizar uma dessas funções, com um exemplo prático.
+
+A função `arrange()`, pertencente ao pacote **`dplyr`**, é utilizada para ordenar os dados com base em uma ou mais variáveis. Vamos aplicá-la ao dataset `mtcars`, que já vem incluso no R como exemplo de base de dados para testes e aprendizagem.
+
+No exemplo abaixo, usamos `arrange()` para reorganizar o conjunto de dados `mtcars` com base na variável `cyl` (número de cilindros), em ordem crescente:
+
+```{r}
+{library(dplyr)}
+
+arrange(mtcars, cyl)
+```
+
+Esse comando reordena as linhas da tabela `mtcars` a partir dos menores valores de `cyl`. Caso fosse necessário ordenar em ordem decrescente, utilizaríamos a função `desc()` dentro do `arrange()`.
+
+### Gerar relatórios e apresentações em PDF, a partir de um documento RMarkdown
+
+```{r}
+#install.packages('tinytex')
+#tinytex::install_tinytex()  # instalar o TinyTeX
+```

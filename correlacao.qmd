@@ -1,0 +1,307 @@
+---
+title: ""
+---
+
+## Análise de Correlação
+
+A análise de correlação é uma técnica estatística utilizada para quantificar a **força** e a **direção** da relação linear entre duas variáveis contínuas. Ela indica o grau em que essas variáveis variam em conjunto.
+
+A correlação pode ser:
+
+-   **Positiva**: ambas as variáveis aumentam ou diminuem juntas
+
+-   **Negativa**: uma variável aumenta enquanto a outra diminui;
+
+-   **Nula**: não há relação linear aparente entre elas.
+
+O principal indicador usado é o **coeficiente de correlação de Pearson**, que varia entre -1 e +1:
+
+-   **+1**: correlação linear positiva perfeita;
+
+-   **-1**: correlação linear negativa perfeita;
+
+-   **0**: ausência de correlação linear.
+
+É importante ressaltar que a correlação não implica causalidade, ou seja, mesmo quando duas variáveis estão correlacionadas, isso não significa que uma causa a outra.
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+
+estande = read_xlsx("dados-diversos.xlsx", sheet = "estande")
+
+estande |>
+  ggplot(aes(trat, nplants))+
+  geom_point()+
+  facet_wrap(~ exp)+
+  ylim(0,max(estande$nplants))+
+  geom_smooth(se =  F)
+```
+
+### Ajuste de Modelo Linear Simples e Quadrático
+
+Para ajustar modelos lineares em R, utiliza-se a função `lm()`, que recebe como argumentos a fórmula da relação entre a variável dependente e a independente (por exemplo, `y ~ x`) e o conjunto de dados. O modelo ajustado é armazenado como um objeto do tipo `"lm"`. Para visualizar os resultados do ajuste, utiliza-se a função `summary()`, que retorna os coeficientes estimados, valores-p, o coeficiente de determinação (R²), e outros diagnósticos importantes.
+
+### Coeficiente de Determinação (R²)
+
+O **R²** indica a proporção da variação da variável resposta explicada pelo modelo. Seu valor varia entre 0 e 1:
+
+-   **R² = 0**: o modelo não explica nenhuma variação;
+
+-   **R² = 1**: o modelo explica totalmente a variação da variável dependente.
+
+Valores mais altos de R² indicam melhor ajuste aos dados.
+
+### Comparando modelos: linear vs. quadrático
+
+É possível comparar um modelo linear simples (`y ~ x`) com um modelo quadrático (`y ~ x + I(x^2)`) para verificar qual se ajusta melhor aos dados. O critério pode ser baseado no R², AIC ou inspeção gráfica dos resíduos.
+
+```{r}
+estande2 <- estande |>
+  filter(exp ==2) |>
+  group_by(trat) |>
+  summarise(mean_nplants = mean(nplants))
+  
+estande2|>
+  ggplot(aes(trat, mean_nplants))+
+  geom_point()+
+  #geom_line()
+  geom_smooth(formula = y ~ poly(x, 2), method = "lm", color = "blue")+
+  annotate(geom = "text", 
+           x = 25, y = 70,
+           label = "y = 66.3 - 1.777x + 0.0222x2
+           R2 = 0.0.88")
+```
+
+### Modelo Quadrático
+
+Enquanto a correlação linear avalia a relação entre duas variáveis com base em uma linha reta, o **modelo quadrático** permite identificar padrões **não lineares**, especialmente aqueles que descrevem uma curva (por exemplo, em forma de U ou inverso de U).
+
+Para ajustar um modelo quadrático no R, utiliza-se a função `lm()`, assim como no modelo linear simples. A diferença está na fórmula: é necessário incluir o termo quadrático da variável independente.
+
+```{r}
+estande2 <- estande2 |>
+  mutate(trat2 = trat^2)
+  m1 <- lm(mean_nplants ~ trat, data = estande2)
+summary(m1)
+```
+
+```{r}
+hist(m1$residuals, 
+     main = "Histograma dos Resíduos", 
+     xlab = "Resíduos", 
+     col = "pink",      
+     border = "white")  
+
+```
+
+```{r}
+m2 <- lm(mean_nplants ~ trat + trat2,
+         data = estande2)
+summary(m2)
+```
+
+```{r}
+AIC(m1, m2)
+```
+
+### Duas variáveis resposta
+
+Quando se trabalha com duas variáveis resposta contínuas, é comum investigar a relação entre elas por meio da análise de correlação. O coeficiente de correlação de Pearson (R) é utilizado para quantificar essa relação linear.
+
+O valor de **R** varia entre -1 e 1, indicando a direção e a intensidade da associação:
+
+-   Valores próximos de **+1** indicam forte correlação positiva,
+
+-   Valores próximos de **-1** indicam forte correlação negativa,
+
+-   Valores próximos de zero indicam pouca ou nenhuma correlação linear.
+
+O coeficiente de determinação, **R²**, corresponde ao quadrado de R, e representa a proporção da variância de uma variável que é explicada pela outra em uma relação linear. Como R² é o quadrado de R, seu valor será sempre positivo e menor ou igual a 1. Portanto, para valores positivos de R, R² será menor ou igual a R.
+
+```{r}
+library(gsheet)
+mofo <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=413008764#gid=413008764")
+
+head(mofo)
+
+
+mofo |>
+  ggplot(aes(inc, yld))+
+  geom_point()+
+  geom_smooth(se = F, method = "lm")+
+  facet_wrap(~ study)
+```
+
+O coeficiente de correlação de Pearson é específico para medir relações lineares entre duas variáveis contínuas. Isso significa que ele avalia apenas o grau de associação linear; se a relação entre as variáveis for não linear, o coeficiente de Pearson pode não representar adequadamente a força ou a direção da associação.
+
+### Função `cor.test()`
+
+No R, a função `cor.test()` é utilizada para calcular o coeficiente de correlação entre duas variáveis. Além de estimar o valor da correlação, essa função realiza um teste de hipótese para verificar se a correlação observada é estatisticamente significativa, fornecendo o valor-p e o intervalo de confiança.
+
+Filtrando o experimento 1:
+
+```{r}
+mofo1 <- mofo |>
+  filter(study ==1)
+mofo1
+```
+
+```{r}
+cor.test(mofo1$inc, mofo1$yld)
+```
+
+Filtrando o experimento 2:
+
+```{r}
+mofo1 <- mofo |>
+  filter(study ==2)
+mofo1
+```
+
+```{r}
+cor.test(mofo1$inc, mofo1$yld)
+```
+
+Filtrando o experimento 3:
+
+```{r}
+mofo1 <- mofo |>
+  filter(study ==3)
+mofo1
+```
+
+```{r}
+cor.test(mofo1$inc, mofo1$yld)
+```
+
+Filtrando o experimento 4:
+
+```{r}
+mofo1 <- mofo |>
+  filter(study ==4)
+mofo1
+```
+
+```{r}
+cor.test(mofo1$inc, mofo1$yld)
+```
+
+Vamos fazer uma matriz de correlação, que nada mais é que uma tabela que resume as relações entre pares de variáveis em um conjunto de dados, exibindo os coeficientes de correlação, geralmente de Pearson, para cada combinação possível. Essa ferramenta é essencial para identificar padrões de associação, intensidade e direção entre múltiplas variáveis simultaneamente.
+
+A matriz ajuda a compreender rapidamente como as variáveis estão relacionadas, permitindo detectar correlações positivas, negativas ou ausência de associação, e é amplamente utilizada em análises exploratórias e prévias a modelos estatísticos mais complexos.
+
+```{r}
+mofo1 <- mofo |>
+  filter(study ==3)
+mofo1
+```
+
+```{r}
+cor.test(mofo1$inc, mofo1$yld)
+```
+
+```{r}
+library(dplyr)
+cor(dplyr::select(mofo1, 3:5))
+
+```
+
+#### **Gráficos de correlação**
+
+O pacote **`corrplot`** é amplamente utilizado para a visualização e análise de matrizes de correlação, oferecendo ferramentas gráficas que facilitam a interpretação das relações entre variáveis em conjuntos de dados.
+
+#### Funcionalidades principais:
+
+-   **`corr.test()`**:\
+    Realiza testes estatísticos sobre a matriz de correlação, calculando coeficientes, valores-p e intervalos de confiança. Essa função ajuda a avaliar a significância das correlações observadas.
+
+-   **`corrplot()`**:\
+    Gera diferentes tipos de gráficos para representar visualmente a matriz de correlação. A função permite escolher entre múltiplos estilos e opções de personalização, tornando a análise mais intuitiva.
+
+    #### Opções de visualização no `corrplot()`:
+
+-   **Métodos (`method`)** --- tipos de gráficos disponíveis:
+
+    -   `"circle"` (círculos)
+
+    -   `"square"` (quadrados)
+
+    -   `"ellipse"` (elipses)
+
+    -   `"number"` (exibe os valores numéricos dos coeficientes)
+
+    -   `"shade"` (sombras)
+
+    -   `"color"` (cores preenchidas)
+
+    -   `"pie"` (gráfico de pizza)
+
+A intensidade da cor ou tamanho dos símbolos é proporcional ao valor dos coeficientes de correlação, facilitando a identificação visual da força da associação.
+
+-   **Tipos de layout (`type`)**:
+
+    -   `"full"` (matriz completa)
+
+    -   `"upper"` (metade superior da matriz)
+
+    -   `"lower"` (metade inferior da matriz)
+
+    ```{r}
+    mofo1 <- mofo |>
+      filter(study ==3)
+    mofo1
+    ```
+
+```{r}
+cor.test(mofo1$inc, mofo1$yld)
+```
+
+```{r}
+pcor <- mofo1 |> dplyr::select(3:5) |> cor()
+
+library(corrplot)
+corrplot(pcor, method = 'number', type = "lower")
+```
+
+### Modelo de Kendall
+
+O coeficiente de correlação de Kendall é uma medida não paramétrica que avalia a associação entre duas variáveis ordinais ou contínuas que podem ser ordenadas. Diferentemente do coeficiente de Pearson, que avalia relações lineares e assume distribuição normal, o método de Kendall é mais robusto para lidar com dados não lineares ou quando a normalidade não é atendida.
+
+O coeficiente de Kendall varia entre **-1 e 1**, com interpretações similares às do coeficiente de Pearson:
+
+-   Valores próximos de +1 indicam forte associação positiva;
+
+-   Valores próximos de -1 indicam forte associação negativa;
+
+-   Valores próximos de zero indicam pouca ou nenhuma associação.
+
+Devido à sua natureza baseada em pares ordenados, o coeficiente de Kendall é especialmente útil para dados com escalas ordinais ou quando há presença de outliers.
+
+```{r}
+mofo1 <- mofo |>
+  filter(study ==3)
+mofo1
+```
+
+```{r}
+shapiro.test(mofo1$inc)
+```
+
+```{r}
+shapiro.test(mofo1$yld)
+```
+
+```{r}
+cor.test(mofo1$inc, mofo1$yld, method = "spearman")
+```
+
+```{r}
+library(dplyr)
+pcor <- mofo1 |> dplyr::select(3:5) |> cor(method = "spearman")
+
+
+#library(corrplot)
+#corrplot(pcor, method = 'number', type = "lower")
+```

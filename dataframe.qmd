@@ -1,8 +1,5 @@
 ---
-title: "DATAFRAME"
-author: "MARIA IZABEL"
-format: html
-editor: visual
+title: ""
 ---
 
 # **Data frame**

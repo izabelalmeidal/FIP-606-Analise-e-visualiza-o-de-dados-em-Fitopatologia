@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Maria Izabel de Almeida Leite">
+
+<title>FIP_606 - Análise e Visualização de Dados em Fitopatologia -</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">FIP_606 - Análise e Visualização de Dados em Fitopatologia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target=""><i class="bi bi-info-circle" role="img">
+</i> 
+ <span class="menu-text">Sobre</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./introducao.html" rel="" target="">
+ <span class="menu-text">Introdução ao R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./aula2.html" rel="" target="">
+ <span class="menu-text">Manipulação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dataframe.html" rel="" target="">
+ <span class="menu-text">Dataframe</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./graficodisp.qmd" rel="" target="">
+ <span class="menu-text">Dispersão, Histograma e Densidade</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ggplot2.html" rel="" target="">
+ <span class="menu-text">BoxPlot</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./boxcox.html" rel="" target="">
+ <span class="menu-text">Box-Cox</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./hipotese.html" rel="" target="">
+ <span class="menu-text">Teste de Hipótese</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./transformacao.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./testt.html" rel="" target="">
+ <span class="menu-text">Teste T</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./anova.html" rel="" target="">
+ <span class="menu-text">ANOVA</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./correlacao.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Correlação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./regressao.html" rel="" target="">
+ <span class="menu-text">Regressão</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/izabelalmeidal/FIP-606-Analise-e-visualiza-o-de-dados-em-Fitopatologia" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Maria Izabel</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:maria.a.leite@ufv.br" rel="" target=""><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#análise-de-correlação" id="toc-análise-de-correlação" class="nav-link active" data-scroll-target="#análise-de-correlação">Análise de Correlação</a>
+  <ul class="collapse">
+  <li><a href="#ajuste-de-modelo-linear-simples-e-quadrático" id="toc-ajuste-de-modelo-linear-simples-e-quadrático" class="nav-link" data-scroll-target="#ajuste-de-modelo-linear-simples-e-quadrático">Ajuste de Modelo Linear Simples e Quadrático</a></li>
+  <li><a href="#coeficiente-de-determinação-r²" id="toc-coeficiente-de-determinação-r²" class="nav-link" data-scroll-target="#coeficiente-de-determinação-r²">Coeficiente de Determinação (R²)</a></li>
+  <li><a href="#comparando-modelos-linear-vs.-quadrático" id="toc-comparando-modelos-linear-vs.-quadrático" class="nav-link" data-scroll-target="#comparando-modelos-linear-vs.-quadrático">Comparando modelos: linear vs.&nbsp;quadrático</a></li>
+  <li><a href="#modelo-quadrático" id="toc-modelo-quadrático" class="nav-link" data-scroll-target="#modelo-quadrático">Modelo Quadrático</a></li>
+  <li><a href="#duas-variáveis-resposta" id="toc-duas-variáveis-resposta" class="nav-link" data-scroll-target="#duas-variáveis-resposta">Duas variáveis resposta</a></li>
+  <li><a href="#função-cor.test" id="toc-função-cor.test" class="nav-link" data-scroll-target="#função-cor.test">Função <code>cor.test()</code></a></li>
+  <li><a href="#modelo-de-kendall" id="toc-modelo-de-kendall" class="nav-link" data-scroll-target="#modelo-de-kendall">Modelo de Kendall</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><div class="quarto-title-block"><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+
+
+
+<section id="análise-de-correlação" class="level2">
+<h2 class="anchored" data-anchor-id="análise-de-correlação">Análise de Correlação</h2>
+<p>A análise de correlação é uma técnica estatística utilizada para quantificar a <strong>força</strong> e a <strong>direção</strong> da relação linear entre duas variáveis contínuas. Ela indica o grau em que essas variáveis variam em conjunto.</p>
+<p>A correlação pode ser:</p>
+<ul>
+<li><p><strong>Positiva</strong>: ambas as variáveis aumentam ou diminuem juntas</p></li>
+<li><p><strong>Negativa</strong>: uma variável aumenta enquanto a outra diminui;</p></li>
+<li><p><strong>Nula</strong>: não há relação linear aparente entre elas.</p></li>
+</ul>
+<p>O principal indicador usado é o <strong>coeficiente de correlação de Pearson</strong>, que varia entre -1 e +1:</p>
+<ul>
+<li><p><strong>+1</strong>: correlação linear positiva perfeita;</p></li>
+<li><p><strong>-1</strong>: correlação linear negativa perfeita;</p></li>
+<li><p><strong>0</strong>: ausência de correlação linear.</p></li>
+</ul>
+<p>É importante ressaltar que a correlação não implica causalidade, ou seja, mesmo quando duas variáveis estão correlacionadas, isso não significa que uma causa a outra.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>estande <span class="ot">=</span> <span class="fu">read_xlsx</span>(<span class="st">"dados-diversos.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"estande"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>estande <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, nplants))<span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> exp)<span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="fu">max</span>(estande<span class="sc">$</span>nplants))<span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span>  F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="correlacao_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="ajuste-de-modelo-linear-simples-e-quadrático" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-de-modelo-linear-simples-e-quadrático">Ajuste de Modelo Linear Simples e Quadrático</h3>
+<p>Para ajustar modelos lineares em R, utiliza-se a função <code>lm()</code>, que recebe como argumentos a fórmula da relação entre a variável dependente e a independente (por exemplo, <code>y ~ x</code>) e o conjunto de dados. O modelo ajustado é armazenado como um objeto do tipo <code>"lm"</code>. Para visualizar os resultados do ajuste, utiliza-se a função <code>summary()</code>, que retorna os coeficientes estimados, valores-p, o coeficiente de determinação (R²), e outros diagnósticos importantes.</p>
+</section>
+<section id="coeficiente-de-determinação-r²" class="level3">
+<h3 class="anchored" data-anchor-id="coeficiente-de-determinação-r²">Coeficiente de Determinação (R²)</h3>
+<p>O <strong>R²</strong> indica a proporção da variação da variável resposta explicada pelo modelo. Seu valor varia entre 0 e 1:</p>
+<ul>
+<li><p><strong>R² = 0</strong>: o modelo não explica nenhuma variação;</p></li>
+<li><p><strong>R² = 1</strong>: o modelo explica totalmente a variação da variável dependente.</p></li>
+</ul>
+<p>Valores mais altos de R² indicam melhor ajuste aos dados.</p>
+</section>
+<section id="comparando-modelos-linear-vs.-quadrático" class="level3">
+<h3 class="anchored" data-anchor-id="comparando-modelos-linear-vs.-quadrático">Comparando modelos: linear vs.&nbsp;quadrático</h3>
+<p>É possível comparar um modelo linear simples (<code>y ~ x</code>) com um modelo quadrático (<code>y ~ x + I(x^2)</code>) para verificar qual se ajusta melhor aos dados. O critério pode ser baseado no R², AIC ou inspeção gráfica dos resíduos.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>estande2 <span class="ot">&lt;-</span> estande <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">filter</span>(exp <span class="sc">==</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">group_by</span>(trat) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">summarise</span>(<span class="at">mean_nplants =</span> <span class="fu">mean</span>(nplants))</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  </span>
+<span id="cb2-6"><a href="#cb2-6"></a>estande2<span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, mean_nplants))<span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="co">#geom_line()</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"blue"</span>)<span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, </span>
+<span id="cb2-12"><a href="#cb2-12"></a>           <span class="at">x =</span> <span class="dv">25</span>, <span class="at">y =</span> <span class="dv">70</span>,</span>
+<span id="cb2-13"><a href="#cb2-13"></a>           <span class="at">label =</span> <span class="st">"y = 66.3 - 1.777x + 0.0222x2</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="st">           R2 = 0.0.88"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="correlacao_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="modelo-quadrático" class="level3">
+<h3 class="anchored" data-anchor-id="modelo-quadrático">Modelo Quadrático</h3>
+<p>Enquanto a correlação linear avalia a relação entre duas variáveis com base em uma linha reta, o <strong>modelo quadrático</strong> permite identificar padrões <strong>não lineares</strong>, especialmente aqueles que descrevem uma curva (por exemplo, em forma de U ou inverso de U).</p>
+<p>Para ajustar um modelo quadrático no R, utiliza-se a função <code>lm()</code>, assim como no modelo linear simples. A diferença está na fórmula: é necessário incluir o termo quadrático da variável independente.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>estande2 <span class="ot">&lt;-</span> estande2 <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">mutate</span>(<span class="at">trat2 =</span> trat<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mean_nplants <span class="sc">~</span> trat, <span class="at">data =</span> estande2)</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mean_nplants ~ trat, data = estande2)
+
+Residuals:
+     1      2      3      4      5      6 
+12.764 -2.134 -6.782 -3.327 -4.669  4.147 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  60.9857     4.5505  13.402 0.000179 ***
+trat         -0.7007     0.2012  -3.483 0.025294 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 8.117 on 4 degrees of freedom
+Multiple R-squared:  0.752, Adjusted R-squared:   0.69 
+F-statistic: 12.13 on 1 and 4 DF,  p-value: 0.02529</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">hist</span>(m1<span class="sc">$</span>residuals, </span>
+<span id="cb5-2"><a href="#cb5-2"></a>     <span class="at">main =</span> <span class="st">"Histograma dos Resíduos"</span>, </span>
+<span id="cb5-3"><a href="#cb5-3"></a>     <span class="at">xlab =</span> <span class="st">"Resíduos"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4"></a>     <span class="at">col =</span> <span class="st">"pink"</span>,      </span>
+<span id="cb5-5"><a href="#cb5-5"></a>     <span class="at">border =</span> <span class="st">"white"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="correlacao_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mean_nplants <span class="sc">~</span> trat <span class="sc">+</span> trat2,</span>
+<span id="cb6-2"><a href="#cb6-2"></a>         <span class="at">data =</span> estande2)</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = mean_nplants ~ trat + trat2, data = estande2)
+
+Residuals:
+      1       2       3       4       5       6 
+ 7.4484 -4.4200 -6.4386  1.0739  3.0474 -0.7111 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 66.30156    4.70800  14.083 0.000776 ***
+trat        -1.77720    0.62263  -2.854 0.064878 .  
+trat2        0.02223    0.01242   1.790 0.171344    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.517 on 3 degrees of freedom
+Multiple R-squared:  0.8801,    Adjusted R-squared:  0.8001 
+F-statistic: 11.01 on 2 and 3 DF,  p-value: 0.04152</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">AIC</span>(m1, m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   df      AIC
+m1  3 45.72200
+m2  4 43.36151</code></pre>
+</div>
+</div>
+</section>
+<section id="duas-variáveis-resposta" class="level3">
+<h3 class="anchored" data-anchor-id="duas-variáveis-resposta">Duas variáveis resposta</h3>
+<p>Quando se trabalha com duas variáveis resposta contínuas, é comum investigar a relação entre elas por meio da análise de correlação. O coeficiente de correlação de Pearson (R) é utilizado para quantificar essa relação linear.</p>
+<p>O valor de <strong>R</strong> varia entre -1 e 1, indicando a direção e a intensidade da associação:</p>
+<ul>
+<li><p>Valores próximos de <strong>+1</strong> indicam forte correlação positiva,</p></li>
+<li><p>Valores próximos de <strong>-1</strong> indicam forte correlação negativa,</p></li>
+<li><p>Valores próximos de zero indicam pouca ou nenhuma correlação linear.</p></li>
+</ul>
+<p>O coeficiente de determinação, <strong>R²</strong>, corresponde ao quadrado de R, e representa a proporção da variância de uma variável que é explicada pela outra em uma relação linear. Como R² é o quadrado de R, seu valor será sempre positivo e menor ou igual a 1. Portanto, para valores positivos de R, R² será menor ou igual a R.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>mofo <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=413008764#gid=413008764"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="fu">head</span>(mofo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  study treat   inc   scl   yld
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1     1    76  2194  2265
+2     1     2    53  1663  2618
+3     1     3    42  1313  2554
+4     1     4    37  1177  2632
+5     1     5    29   753  2820
+6     1     6    42  1343  2799</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>mofo <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(inc, yld))<span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> <span class="st">"lm"</span>)<span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> study)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="correlacao_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>O coeficiente de correlação de Pearson é específico para medir relações lineares entre duas variáveis contínuas. Isso significa que ele avalia apenas o grau de associação linear; se a relação entre as variáveis for não linear, o coeficiente de Pearson pode não representar adequadamente a força ou a direção da associação.</p>
+</section>
+<section id="função-cor.test" class="level3">
+<h3 class="anchored" data-anchor-id="função-cor.test">Função <code>cor.test()</code></h3>
+<p>No R, a função <code>cor.test()</code> é utilizada para calcular o coeficiente de correlação entre duas variáveis. Além de estimar o valor da correlação, essa função realiza um teste de hipótese para verificar se a correlação observada é estatisticamente significativa, fornecendo o valor-p e o intervalo de confiança.</p>
+<p>Filtrando o experimento 1:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>mofo1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   study treat   inc   scl   yld
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     1     1    76  2194  2265
+ 2     1     2    53  1663  2618
+ 3     1     3    42  1313  2554
+ 4     1     4    37  1177  2632
+ 5     1     5    29   753  2820
+ 6     1     6    42  1343  2799
+ 7     1     7    55  1519  2503
+ 8     1     8    40   516  2967
+ 9     1     9    26   643  2965
+10     1    10    18   400  3088
+11     1    11    27   643  3044
+12     1    12    28   921  2925
+13     1    13    36  1196  2867</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  mofo1$inc and mofo1$yld
+t = -6.8451, df = 11, p-value = 2.782e-05
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9699609 -0.6921361
+sample estimates:
+       cor 
+-0.8999278 </code></pre>
+</div>
+</div>
+<p>Filtrando o experimento 2:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">2</span>)</span>
+<span id="cb17-3"><a href="#cb17-3"></a>mofo1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   study treat   inc   scl   yld
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     2     1    76  1331  2257
+ 2     2     2    44   756  2393
+ 3     2     3    24   338  2401
+ 4     2     4    33   581  2568
+ 5     2     5    37   588  2320
+ 6     2     6    34   231  2308
+ 7     2     7    31   925  2389
+ 8     2     8    16   119  2614
+ 9     2     9    10   394  2681
+10     2    10     8   206  2694
+11     2    11    15   275  2674
+12     2    12     7   131  2666
+13     2    13    19   588  2454</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  mofo1$inc and mofo1$yld
+t = -4.6638, df = 11, p-value = 0.0006894
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9426562 -0.4790750
+sample estimates:
+       cor 
+-0.8149448 </code></pre>
+</div>
+</div>
+<p>Filtrando o experimento 3:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">3</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a>mofo1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   study treat   inc   scl   yld
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     3     1    65  5013  2839
+ 2     3     2    33  3619  3375
+ 3     3     3    40  2325  3264
+ 4     3     4    35  2588  3301
+ 5     3     5    48  3969  3220
+ 6     3     6    31  1556  3321
+ 7     3     7    39  3175  3229
+ 8     3     8    25  1763  3517
+ 9     3     9    26  2894  3595
+10     3    10    21   350  3702
+11     3    11    23   419  3652
+12     3    12    25   644  3608
+13     3    13    33  2850  3334</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  mofo1$inc and mofo1$yld
+t = -10.9, df = 11, p-value = 3.105e-07
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9872663 -0.8579544
+sample estimates:
+      cor 
+-0.956692 </code></pre>
+</div>
+</div>
+<p>Filtrando o experimento 4:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">4</span>)</span>
+<span id="cb25-3"><a href="#cb25-3"></a>mofo1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   study treat   inc   scl   yld
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     4     1    69  6216  1893
+ 2     4     2    39  2888  2451
+ 3     4     3    41  2272  2232
+ 4     4     4    39  2868  2609
+ 5     4     5    40  2412  2383
+ 6     4     6    40  2372  2480
+ 7     4     7    44  3424  2577
+ 8     4     8    43  1744  2367
+ 9     4     9    26  1456  2769
+10     4    10    29  1732  2907
+11     4    11    30  1080  2298
+12     4    12    34  1592  2976
+13     4    13    44  3268  2200</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  mofo1$inc and mofo1$yld
+t = -3.7242, df = 11, p-value = 0.003357
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9194503 -0.3327077
+sample estimates:
+       cor 
+-0.7467931 </code></pre>
+</div>
+</div>
+<p>Vamos fazer uma matriz de correlação, que nada mais é que uma tabela que resume as relações entre pares de variáveis em um conjunto de dados, exibindo os coeficientes de correlação, geralmente de Pearson, para cada combinação possível. Essa ferramenta é essencial para identificar padrões de associação, intensidade e direção entre múltiplas variáveis simultaneamente.</p>
+<p>A matriz ajuda a compreender rapidamente como as variáveis estão relacionadas, permitindo detectar correlações positivas, negativas ou ausência de associação, e é amplamente utilizada em análises exploratórias e prévias a modelos estatísticos mais complexos.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">3</span>)</span>
+<span id="cb29-3"><a href="#cb29-3"></a>mofo1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   study treat   inc   scl   yld
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     3     1    65  5013  2839
+ 2     3     2    33  3619  3375
+ 3     3     3    40  2325  3264
+ 4     3     4    35  2588  3301
+ 5     3     5    48  3969  3220
+ 6     3     6    31  1556  3321
+ 7     3     7    39  3175  3229
+ 8     3     8    25  1763  3517
+ 9     3     9    26  2894  3595
+10     3    10    21   350  3702
+11     3    11    23   419  3652
+12     3    12    25   644  3608
+13     3    13    33  2850  3334</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  mofo1$inc and mofo1$yld
+t = -10.9, df = 11, p-value = 3.105e-07
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9872663 -0.8579544
+sample estimates:
+      cor 
+-0.956692 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">cor</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(mofo1, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>           inc        scl       yld
+inc  1.0000000  0.8441514 -0.956692
+scl  0.8441514  1.0000000 -0.836512
+yld -0.9566920 -0.8365120  1.000000</code></pre>
+</div>
+</div>
+<section id="gráficos-de-correlação" class="level4">
+<h4 class="anchored" data-anchor-id="gráficos-de-correlação"><strong>Gráficos de correlação</strong></h4>
+<p>O pacote <strong><code>corrplot</code></strong> é amplamente utilizado para a visualização e análise de matrizes de correlação, oferecendo ferramentas gráficas que facilitam a interpretação das relações entre variáveis em conjuntos de dados.</p>
+</section>
+<section id="funcionalidades-principais" class="level4">
+<h4 class="anchored" data-anchor-id="funcionalidades-principais">Funcionalidades principais:</h4>
+<ul>
+<li><p><strong><code>corr.test()</code></strong>:<br>
+Realiza testes estatísticos sobre a matriz de correlação, calculando coeficientes, valores-p e intervalos de confiança. Essa função ajuda a avaliar a significância das correlações observadas.</p></li>
+<li><p><strong><code>corrplot()</code></strong>:<br>
+Gera diferentes tipos de gráficos para representar visualmente a matriz de correlação. A função permite escolher entre múltiplos estilos e opções de personalização, tornando a análise mais intuitiva.</p>
+<h4 id="opções-de-visualização-no-corrplot" class="anchored">Opções de visualização no <code>corrplot()</code>:</h4></li>
+<li><p><strong>Métodos (<code>method</code>)</strong> — tipos de gráficos disponíveis:</p>
+<ul>
+<li><p><code>"circle"</code> (círculos)</p></li>
+<li><p><code>"square"</code> (quadrados)</p></li>
+<li><p><code>"ellipse"</code> (elipses)</p></li>
+<li><p><code>"number"</code> (exibe os valores numéricos dos coeficientes)</p></li>
+<li><p><code>"shade"</code> (sombras)</p></li>
+<li><p><code>"color"</code> (cores preenchidas)</p></li>
+<li><p><code>"pie"</code> (gráfico de pizza)</p></li>
+</ul></li>
+</ul>
+<p>A intensidade da cor ou tamanho dos símbolos é proporcional ao valor dos coeficientes de correlação, facilitando a identificação visual da força da associação.</p>
+<ul>
+<li><p><strong>Tipos de layout (<code>type</code>)</strong>:</p>
+<ul>
+<li><p><code>"full"</code> (matriz completa)</p></li>
+<li><p><code>"upper"</code> (metade superior da matriz)</p></li>
+<li><p><code>"lower"</code> (metade inferior da matriz)</p></li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">3</span>)</span>
+<span id="cb35-3"><a href="#cb35-3"></a>mofo1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   study treat   inc   scl   yld
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     3     1    65  5013  2839
+ 2     3     2    33  3619  3375
+ 3     3     3    40  2325  3264
+ 4     3     4    35  2588  3301
+ 5     3     5    48  3969  3220
+ 6     3     6    31  1556  3321
+ 7     3     7    39  3175  3229
+ 8     3     8    25  1763  3517
+ 9     3     9    26  2894  3595
+10     3    10    21   350  3702
+11     3    11    23   419  3652
+12     3    12    25   644  3608
+13     3    13    33  2850  3334</code></pre>
+</div>
+</div></li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  mofo1$inc and mofo1$yld
+t = -10.9, df = 11, p-value = 3.105e-07
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9872663 -0.8579544
+sample estimates:
+      cor 
+-0.956692 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>pcor <span class="ot">&lt;-</span> mofo1 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">cor</span>()</span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="fu">corrplot</span>(pcor, <span class="at">method =</span> <span class="st">'number'</span>, <span class="at">type =</span> <span class="st">"lower"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="correlacao_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="modelo-de-kendall" class="level3">
+<h3 class="anchored" data-anchor-id="modelo-de-kendall">Modelo de Kendall</h3>
+<p>O coeficiente de correlação de Kendall é uma medida não paramétrica que avalia a associação entre duas variáveis ordinais ou contínuas que podem ser ordenadas. Diferentemente do coeficiente de Pearson, que avalia relações lineares e assume distribuição normal, o método de Kendall é mais robusto para lidar com dados não lineares ou quando a normalidade não é atendida.</p>
+<p>O coeficiente de Kendall varia entre <strong>-1 e 1</strong>, com interpretações similares às do coeficiente de Pearson:</p>
+<ul>
+<li><p>Valores próximos de +1 indicam forte associação positiva;</p></li>
+<li><p>Valores próximos de -1 indicam forte associação negativa;</p></li>
+<li><p>Valores próximos de zero indicam pouca ou nenhuma associação.</p></li>
+</ul>
+<p>Devido à sua natureza baseada em pares ordenados, o coeficiente de Kendall é especialmente útil para dados com escalas ordinais ou quando há presença de outliers.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">3</span>)</span>
+<span id="cb40-3"><a href="#cb40-3"></a>mofo1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   study treat   inc   scl   yld
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     3     1    65  5013  2839
+ 2     3     2    33  3619  3375
+ 3     3     3    40  2325  3264
+ 4     3     4    35  2588  3301
+ 5     3     5    48  3969  3220
+ 6     3     6    31  1556  3321
+ 7     3     7    39  3175  3229
+ 8     3     8    25  1763  3517
+ 9     3     9    26  2894  3595
+10     3    10    21   350  3702
+11     3    11    23   419  3652
+12     3    12    25   644  3608
+13     3    13    33  2850  3334</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">shapiro.test</span>(mofo1<span class="sc">$</span>inc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  mofo1$inc
+W = 0.87111, p-value = 0.05412</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">shapiro.test</span>(mofo1<span class="sc">$</span>yld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  mofo1$yld
+W = 0.92193, p-value = 0.2663</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  mofo1$inc and mofo1$yld
+S = 715.97, p-value = 7.166e-08
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.9669458 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb48-2"><a href="#cb48-2"></a>pcor <span class="ot">&lt;-</span> mofo1 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">cor</span>(<span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb48-3"><a href="#cb48-3"></a></span>
+<span id="cb48-4"><a href="#cb48-4"></a></span>
+<span id="cb48-5"><a href="#cb48-5"></a><span class="co">#library(corrplot)</span></span>
+<span id="cb48-6"><a href="#cb48-6"></a><span class="co">#corrplot(pcor, method = 'number', type = "lower")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb49" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1"></a><span class="co">---</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="an">title:</span><span class="co"> ""</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a><span class="co">---</span></span>
+<span id="cb49-4"><a href="#cb49-4"></a></span>
+<span id="cb49-5"><a href="#cb49-5"></a><span class="fu">## Análise de Correlação</span></span>
+<span id="cb49-6"><a href="#cb49-6"></a></span>
+<span id="cb49-7"><a href="#cb49-7"></a>A análise de correlação é uma técnica estatística utilizada para quantificar a **força** e a **direção** da relação linear entre duas variáveis contínuas. Ela indica o grau em que essas variáveis variam em conjunto.</span>
+<span id="cb49-8"><a href="#cb49-8"></a></span>
+<span id="cb49-9"><a href="#cb49-9"></a>A correlação pode ser:</span>
+<span id="cb49-10"><a href="#cb49-10"></a></span>
+<span id="cb49-11"><a href="#cb49-11"></a><span class="ss">-   </span>**Positiva**: ambas as variáveis aumentam ou diminuem juntas</span>
+<span id="cb49-12"><a href="#cb49-12"></a></span>
+<span id="cb49-13"><a href="#cb49-13"></a><span class="ss">-   </span>**Negativa**: uma variável aumenta enquanto a outra diminui;</span>
+<span id="cb49-14"><a href="#cb49-14"></a></span>
+<span id="cb49-15"><a href="#cb49-15"></a><span class="ss">-   </span>**Nula**: não há relação linear aparente entre elas.</span>
+<span id="cb49-16"><a href="#cb49-16"></a></span>
+<span id="cb49-17"><a href="#cb49-17"></a>O principal indicador usado é o **coeficiente de correlação de Pearson**, que varia entre -1 e +1:</span>
+<span id="cb49-18"><a href="#cb49-18"></a></span>
+<span id="cb49-19"><a href="#cb49-19"></a><span class="ss">-   </span>**+1**: correlação linear positiva perfeita;</span>
+<span id="cb49-20"><a href="#cb49-20"></a></span>
+<span id="cb49-21"><a href="#cb49-21"></a><span class="ss">-   </span>**-1**: correlação linear negativa perfeita;</span>
+<span id="cb49-22"><a href="#cb49-22"></a></span>
+<span id="cb49-23"><a href="#cb49-23"></a><span class="ss">-   </span>**0**: ausência de correlação linear.</span>
+<span id="cb49-24"><a href="#cb49-24"></a></span>
+<span id="cb49-25"><a href="#cb49-25"></a>É importante ressaltar que a correlação não implica causalidade, ou seja, mesmo quando duas variáveis estão correlacionadas, isso não significa que uma causa a outra.</span>
+<span id="cb49-26"><a href="#cb49-26"></a></span>
+<span id="cb49-29"><a href="#cb49-29"></a><span class="in">```{r}</span></span>
+<span id="cb49-30"><a href="#cb49-30"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb49-31"><a href="#cb49-31"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb49-32"><a href="#cb49-32"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb49-33"><a href="#cb49-33"></a></span>
+<span id="cb49-34"><a href="#cb49-34"></a>estande <span class="ot">=</span> <span class="fu">read_xlsx</span>(<span class="st">"dados-diversos.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"estande"</span>)</span>
+<span id="cb49-35"><a href="#cb49-35"></a></span>
+<span id="cb49-36"><a href="#cb49-36"></a>estande <span class="sc">|&gt;</span></span>
+<span id="cb49-37"><a href="#cb49-37"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, nplants))<span class="sc">+</span></span>
+<span id="cb49-38"><a href="#cb49-38"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb49-39"><a href="#cb49-39"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> exp)<span class="sc">+</span></span>
+<span id="cb49-40"><a href="#cb49-40"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="fu">max</span>(estande<span class="sc">$</span>nplants))<span class="sc">+</span></span>
+<span id="cb49-41"><a href="#cb49-41"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span>  F)</span>
+<span id="cb49-42"><a href="#cb49-42"></a><span class="in">```</span></span>
+<span id="cb49-43"><a href="#cb49-43"></a></span>
+<span id="cb49-44"><a href="#cb49-44"></a><span class="fu">### Ajuste de Modelo Linear Simples e Quadrático</span></span>
+<span id="cb49-45"><a href="#cb49-45"></a></span>
+<span id="cb49-46"><a href="#cb49-46"></a>Para ajustar modelos lineares em R, utiliza-se a função <span class="in">`lm()`</span>, que recebe como argumentos a fórmula da relação entre a variável dependente e a independente (por exemplo, <span class="in">`y ~ x`</span>) e o conjunto de dados. O modelo ajustado é armazenado como um objeto do tipo <span class="in">`"lm"`</span>. Para visualizar os resultados do ajuste, utiliza-se a função <span class="in">`summary()`</span>, que retorna os coeficientes estimados, valores-p, o coeficiente de determinação (R²), e outros diagnósticos importantes.</span>
+<span id="cb49-47"><a href="#cb49-47"></a></span>
+<span id="cb49-48"><a href="#cb49-48"></a><span class="fu">### Coeficiente de Determinação (R²)</span></span>
+<span id="cb49-49"><a href="#cb49-49"></a></span>
+<span id="cb49-50"><a href="#cb49-50"></a>O **R²** indica a proporção da variação da variável resposta explicada pelo modelo. Seu valor varia entre 0 e 1:</span>
+<span id="cb49-51"><a href="#cb49-51"></a></span>
+<span id="cb49-52"><a href="#cb49-52"></a><span class="ss">-   </span>**R² = 0**: o modelo não explica nenhuma variação;</span>
+<span id="cb49-53"><a href="#cb49-53"></a></span>
+<span id="cb49-54"><a href="#cb49-54"></a><span class="ss">-   </span>**R² = 1**: o modelo explica totalmente a variação da variável dependente.</span>
+<span id="cb49-55"><a href="#cb49-55"></a></span>
+<span id="cb49-56"><a href="#cb49-56"></a>Valores mais altos de R² indicam melhor ajuste aos dados.</span>
+<span id="cb49-57"><a href="#cb49-57"></a></span>
+<span id="cb49-58"><a href="#cb49-58"></a><span class="fu">### Comparando modelos: linear vs. quadrático</span></span>
+<span id="cb49-59"><a href="#cb49-59"></a></span>
+<span id="cb49-60"><a href="#cb49-60"></a>É possível comparar um modelo linear simples (<span class="in">`y ~ x`</span>) com um modelo quadrático (<span class="in">`y ~ x + I(x^2)`</span>) para verificar qual se ajusta melhor aos dados. O critério pode ser baseado no R², AIC ou inspeção gráfica dos resíduos.</span>
+<span id="cb49-61"><a href="#cb49-61"></a></span>
+<span id="cb49-64"><a href="#cb49-64"></a><span class="in">```{r}</span></span>
+<span id="cb49-65"><a href="#cb49-65"></a>estande2 <span class="ot">&lt;-</span> estande <span class="sc">|&gt;</span></span>
+<span id="cb49-66"><a href="#cb49-66"></a>  <span class="fu">filter</span>(exp <span class="sc">==</span><span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb49-67"><a href="#cb49-67"></a>  <span class="fu">group_by</span>(trat) <span class="sc">|&gt;</span></span>
+<span id="cb49-68"><a href="#cb49-68"></a>  <span class="fu">summarise</span>(<span class="at">mean_nplants =</span> <span class="fu">mean</span>(nplants))</span>
+<span id="cb49-69"><a href="#cb49-69"></a>  </span>
+<span id="cb49-70"><a href="#cb49-70"></a>estande2<span class="sc">|&gt;</span></span>
+<span id="cb49-71"><a href="#cb49-71"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(trat, mean_nplants))<span class="sc">+</span></span>
+<span id="cb49-72"><a href="#cb49-72"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb49-73"><a href="#cb49-73"></a>  <span class="co">#geom_line()</span></span>
+<span id="cb49-74"><a href="#cb49-74"></a>  <span class="fu">geom_smooth</span>(<span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"blue"</span>)<span class="sc">+</span></span>
+<span id="cb49-75"><a href="#cb49-75"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, </span>
+<span id="cb49-76"><a href="#cb49-76"></a>           <span class="at">x =</span> <span class="dv">25</span>, <span class="at">y =</span> <span class="dv">70</span>,</span>
+<span id="cb49-77"><a href="#cb49-77"></a>           <span class="at">label =</span> <span class="st">"y = 66.3 - 1.777x + 0.0222x2</span></span>
+<span id="cb49-78"><a href="#cb49-78"></a><span class="st">           R2 = 0.0.88"</span>)</span>
+<span id="cb49-79"><a href="#cb49-79"></a><span class="in">```</span></span>
+<span id="cb49-80"><a href="#cb49-80"></a></span>
+<span id="cb49-81"><a href="#cb49-81"></a><span class="fu">### Modelo Quadrático</span></span>
+<span id="cb49-82"><a href="#cb49-82"></a></span>
+<span id="cb49-83"><a href="#cb49-83"></a>Enquanto a correlação linear avalia a relação entre duas variáveis com base em uma linha reta, o **modelo quadrático** permite identificar padrões **não lineares**, especialmente aqueles que descrevem uma curva (por exemplo, em forma de U ou inverso de U).</span>
+<span id="cb49-84"><a href="#cb49-84"></a></span>
+<span id="cb49-85"><a href="#cb49-85"></a>Para ajustar um modelo quadrático no R, utiliza-se a função <span class="in">`lm()`</span>, assim como no modelo linear simples. A diferença está na fórmula: é necessário incluir o termo quadrático da variável independente.</span>
+<span id="cb49-86"><a href="#cb49-86"></a></span>
+<span id="cb49-89"><a href="#cb49-89"></a><span class="in">```{r}</span></span>
+<span id="cb49-90"><a href="#cb49-90"></a>estande2 <span class="ot">&lt;-</span> estande2 <span class="sc">|&gt;</span></span>
+<span id="cb49-91"><a href="#cb49-91"></a>  <span class="fu">mutate</span>(<span class="at">trat2 =</span> trat<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb49-92"><a href="#cb49-92"></a>  m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mean_nplants <span class="sc">~</span> trat, <span class="at">data =</span> estande2)</span>
+<span id="cb49-93"><a href="#cb49-93"></a><span class="fu">summary</span>(m1)</span>
+<span id="cb49-94"><a href="#cb49-94"></a><span class="in">```</span></span>
+<span id="cb49-95"><a href="#cb49-95"></a></span>
+<span id="cb49-98"><a href="#cb49-98"></a><span class="in">```{r}</span></span>
+<span id="cb49-99"><a href="#cb49-99"></a><span class="fu">hist</span>(m1<span class="sc">$</span>residuals, </span>
+<span id="cb49-100"><a href="#cb49-100"></a>     <span class="at">main =</span> <span class="st">"Histograma dos Resíduos"</span>, </span>
+<span id="cb49-101"><a href="#cb49-101"></a>     <span class="at">xlab =</span> <span class="st">"Resíduos"</span>, </span>
+<span id="cb49-102"><a href="#cb49-102"></a>     <span class="at">col =</span> <span class="st">"pink"</span>,      </span>
+<span id="cb49-103"><a href="#cb49-103"></a>     <span class="at">border =</span> <span class="st">"white"</span>)  </span>
+<span id="cb49-104"><a href="#cb49-104"></a></span>
+<span id="cb49-105"><a href="#cb49-105"></a><span class="in">```</span></span>
+<span id="cb49-106"><a href="#cb49-106"></a></span>
+<span id="cb49-109"><a href="#cb49-109"></a><span class="in">```{r}</span></span>
+<span id="cb49-110"><a href="#cb49-110"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(mean_nplants <span class="sc">~</span> trat <span class="sc">+</span> trat2,</span>
+<span id="cb49-111"><a href="#cb49-111"></a>         <span class="at">data =</span> estande2)</span>
+<span id="cb49-112"><a href="#cb49-112"></a><span class="fu">summary</span>(m2)</span>
+<span id="cb49-113"><a href="#cb49-113"></a><span class="in">```</span></span>
+<span id="cb49-114"><a href="#cb49-114"></a></span>
+<span id="cb49-117"><a href="#cb49-117"></a><span class="in">```{r}</span></span>
+<span id="cb49-118"><a href="#cb49-118"></a><span class="fu">AIC</span>(m1, m2)</span>
+<span id="cb49-119"><a href="#cb49-119"></a><span class="in">```</span></span>
+<span id="cb49-120"><a href="#cb49-120"></a></span>
+<span id="cb49-121"><a href="#cb49-121"></a><span class="fu">### Duas variáveis resposta</span></span>
+<span id="cb49-122"><a href="#cb49-122"></a></span>
+<span id="cb49-123"><a href="#cb49-123"></a>Quando se trabalha com duas variáveis resposta contínuas, é comum investigar a relação entre elas por meio da análise de correlação. O coeficiente de correlação de Pearson (R) é utilizado para quantificar essa relação linear.</span>
+<span id="cb49-124"><a href="#cb49-124"></a></span>
+<span id="cb49-125"><a href="#cb49-125"></a>O valor de **R** varia entre -1 e 1, indicando a direção e a intensidade da associação:</span>
+<span id="cb49-126"><a href="#cb49-126"></a></span>
+<span id="cb49-127"><a href="#cb49-127"></a><span class="ss">-   </span>Valores próximos de **+1** indicam forte correlação positiva,</span>
+<span id="cb49-128"><a href="#cb49-128"></a></span>
+<span id="cb49-129"><a href="#cb49-129"></a><span class="ss">-   </span>Valores próximos de **-1** indicam forte correlação negativa,</span>
+<span id="cb49-130"><a href="#cb49-130"></a></span>
+<span id="cb49-131"><a href="#cb49-131"></a><span class="ss">-   </span>Valores próximos de zero indicam pouca ou nenhuma correlação linear.</span>
+<span id="cb49-132"><a href="#cb49-132"></a></span>
+<span id="cb49-133"><a href="#cb49-133"></a>O coeficiente de determinação, **R²**, corresponde ao quadrado de R, e representa a proporção da variância de uma variável que é explicada pela outra em uma relação linear. Como R² é o quadrado de R, seu valor será sempre positivo e menor ou igual a 1. Portanto, para valores positivos de R, R² será menor ou igual a R.</span>
+<span id="cb49-134"><a href="#cb49-134"></a></span>
+<span id="cb49-137"><a href="#cb49-137"></a><span class="in">```{r}</span></span>
+<span id="cb49-138"><a href="#cb49-138"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb49-139"><a href="#cb49-139"></a>mofo <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">"https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=413008764#gid=413008764"</span>)</span>
+<span id="cb49-140"><a href="#cb49-140"></a></span>
+<span id="cb49-141"><a href="#cb49-141"></a><span class="fu">head</span>(mofo)</span>
+<span id="cb49-142"><a href="#cb49-142"></a></span>
+<span id="cb49-143"><a href="#cb49-143"></a></span>
+<span id="cb49-144"><a href="#cb49-144"></a>mofo <span class="sc">|&gt;</span></span>
+<span id="cb49-145"><a href="#cb49-145"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(inc, yld))<span class="sc">+</span></span>
+<span id="cb49-146"><a href="#cb49-146"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb49-147"><a href="#cb49-147"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> F, <span class="at">method =</span> <span class="st">"lm"</span>)<span class="sc">+</span></span>
+<span id="cb49-148"><a href="#cb49-148"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> study)</span>
+<span id="cb49-149"><a href="#cb49-149"></a><span class="in">```</span></span>
+<span id="cb49-150"><a href="#cb49-150"></a></span>
+<span id="cb49-151"><a href="#cb49-151"></a>O coeficiente de correlação de Pearson é específico para medir relações lineares entre duas variáveis contínuas. Isso significa que ele avalia apenas o grau de associação linear; se a relação entre as variáveis for não linear, o coeficiente de Pearson pode não representar adequadamente a força ou a direção da associação.</span>
+<span id="cb49-152"><a href="#cb49-152"></a></span>
+<span id="cb49-153"><a href="#cb49-153"></a><span class="fu">### Função `cor.test()`</span></span>
+<span id="cb49-154"><a href="#cb49-154"></a></span>
+<span id="cb49-155"><a href="#cb49-155"></a>No R, a função <span class="in">`cor.test()`</span> é utilizada para calcular o coeficiente de correlação entre duas variáveis. Além de estimar o valor da correlação, essa função realiza um teste de hipótese para verificar se a correlação observada é estatisticamente significativa, fornecendo o valor-p e o intervalo de confiança.</span>
+<span id="cb49-156"><a href="#cb49-156"></a></span>
+<span id="cb49-157"><a href="#cb49-157"></a>Filtrando o experimento 1:</span>
+<span id="cb49-158"><a href="#cb49-158"></a></span>
+<span id="cb49-161"><a href="#cb49-161"></a><span class="in">```{r}</span></span>
+<span id="cb49-162"><a href="#cb49-162"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb49-163"><a href="#cb49-163"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb49-164"><a href="#cb49-164"></a>mofo1</span>
+<span id="cb49-165"><a href="#cb49-165"></a><span class="in">```</span></span>
+<span id="cb49-166"><a href="#cb49-166"></a></span>
+<span id="cb49-169"><a href="#cb49-169"></a><span class="in">```{r}</span></span>
+<span id="cb49-170"><a href="#cb49-170"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span>
+<span id="cb49-171"><a href="#cb49-171"></a><span class="in">```</span></span>
+<span id="cb49-172"><a href="#cb49-172"></a></span>
+<span id="cb49-173"><a href="#cb49-173"></a>Filtrando o experimento 2:</span>
+<span id="cb49-174"><a href="#cb49-174"></a></span>
+<span id="cb49-177"><a href="#cb49-177"></a><span class="in">```{r}</span></span>
+<span id="cb49-178"><a href="#cb49-178"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb49-179"><a href="#cb49-179"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">2</span>)</span>
+<span id="cb49-180"><a href="#cb49-180"></a>mofo1</span>
+<span id="cb49-181"><a href="#cb49-181"></a><span class="in">```</span></span>
+<span id="cb49-182"><a href="#cb49-182"></a></span>
+<span id="cb49-185"><a href="#cb49-185"></a><span class="in">```{r}</span></span>
+<span id="cb49-186"><a href="#cb49-186"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span>
+<span id="cb49-187"><a href="#cb49-187"></a><span class="in">```</span></span>
+<span id="cb49-188"><a href="#cb49-188"></a></span>
+<span id="cb49-189"><a href="#cb49-189"></a>Filtrando o experimento 3:</span>
+<span id="cb49-190"><a href="#cb49-190"></a></span>
+<span id="cb49-193"><a href="#cb49-193"></a><span class="in">```{r}</span></span>
+<span id="cb49-194"><a href="#cb49-194"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb49-195"><a href="#cb49-195"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">3</span>)</span>
+<span id="cb49-196"><a href="#cb49-196"></a>mofo1</span>
+<span id="cb49-197"><a href="#cb49-197"></a><span class="in">```</span></span>
+<span id="cb49-198"><a href="#cb49-198"></a></span>
+<span id="cb49-201"><a href="#cb49-201"></a><span class="in">```{r}</span></span>
+<span id="cb49-202"><a href="#cb49-202"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span>
+<span id="cb49-203"><a href="#cb49-203"></a><span class="in">```</span></span>
+<span id="cb49-204"><a href="#cb49-204"></a></span>
+<span id="cb49-205"><a href="#cb49-205"></a>Filtrando o experimento 4:</span>
+<span id="cb49-206"><a href="#cb49-206"></a></span>
+<span id="cb49-209"><a href="#cb49-209"></a><span class="in">```{r}</span></span>
+<span id="cb49-210"><a href="#cb49-210"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb49-211"><a href="#cb49-211"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">4</span>)</span>
+<span id="cb49-212"><a href="#cb49-212"></a>mofo1</span>
+<span id="cb49-213"><a href="#cb49-213"></a><span class="in">```</span></span>
+<span id="cb49-214"><a href="#cb49-214"></a></span>
+<span id="cb49-217"><a href="#cb49-217"></a><span class="in">```{r}</span></span>
+<span id="cb49-218"><a href="#cb49-218"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span>
+<span id="cb49-219"><a href="#cb49-219"></a><span class="in">```</span></span>
+<span id="cb49-220"><a href="#cb49-220"></a></span>
+<span id="cb49-221"><a href="#cb49-221"></a>Vamos fazer uma matriz de correlação, que nada mais é que uma tabela que resume as relações entre pares de variáveis em um conjunto de dados, exibindo os coeficientes de correlação, geralmente de Pearson, para cada combinação possível. Essa ferramenta é essencial para identificar padrões de associação, intensidade e direção entre múltiplas variáveis simultaneamente.</span>
+<span id="cb49-222"><a href="#cb49-222"></a></span>
+<span id="cb49-223"><a href="#cb49-223"></a>A matriz ajuda a compreender rapidamente como as variáveis estão relacionadas, permitindo detectar correlações positivas, negativas ou ausência de associação, e é amplamente utilizada em análises exploratórias e prévias a modelos estatísticos mais complexos.</span>
+<span id="cb49-224"><a href="#cb49-224"></a></span>
+<span id="cb49-227"><a href="#cb49-227"></a><span class="in">```{r}</span></span>
+<span id="cb49-228"><a href="#cb49-228"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb49-229"><a href="#cb49-229"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">3</span>)</span>
+<span id="cb49-230"><a href="#cb49-230"></a>mofo1</span>
+<span id="cb49-231"><a href="#cb49-231"></a><span class="in">```</span></span>
+<span id="cb49-232"><a href="#cb49-232"></a></span>
+<span id="cb49-235"><a href="#cb49-235"></a><span class="in">```{r}</span></span>
+<span id="cb49-236"><a href="#cb49-236"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span>
+<span id="cb49-237"><a href="#cb49-237"></a><span class="in">```</span></span>
+<span id="cb49-238"><a href="#cb49-238"></a></span>
+<span id="cb49-241"><a href="#cb49-241"></a><span class="in">```{r}</span></span>
+<span id="cb49-242"><a href="#cb49-242"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb49-243"><a href="#cb49-243"></a><span class="fu">cor</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(mofo1, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>))</span>
+<span id="cb49-244"><a href="#cb49-244"></a></span>
+<span id="cb49-245"><a href="#cb49-245"></a><span class="in">```</span></span>
+<span id="cb49-246"><a href="#cb49-246"></a></span>
+<span id="cb49-247"><a href="#cb49-247"></a><span class="fu">#### **Gráficos de correlação**</span></span>
+<span id="cb49-248"><a href="#cb49-248"></a></span>
+<span id="cb49-249"><a href="#cb49-249"></a>O pacote **`corrplot`** é amplamente utilizado para a visualização e análise de matrizes de correlação, oferecendo ferramentas gráficas que facilitam a interpretação das relações entre variáveis em conjuntos de dados.</span>
+<span id="cb49-250"><a href="#cb49-250"></a></span>
+<span id="cb49-251"><a href="#cb49-251"></a><span class="fu">#### Funcionalidades principais:</span></span>
+<span id="cb49-252"><a href="#cb49-252"></a></span>
+<span id="cb49-253"><a href="#cb49-253"></a><span class="ss">-   </span>**`corr.test()`**:\</span>
+<span id="cb49-254"><a href="#cb49-254"></a>    Realiza testes estatísticos sobre a matriz de correlação, calculando coeficientes, valores-p e intervalos de confiança. Essa função ajuda a avaliar a significância das correlações observadas.</span>
+<span id="cb49-255"><a href="#cb49-255"></a></span>
+<span id="cb49-256"><a href="#cb49-256"></a><span class="ss">-   </span>**`corrplot()`**:\</span>
+<span id="cb49-257"><a href="#cb49-257"></a>    Gera diferentes tipos de gráficos para representar visualmente a matriz de correlação. A função permite escolher entre múltiplos estilos e opções de personalização, tornando a análise mais intuitiva.</span>
+<span id="cb49-258"><a href="#cb49-258"></a></span>
+<span id="cb49-259"><a href="#cb49-259"></a>    #### Opções de visualização no <span class="in">`corrplot()`</span>:</span>
+<span id="cb49-260"><a href="#cb49-260"></a></span>
+<span id="cb49-261"><a href="#cb49-261"></a><span class="ss">-   </span>**Métodos (`method`)** --- tipos de gráficos disponíveis:</span>
+<span id="cb49-262"><a href="#cb49-262"></a></span>
+<span id="cb49-263"><a href="#cb49-263"></a><span class="ss">    -   </span><span class="in">`"circle"`</span> (círculos)</span>
+<span id="cb49-264"><a href="#cb49-264"></a></span>
+<span id="cb49-265"><a href="#cb49-265"></a><span class="ss">    -   </span><span class="in">`"square"`</span> (quadrados)</span>
+<span id="cb49-266"><a href="#cb49-266"></a></span>
+<span id="cb49-267"><a href="#cb49-267"></a><span class="ss">    -   </span><span class="in">`"ellipse"`</span> (elipses)</span>
+<span id="cb49-268"><a href="#cb49-268"></a></span>
+<span id="cb49-269"><a href="#cb49-269"></a><span class="ss">    -   </span><span class="in">`"number"`</span> (exibe os valores numéricos dos coeficientes)</span>
+<span id="cb49-270"><a href="#cb49-270"></a></span>
+<span id="cb49-271"><a href="#cb49-271"></a><span class="ss">    -   </span><span class="in">`"shade"`</span> (sombras)</span>
+<span id="cb49-272"><a href="#cb49-272"></a></span>
+<span id="cb49-273"><a href="#cb49-273"></a><span class="ss">    -   </span><span class="in">`"color"`</span> (cores preenchidas)</span>
+<span id="cb49-274"><a href="#cb49-274"></a></span>
+<span id="cb49-275"><a href="#cb49-275"></a><span class="ss">    -   </span><span class="in">`"pie"`</span> (gráfico de pizza)</span>
+<span id="cb49-276"><a href="#cb49-276"></a></span>
+<span id="cb49-277"><a href="#cb49-277"></a>A intensidade da cor ou tamanho dos símbolos é proporcional ao valor dos coeficientes de correlação, facilitando a identificação visual da força da associação.</span>
+<span id="cb49-278"><a href="#cb49-278"></a></span>
+<span id="cb49-279"><a href="#cb49-279"></a><span class="ss">-   </span>**Tipos de layout (`type`)**:</span>
+<span id="cb49-280"><a href="#cb49-280"></a></span>
+<span id="cb49-281"><a href="#cb49-281"></a><span class="ss">    -   </span><span class="in">`"full"`</span> (matriz completa)</span>
+<span id="cb49-282"><a href="#cb49-282"></a></span>
+<span id="cb49-283"><a href="#cb49-283"></a><span class="ss">    -   </span><span class="in">`"upper"`</span> (metade superior da matriz)</span>
+<span id="cb49-284"><a href="#cb49-284"></a></span>
+<span id="cb49-285"><a href="#cb49-285"></a><span class="ss">    -   </span><span class="in">`"lower"`</span> (metade inferior da matriz)</span>
+<span id="cb49-286"><a href="#cb49-286"></a></span>
+<span id="cb49-287"><a href="#cb49-287"></a>    <span class="in">```{r}</span></span>
+<span id="cb49-288"><a href="#cb49-288"></a>    mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb49-289"><a href="#cb49-289"></a>      <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">3</span>)</span>
+<span id="cb49-290"><a href="#cb49-290"></a>    mofo1</span>
+<span id="cb49-291"><a href="#cb49-291"></a>    <span class="in">```</span></span>
+<span id="cb49-292"><a href="#cb49-292"></a></span>
+<span id="cb49-295"><a href="#cb49-295"></a><span class="in">```{r}</span></span>
+<span id="cb49-296"><a href="#cb49-296"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld)</span>
+<span id="cb49-297"><a href="#cb49-297"></a><span class="in">```</span></span>
+<span id="cb49-298"><a href="#cb49-298"></a></span>
+<span id="cb49-301"><a href="#cb49-301"></a><span class="in">```{r}</span></span>
+<span id="cb49-302"><a href="#cb49-302"></a>pcor <span class="ot">&lt;-</span> mofo1 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">cor</span>()</span>
+<span id="cb49-303"><a href="#cb49-303"></a></span>
+<span id="cb49-304"><a href="#cb49-304"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb49-305"><a href="#cb49-305"></a><span class="fu">corrplot</span>(pcor, <span class="at">method =</span> <span class="st">'number'</span>, <span class="at">type =</span> <span class="st">"lower"</span>)</span>
+<span id="cb49-306"><a href="#cb49-306"></a><span class="in">```</span></span>
+<span id="cb49-307"><a href="#cb49-307"></a></span>
+<span id="cb49-308"><a href="#cb49-308"></a><span class="fu">### Modelo de Kendall</span></span>
+<span id="cb49-309"><a href="#cb49-309"></a></span>
+<span id="cb49-310"><a href="#cb49-310"></a>O coeficiente de correlação de Kendall é uma medida não paramétrica que avalia a associação entre duas variáveis ordinais ou contínuas que podem ser ordenadas. Diferentemente do coeficiente de Pearson, que avalia relações lineares e assume distribuição normal, o método de Kendall é mais robusto para lidar com dados não lineares ou quando a normalidade não é atendida.</span>
+<span id="cb49-311"><a href="#cb49-311"></a></span>
+<span id="cb49-312"><a href="#cb49-312"></a>O coeficiente de Kendall varia entre **-1 e 1**, com interpretações similares às do coeficiente de Pearson:</span>
+<span id="cb49-313"><a href="#cb49-313"></a></span>
+<span id="cb49-314"><a href="#cb49-314"></a><span class="ss">-   </span>Valores próximos de +1 indicam forte associação positiva;</span>
+<span id="cb49-315"><a href="#cb49-315"></a></span>
+<span id="cb49-316"><a href="#cb49-316"></a><span class="ss">-   </span>Valores próximos de -1 indicam forte associação negativa;</span>
+<span id="cb49-317"><a href="#cb49-317"></a></span>
+<span id="cb49-318"><a href="#cb49-318"></a><span class="ss">-   </span>Valores próximos de zero indicam pouca ou nenhuma associação.</span>
+<span id="cb49-319"><a href="#cb49-319"></a></span>
+<span id="cb49-320"><a href="#cb49-320"></a>Devido à sua natureza baseada em pares ordenados, o coeficiente de Kendall é especialmente útil para dados com escalas ordinais ou quando há presença de outliers.</span>
+<span id="cb49-321"><a href="#cb49-321"></a></span>
+<span id="cb49-324"><a href="#cb49-324"></a><span class="in">```{r}</span></span>
+<span id="cb49-325"><a href="#cb49-325"></a>mofo1 <span class="ot">&lt;-</span> mofo <span class="sc">|&gt;</span></span>
+<span id="cb49-326"><a href="#cb49-326"></a>  <span class="fu">filter</span>(study <span class="sc">==</span><span class="dv">3</span>)</span>
+<span id="cb49-327"><a href="#cb49-327"></a>mofo1</span>
+<span id="cb49-328"><a href="#cb49-328"></a><span class="in">```</span></span>
+<span id="cb49-329"><a href="#cb49-329"></a></span>
+<span id="cb49-332"><a href="#cb49-332"></a><span class="in">```{r}</span></span>
+<span id="cb49-333"><a href="#cb49-333"></a><span class="fu">shapiro.test</span>(mofo1<span class="sc">$</span>inc)</span>
+<span id="cb49-334"><a href="#cb49-334"></a><span class="in">```</span></span>
+<span id="cb49-335"><a href="#cb49-335"></a></span>
+<span id="cb49-338"><a href="#cb49-338"></a><span class="in">```{r}</span></span>
+<span id="cb49-339"><a href="#cb49-339"></a><span class="fu">shapiro.test</span>(mofo1<span class="sc">$</span>yld)</span>
+<span id="cb49-340"><a href="#cb49-340"></a><span class="in">```</span></span>
+<span id="cb49-341"><a href="#cb49-341"></a></span>
+<span id="cb49-344"><a href="#cb49-344"></a><span class="in">```{r}</span></span>
+<span id="cb49-345"><a href="#cb49-345"></a><span class="fu">cor.test</span>(mofo1<span class="sc">$</span>inc, mofo1<span class="sc">$</span>yld, <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb49-346"><a href="#cb49-346"></a><span class="in">```</span></span>
+<span id="cb49-347"><a href="#cb49-347"></a></span>
+<span id="cb49-350"><a href="#cb49-350"></a><span class="in">```{r}</span></span>
+<span id="cb49-351"><a href="#cb49-351"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb49-352"><a href="#cb49-352"></a>pcor <span class="ot">&lt;-</span> mofo1 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">cor</span>(<span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb49-353"><a href="#cb49-353"></a></span>
+<span id="cb49-354"><a href="#cb49-354"></a></span>
+<span id="cb49-355"><a href="#cb49-355"></a><span class="co">#library(corrplot)</span></span>
+<span id="cb49-356"><a href="#cb49-356"></a><span class="co">#corrplot(pcor, method = 'number', type = "lower")</span></span>
+<span id="cb49-357"><a href="#cb49-357"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2025 - Maria Izabel de Almeida Leite — Feito com <a href="https://quarto.org">Quarto</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

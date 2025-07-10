@@ -13,37 +13,30 @@ website:
         file: index.qmd
         icon: info-circle
       - text: "Introdução ao R"
-        file: "INTRODUÇÃO.qmd"
+        file: introducao.qmd
       - text: "Manipulação de Dados"
-        file: "Aula 1.qmd"
-      - text: "Instalação de Pacotes"
-        file: "Aula 2.qmd"
-        icon: book
-      - text: "Visualização de Dados"
-        file: ggplot.qmd
-        icon: bar-chart
-      - text: "Gráficos"
-        menu:
-          - file: "GRAFICOS DISP.qmd"
-            text: "Dispersão, Histograma e Densidade"
-          - file: "GGPLOT2.qmd"
-            text: "BoxPlot"
-          - file: "BoxCox.qmd"
-            text: "Box-Cox"
-      - text: "Análises Estatísticas"
-        menu:
-          - file: "Teste de hipótese.qmd"
-            text: "Teste de Hipótese"
-          - file: "Transformação de dados (log e sqrt).qmd"
-            text: "Transformação de Dados"
-          - file: "Aula test T.qmd"
-            text: "Teste T"
-          - file: "Aula Anova.qmd"
-            text: "ANOVA"
-          - file: "Análise de Correlação.qmd"
-            text: "Correlação"
-          - file: "regressão.qmd"
-            text: "Regressão"
+        file: aula2.qmd
+      - text: "Dataframe"
+        file: dataframe.qmd
+      - text: "Dispersão, Histograma e Densidade"
+        file: graficodisp.qmd
+      - text: "BoxPlot"
+        file: ggplot2.qmd
+      - text: "Box-Cox"
+        file: boxcox.qmd
+      - text: "Teste de Hipótese"
+        file: hipotese.qmd
+      - text: "Transformação de Dados"
+        file: transformacao.qmd
+      - text: "Teste T"   
+        file: testt.qmd
+      - text: "ANOVA"  
+        file: anova.qmd
+      - text: "Correlação"    
+        file: correlacao.qmd
+      - text: "Regressão"
+        file: regressao.qmd
+        
 
     right:
       - text: "Maria Izabel"
@@ -72,8 +65,6 @@ format:
 
 metadata:
   author: "Maria Izabel de Almeida Leite"
-
-editor: visual
 
 execute:
   echo: true

@@ -1,0 +1,261 @@
+---
+title: ""
+---
+
+# INTRODUÇÃO
+
+## Sofware R - Análise de Dados
+
+A análise de dados tem se tornado cada vez mais essencial em diversas áreas do conhecimento, sendo uma ferramenta estratégica para tomada de decisões, identificação de padrões e geração de conhecimento a partir de informações brutas. Nesse contexto, o R se destaca como uma linguagem de programação poderosa e amplamente utilizada para análise estatística, visualização de dados e ciência de dados em geral. Gratuito e de código aberto, o R oferece uma ampla gama de pacotes e recursos que facilitam desde análises básicas até modelagens complexas.
+
+Ao iniciar sua jornada no universo da análise de dados com o RStudio, é fundamental saber por onde começar. Há uma variedade de materiais valiosos disponíveis, sendo essencial saber como acessá-los e aproveitá-los de forma estratégica. Uma obra recomendada para iniciantes é o livro *Introdução à Ciência de Dados no R*, que fornece uma base sólida para compreender os principais conceitos da área e aplicar técnicas de análise de dados de maneira eficiente.
+
+É importante destacar que os materiais disponibilizados neste site foram elaborados com o objetivo de apoiar o aprendizado. No entanto, devido à complexidade dos temas abordados, nem todos os conteúdos contam com anotações detalhadas. Por isso, esses recursos devem ser utilizados como material complementar, e não como fonte principal de estudo.
+
+Com isso em mente, damos início à nossa jornada no R, explorando seus objetos e funções mais básicas --- etapa fundamental para quem deseja desenvolver habilidades sólidas em análise de dados.
+
+## Download R Studio
+
+Link para instalação do R e do R Studio (<https://posit.co/download/rstudio-desktop/>)
+
+## Objetos e funções
+
+### Objetos no R
+
+Em R, **objetos** são estruturas que armazenam informações, podendo ser números, textos, funções ou até conjuntos de dados. Para criar um objeto, utiliza-se o operador de atribuição `<-`. Por exemplo:
+
+```{r}
+
+a <- 1
+```
+
+Neste exemplo, o número 1 foi atribuído ao objeto chamado `a`. As bases de dados em R geralmente são armazenadas como **data frames**, que são objetos que organizam dados em forma de tabela (colunas e linhas).
+
+```{r}
+
+#O R e uma linguagem orientada a objetos
+
+x<-10
+x
+
+x <- sqrt(2)       # armazena a raiz quadrada de 2 em x
+x
+
+y<-sqrt(5); y
+  
+y+x
+#---------------------------------------------------------------------
+# Operacoes aritmeticas
+
+# Voce pode usar o R para avaliar algumas expressoes aritmeticas simples. Por exemplo:
+ 1+2+3           # somando estes numeros ...
+#[1] 6           # obtem-se a resposta marcada com [1]
+
+ 2+3*4           # um pouquinho mais complexo
+#[1] 14          # prioridade de operacoes (multiplicacao primeiro)
+
+ (3/2)+1
+#[1] 2.5         # assim como divisao
+
+  4*3^3          # potencias sao indicadas por  ** ou ^
+#[1] 108         # e tem prioridade sobre multiplicaca e divisao
+
+
+#------------------------------------------------------------------------------
+# O R tambem disponibiliza funcoes como as que voce encontra em uma calculadora
+
+sqrt(2)  # Raiz quadrada
+#[1] 1.414214
+
+27^(1/3) # Raiz cubica
+
+64^(1/4) # Raiz quarta
+ 
+sin(3.14159)         # seno(Pi radianos)  
+#[1] 2.65359e-06     # e a resposta e bem proxima de zero
+
+#O valor Pi esta disponivel como uma constante no R. Tente isto:
+ sin(pi)
+#[1] 1.224606e-16     bem mais proximo de zero ...
+
+
+# Lista resumida de algumas funcoes aritmeticas no R: 
+
+#sqrt=	raiz quadrada
+#abs=	valor absoluto (positivo)
+#sin, cos, tan =    	funcoes trigonometricas
+#asin, acos, atan =	funcoes trigonometricas inversas
+#sinh, cosh, tanh =	funcoes hiperbolicas
+#asinh, acosh, atanh =	funcoes hiperbolicas inversas
+#exp, log =	exponencial e logaritmo natural
+
+#log e o logaritmo natural (ln)
+log(5)    # log natural ou neperiano de 5
+log10(5)  # log de 5 na base 10
+log2(5)   # log de 5 na base 2
+exp(1.61) # exponencial ou funcao inversa de log(5)
+
+
+#----------------------------------------------------------------------------------
+#Vetores
+x1<-10
+x1
+x2 <- c(1, 3, 6)
+x2
+x2[1]
+x2[2]
+length(x2)     #tamanho do vetor
+is.vector(x2)
+is.matrix(x2)
+is.numeric(x2)
+is.character(x2)
+
+x3 <- 1:10
+x3
+
+x4 <- seq(0,1, by=0.1)
+x4
+x4[x4 > 0.5]
+x4[x4 >= 0.5]
+x4 <= 0.5
+
+x5 <- seq(0,1,  len=12)
+x5
+
+x6 <- rep(1, 5)
+x6
+
+x7 <- rep(c(1, 2), c(3, 5))# repete 1 tres vezes e 2 cinco vezes
+x7
+
+x8 <- rep(1:3, rep(5))
+x8
+
+x9 <- rep(1:3, rep(5,3))
+x9
+set.seed(321)
+x10 <- rnorm(10, mean=70, sd=10)
+x10
+sum(x10) # soma
+mean(x10)# media
+var(x10) # variancia
+sd(x10)  # desvio padrao
+min(x10) # minimo
+max(x10) # maximo
+summary(x10) # resumo
+summary(1:10)
+
+#-----------------------------------------------------------------------------
+
+```
+
+**Data Frame**
+
+Um **data frame** no R é uma estrutura de dados bidimensional que armazena informações em forma de tabela, com linhas e colunas. Cada coluna pode conter diferentes tipos de dados (números, textos, fatores etc.), mas todas as colunas devem ter o mesmo número de linhas. É amplamente usado para manipulação e análise de dados estatísticos.
+
+```{r}
+# Criação do data frame
+#Cria um data frame chamado d1 com: Coluna X: números de 1 a 10. Coluna Y: valores fornecidos manualmente.
+#d1- Mostra a tabela completa com as colunas X e Y.
+#names(d1)- Mostra os nomes das colunas do data frame: "X" e "Y".
+# d1$X e d1$Y - Acessa separadamente os valores das colunas X e Y
+#plot(d1, pch=17, col="blue") -Cria um gráfico de dispersão dos dados (Y em função de X).
+
+#pch=17 define o símbolo dos pontos como triângulo.col="blue" define a cor azul para os pontos.
+# A seguir: 
+
+d1 <- data.frame(X = 1:10, Y = c(51, 54, 61, 67, 68, 75, 77, 75, 80, 82))
+d1
+names(d1)
+d1$X
+d1$Y
+plot(d1, pch=17,col="blue")
+plot(d1$X, d1$Y)
+
+```
+
+### Funções e Argumentos
+
+**Funções** são blocos de código que realizam tarefas específicas. Ao chamar uma função, os valores passados entre parênteses são chamados de **argumentos**. Uma função pode receber um ou vários argumentos, separados por vírgulas. Por exemplo:
+
+```{r}
+sum(1, 2)
+```
+
+Neste caso, a função `sum()` soma os valores 1 e 2, retornando o resultado 3.
+
+### Classes
+
+R trabalha com diferentes **classes de dados**, que determinam o tipo de informação armazenada. Os principais tipos são:
+
+-   `numeric`: números (ex.: 3.14, -10, 7)
+
+-   `character`: textos entre aspas (ex.: "banana", "R é ótimo")
+
+-   `logical`: valores lógicos, como `TRUE` ou `FALSE`
+
+Textos são geralmente utilizados em variáveis categóricas, e sempre devem ser inseridos entre aspas para diferenciá-los de nomes de objetos ou funções.
+
+### Vetores
+
+Um **vetor** é uma estrutura que armazena vários valores do mesmo tipo. Para criar um vetor, usamos a função `c()` com os valores separados por vírgulas:
+
+```{r}
+vetor1 <- c(1, 5, 3, -10)
+```
+
+### Operações Lógicas
+
+Operações lógicas verificam condições e retornam **valores booleanos**: `TRUE` (verdadeiro) ou `FALSE` (falso). Por exemplo:
+
+Principais operadores lógicos:
+
+-   `x < y`  (x é menor que y?)
+
+-   `x <= y` (x é menor ou igual a y?)
+
+-   `x > y`  (x é maior que y?)
+
+-   `x >= y` (x é maior ou igual a y?)
+
+-   `x == y` (x é igual a y?)
+
+-   `x != y` (x é diferente de y?)
+
+-   `!x`   (negação de x)
+
+-   `x | y` (x ou y são verdadeiros?)
+
+-   `x & y` (x e y são verdadeiros?)
+
+-   `x %in% y` (x pertence ao vetor y?)
+
+-   `xor(x, y)` (exclusão lógica: apenas um dos dois é verdadeiro)
+
+### Valores Especiais
+
+`NA`: representa dados **faltantes** ou **desconhecidos**. Indica que o valor existe, mas não foi informado.
+
+Outros valores especiais incluem `NaN` (resultado indefinido), `Inf` (infinito positivo) e `-Inf` (infinito negativo).
+
+### Operador Pipe
+
+O **pipe** (`%>%` do pacote `{magrittr}` ou `|>` nativo do R) permite **encadear comandos** de forma mais clara, passando o resultado de uma operação como entrada da próxima. Isso facilita a leitura e a organização do código. Por exemplo:
+
+dados %\>% filter(categoria == "A") %\>% summarise(media = mean(valor))
+
+Cada etapa ocorre de forma sequencial e legível.
+
+### Operador Cifrão (`$`)
+
+O operador **`$`** é utilizado para acessar colunas específicas de um data frame pelo nome. A sintaxe é:
+
+`{dados$variavel}`
+
+Por exemplo, para acessar a coluna `dados` de um data frame chamado `dad`
+
+`{dad$dados}`
+
+### Comentários
+
+No R, o símbolo **`#`** é usado para adicionar **comentários** no código. Tudo que estiver após o `#` em uma linha é ignorado pelo interpretador e serve apenas como anotação para quem está lendo o script. Comentários são úteis para explicar o que o código faz, registrar observações ou organizar o raciocínio durante a programação. Eles não afetam a execução nem o desempenho do script. É uma boa prática usar comentários para facilitar a manutenção e o entendimento do código, especialmente em projetos maiores ou colaborativos.

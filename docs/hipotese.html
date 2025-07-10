@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Maria Izabel de Almeida Leite">
+
+<title>FIP_606 - Análise e Visualização de Dados em Fitopatologia -</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">FIP_606 - Análise e Visualização de Dados em Fitopatologia</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target=""><i class="bi bi-info-circle" role="img">
+</i> 
+ <span class="menu-text">Sobre</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./introducao.html" rel="" target="">
+ <span class="menu-text">Introdução ao R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./aula2.html" rel="" target="">
+ <span class="menu-text">Manipulação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dataframe.html" rel="" target="">
+ <span class="menu-text">Dataframe</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./graficodisp.qmd" rel="" target="">
+ <span class="menu-text">Dispersão, Histograma e Densidade</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ggplot2.html" rel="" target="">
+ <span class="menu-text">BoxPlot</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./boxcox.html" rel="" target="">
+ <span class="menu-text">Box-Cox</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./hipotese.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Teste de Hipótese</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./transformacao.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./testt.html" rel="" target="">
+ <span class="menu-text">Teste T</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./anova.html" rel="" target="">
+ <span class="menu-text">ANOVA</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./correlacao.html" rel="" target="">
+ <span class="menu-text">Correlação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./regressao.html" rel="" target="">
+ <span class="menu-text">Regressão</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/izabelalmeidal/FIP-606-Analise-e-visualiza-o-de-dados-em-Fitopatologia" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Maria Izabel</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:maria.a.leite@ufv.br" rel="" target=""><i class="bi bi-envelope" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#o-que-é-o-teste-de-hipoteses-e-como-é-definida" id="toc-o-que-é-o-teste-de-hipoteses-e-como-é-definida" class="nav-link active" data-scroll-target="#o-que-é-o-teste-de-hipoteses-e-como-é-definida">O que é o teste de Hipoteses e como é definida?</a>
+  <ul class="collapse">
+  <li><a href="#teste-de-hipóteses" id="toc-teste-de-hipóteses" class="nav-link" data-scroll-target="#teste-de-hipóteses">Teste de Hipóteses</a></li>
+  <li><a href="#exemplo-de-formulação-de-hipóteses" id="toc-exemplo-de-formulação-de-hipóteses" class="nav-link" data-scroll-target="#exemplo-de-formulação-de-hipóteses">Exemplo de Formulação de Hipóteses</a></li>
+  <li><a href="#p-valor" id="toc-p-valor" class="nav-link" data-scroll-target="#p-valor">P-valor</a></li>
+  <li><a href="#agora-vamos-praticar" id="toc-agora-vamos-praticar" class="nav-link" data-scroll-target="#agora-vamos-praticar"><strong>Agora vamos praticar:</strong></a></li>
+  <li><a href="#visualização-e-exportação-de-dados" id="toc-visualização-e-exportação-de-dados" class="nav-link" data-scroll-target="#visualização-e-exportação-de-dados">Visualização e exportação de dados</a></li>
+  <li><a href="#teste-t" id="toc-teste-t" class="nav-link" data-scroll-target="#teste-t">Teste T</a></li>
+  </ul></li>
+  <li><a href="#pacote-infer" id="toc-pacote-infer" class="nav-link" data-scroll-target="#pacote-infer"><strong>Pacote infer</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><div class="quarto-title-block"><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+
+
+
+<section id="o-que-é-o-teste-de-hipoteses-e-como-é-definida" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-é-o-teste-de-hipoteses-e-como-é-definida">O que é o teste de Hipoteses e como é definida?</h2>
+<section id="teste-de-hipóteses" class="level3">
+<h3 class="anchored" data-anchor-id="teste-de-hipóteses">Teste de Hipóteses</h3>
+<p>O teste de hipóteses é um procedimento estatístico utilizado para avaliar se os dados de uma amostra são consistentes com uma suposição formulada sobre a população de origem. Esse processo envolve a comparação entre duas hipóteses:</p>
+<ul>
+<li><p><strong>Hipótese nula (H₀)</strong>: representa a suposição inicial ou padrão sobre a população — por exemplo, de que não há diferença entre grupos ou de que uma média populacional é igual a um valor específico.</p></li>
+<li><p><strong>Hipótese alternativa (H₁ ou Ha)</strong>: propõe uma ideia contrária à hipótese nula, indicando que há uma diferença ou efeito significativo.</p></li>
+</ul>
+<p>O objetivo principal é verificar se os dados da amostra fornecem evidências suficientes para <strong>rejeitar H₀</strong> em favor de H₁, com base em um nível de significância previamente definido (geralmente 5%).</p>
+</section>
+<section id="exemplo-de-formulação-de-hipóteses" class="level3">
+<h3 class="anchored" data-anchor-id="exemplo-de-formulação-de-hipóteses">Exemplo de Formulação de Hipóteses</h3>
+<p>Se quisermos testar se duas médias são iguais, as hipóteses podem ser:</p>
+<ul>
+<li><p><strong>H₀:</strong> média₁ = média₂ (não há diferença entre os grupos)</p></li>
+<li><p><strong>H₁:</strong></p></li>
+</ul>
+<pre><code>-   média₁ ≠ média₂ (diferença bilateral)
+
+-   média₁ \&lt; média₂ (diferença unilateral)
+
+-   média₁ \&gt; média₂ (diferença unilateral)</code></pre>
+<p>Essas formulações variam conforme a pergunta de pesquisa e o objetivo do estudo. O teste de hipóteses nos ajuda a tomar decisões com base em dados amostrais, reduzindo a incerteza ao analisar características populacionais.</p>
+</section>
+<section id="p-valor" class="level3">
+<h3 class="anchored" data-anchor-id="p-valor">P-valor</h3>
+<p>O <strong>p-valor</strong> representa a probabilidade de obter um resultado igual ou mais extremo do que o observado nos dados, <strong>assumindo que a hipótese nula seja verdadeira</strong>. Em termos simples, ele mede o quanto os dados observados são compatíveis com a hipótese nula.</p>
+<p>Quanto <strong>menor for o p-valor</strong>, maior a evidência contra a hipótese nula — indicando que o resultado encontrado dificilmente teria ocorrido ao acaso. Por outro lado, <strong>valores altos de p</strong> sugerem que os dados são consistentes com a hipótese nula e que qualquer diferença observada pode ser atribuída à variabilidade natural da amostra.</p>
+<p>Na prática, o p-valor é comparado a um <strong>nível de significância</strong> previamente definido (como 0,05 ou 0,01):</p>
+<ul>
+<li><p>Se o <strong>p-valor for menor que o nível de significância</strong>, rejeita-se a hipótese nula, indicando evidência estatística de que há uma diferença entre os grupos ou condições estudadas.</p></li>
+<li><p>Se o <strong>p-valor for maior</strong>, não há evidência suficiente para rejeitar a hipótese nula, e considera-se que não há diferença estatisticamente significativa.</p></li>
+</ul>
+<p>O p-valor, portanto, é uma ferramenta fundamental na tomada de decisões em testes estatísticos, ajudando a interpretar os resultados com base na probabilidade.</p>
+</section>
+<section id="agora-vamos-praticar" class="level3">
+<h3 class="anchored" data-anchor-id="agora-vamos-praticar"><strong>Agora vamos praticar:</strong></h3>
+</section>
+<section id="visualização-e-exportação-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="visualização-e-exportação-de-dados">Visualização e exportação de dados</h3>
+<p>Utilizando o conjunto de dados <strong>magnésio</strong>, foi criado um gráfico do tipo <strong>boxplot</strong> para representar a distribuição dos valores. Para complementar a visualização, utilizamos a função <code>annotate()</code> do <strong>ggplot2</strong>, que permite inserir anotações personalizadas diretamente no gráfico, facilitando a interpretação de pontos importantes ou destacando informações específicas.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>mg <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados-diversos.xlsx"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">names</span>(mg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tratamento" "tempo"      "severidade"</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>mg <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(tratamento, severidade))<span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.05</span>)<span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="cn">NA</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>               <span class="at">outlier.colour =</span> <span class="cn">NA</span>)<span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">ylim</span>(<span class="dv">5</span>, <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8"></a>           <span class="at">x =</span> <span class="fl">0.7</span>, <span class="at">y =</span> <span class="dv">19</span>,</span>
+<span id="cb4-9"><a href="#cb4-9"></a>           <span class="at">label =</span> <span class="st">"t = 8.15; p &lt; 0.001"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="hipotese_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="teste-t" class="level3">
+<h3 class="anchored" data-anchor-id="teste-t">Teste T</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>mg2 <span class="ot">&lt;-</span> mg <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="dv">1</span>,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>              <span class="at">names_from =</span> tratamento,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>              <span class="at">values_from =</span> severidade)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Para aplicar o teste t, criamos um novo objeto chamado <code>mg2</code>, copiando os dados do objeto <code>mg</code>. Em seguida, utilizamos a função <code>pivot_wider()</code> para reorganizar o formato da base de dados. Essa função é utilizada para transformar dados no formato “longo” em formato “largo”, ou seja, ela aumenta o número de colunas e reduz o número de linhas.</p>
+<p>No uso de <code>pivot_wider()</code>, dois argumentos principais são essenciais:</p>
+<ul>
+<li><p><strong><code>names_from</code></strong>: indica a coluna cujos valores serão transformados em nomes de novas colunas;</p></li>
+<li><p><strong><code>values_from</code></strong>: indica a coluna cujos valores preencherão as células dessas novas colunas.</p></li>
+</ul>
+<p>Essa transformação facilita a aplicação de testes estatísticos como o teste t, que muitas vezes requerem os dados organizados em colunas separadas para cada grupo comparado.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(mg2<span class="sc">$</span>tempo, mg2<span class="sc">$</span>severidade )</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#install.packages("report")</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">library</span>(report)</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">report</span>(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Effect sizes were labelled following Cohen's (1988) recommendations.
+
+The One Sample t-test testing the difference between mg2$tempo (mean = 31.50)
+and mu = 0 suggests that the effect is positive, statistically significant, and
+large (difference = 31.50, 95% CI [16.34, 46.66], t(9) = 4.70, p = 0.001;
+Cohen's d = 1.49, 95% CI [0.55, 2.39])</code></pre>
+</div>
+</div>
+<p>Agora visualizaremos os nossos resultados:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mg <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(tratamento, severidade))<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="hipotese_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="pacote-infer" class="level2">
+<h2 class="anchored" data-anchor-id="pacote-infer"><strong>Pacote infer</strong></h2>
+<p>O pacote <strong>infer</strong> oferece uma abordagem moderna e elegante para realizar inferência estatística, utilizando uma sintaxe coerente com o estilo do <strong>tidyverse</strong>. Ele simplifica o processo de análise ao estruturar a inferência em quatro etapas principais, cada uma representada por uma função intuitiva:</p>
+<ul>
+<li><p><strong><code>specify()</code></strong>: define a variável ou a relação entre variáveis que será foco da análise.</p></li>
+<li><p><strong><code>hypothesize()</code></strong>: formula a hipótese nula que será testada.</p></li>
+<li><p><strong><code>generate()</code></strong>: simula conjuntos de dados que seguem a hipótese nula, possibilitando a construção da distribuição nula.</p></li>
+<li><p><strong><code>calculate()</code></strong>: computa as estatísticas de interesse sobre os dados simulados, permitindo a avaliação da evidência contra a hipótese nula.</p></li>
+</ul>
+<p>Essa estrutura modular torna a inferência estatística mais transparente, reprodutível e integrada ao ecossistema tidyverse, facilitando o entendimento e a comunicação dos resultados.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#install.packages("dplyr")</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">library</span>(infer)</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co"># Verifique o nome das colunas</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="fu">names</span>(mg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tratamento" "tempo"      "severidade"</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">#comparação entre os tratamentos Gotejamento e Aspersor, porque teste T faz para 2 niveis.</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>mg_filtrado <span class="ot">&lt;-</span> mg <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">filter</span>(tratamento <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Gotejamento"</span>, <span class="st">"Aspersor"</span>))</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>mg_filtrado <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">t_test</span>(severidade <span class="sc">~</span> tratamento, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"Gotejamento"</span>, <span class="st">"Aspersor"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 7
+  statistic  t_df p_value alternative estimate lower_ci upper_ci
+      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1      2.99  10.6  0.0128 two.sided       15.5     4.02     26.9</code></pre>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">---</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="an">title:</span><span class="co"> ""</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co">---</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="fu">## O que é o teste de Hipoteses e como é definida?</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="fu">### Teste de Hipóteses</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a></span>
+<span id="cb13-9"><a href="#cb13-9"></a>O teste de hipóteses é um procedimento estatístico utilizado para avaliar se os dados de uma amostra são consistentes com uma suposição formulada sobre a população de origem. Esse processo envolve a comparação entre duas hipóteses:</span>
+<span id="cb13-10"><a href="#cb13-10"></a></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="ss">-   </span>**Hipótese nula (H₀)**: representa a suposição inicial ou padrão sobre a população --- por exemplo, de que não há diferença entre grupos ou de que uma média populacional é igual a um valor específico.</span>
+<span id="cb13-12"><a href="#cb13-12"></a></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="ss">-   </span>**Hipótese alternativa (H₁ ou Ha)**: propõe uma ideia contrária à hipótese nula, indicando que há uma diferença ou efeito significativo.</span>
+<span id="cb13-14"><a href="#cb13-14"></a></span>
+<span id="cb13-15"><a href="#cb13-15"></a>O objetivo principal é verificar se os dados da amostra fornecem evidências suficientes para **rejeitar H₀** em favor de H₁, com base em um nível de significância previamente definido (geralmente 5%).</span>
+<span id="cb13-16"><a href="#cb13-16"></a></span>
+<span id="cb13-17"><a href="#cb13-17"></a><span class="fu">### Exemplo de Formulação de Hipóteses</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a></span>
+<span id="cb13-19"><a href="#cb13-19"></a>Se quisermos testar se duas médias são iguais, as hipóteses podem ser:</span>
+<span id="cb13-20"><a href="#cb13-20"></a></span>
+<span id="cb13-21"><a href="#cb13-21"></a><span class="ss">-   </span>**H₀:** média₁ = média₂ (não há diferença entre os grupos)</span>
+<span id="cb13-22"><a href="#cb13-22"></a></span>
+<span id="cb13-23"><a href="#cb13-23"></a><span class="ss">-   </span>**H₁:**</span>
+<span id="cb13-24"><a href="#cb13-24"></a></span>
+<span id="cb13-25"><a href="#cb13-25"></a><span class="in">```         </span></span>
+<span id="cb13-26"><a href="#cb13-26"></a><span class="in">-   média₁ ≠ média₂ (diferença bilateral)</span></span>
+<span id="cb13-27"><a href="#cb13-27"></a></span>
+<span id="cb13-28"><a href="#cb13-28"></a><span class="in">-   média₁ \&lt; média₂ (diferença unilateral)</span></span>
+<span id="cb13-29"><a href="#cb13-29"></a></span>
+<span id="cb13-30"><a href="#cb13-30"></a><span class="in">-   média₁ \&gt; média₂ (diferença unilateral)</span></span>
+<span id="cb13-31"><a href="#cb13-31"></a><span class="in">```</span></span>
+<span id="cb13-32"><a href="#cb13-32"></a></span>
+<span id="cb13-33"><a href="#cb13-33"></a>Essas formulações variam conforme a pergunta de pesquisa e o objetivo do estudo. O teste de hipóteses nos ajuda a tomar decisões com base em dados amostrais, reduzindo a incerteza ao analisar características populacionais.</span>
+<span id="cb13-34"><a href="#cb13-34"></a></span>
+<span id="cb13-35"><a href="#cb13-35"></a><span class="fu">### P-valor</span></span>
+<span id="cb13-36"><a href="#cb13-36"></a></span>
+<span id="cb13-37"><a href="#cb13-37"></a>O **p-valor** representa a probabilidade de obter um resultado igual ou mais extremo do que o observado nos dados, **assumindo que a hipótese nula seja verdadeira**. Em termos simples, ele mede o quanto os dados observados são compatíveis com a hipótese nula.</span>
+<span id="cb13-38"><a href="#cb13-38"></a></span>
+<span id="cb13-39"><a href="#cb13-39"></a>Quanto **menor for o p-valor**, maior a evidência contra a hipótese nula --- indicando que o resultado encontrado dificilmente teria ocorrido ao acaso. Por outro lado, **valores altos de p** sugerem que os dados são consistentes com a hipótese nula e que qualquer diferença observada pode ser atribuída à variabilidade natural da amostra.</span>
+<span id="cb13-40"><a href="#cb13-40"></a></span>
+<span id="cb13-41"><a href="#cb13-41"></a>Na prática, o p-valor é comparado a um **nível de significância** previamente definido (como 0,05 ou 0,01):</span>
+<span id="cb13-42"><a href="#cb13-42"></a></span>
+<span id="cb13-43"><a href="#cb13-43"></a><span class="ss">-   </span>Se o **p-valor for menor que o nível de significância**, rejeita-se a hipótese nula, indicando evidência estatística de que há uma diferença entre os grupos ou condições estudadas.</span>
+<span id="cb13-44"><a href="#cb13-44"></a></span>
+<span id="cb13-45"><a href="#cb13-45"></a><span class="ss">-   </span>Se o **p-valor for maior**, não há evidência suficiente para rejeitar a hipótese nula, e considera-se que não há diferença estatisticamente significativa.</span>
+<span id="cb13-46"><a href="#cb13-46"></a></span>
+<span id="cb13-47"><a href="#cb13-47"></a>O p-valor, portanto, é uma ferramenta fundamental na tomada de decisões em testes estatísticos, ajudando a interpretar os resultados com base na probabilidade.</span>
+<span id="cb13-48"><a href="#cb13-48"></a></span>
+<span id="cb13-49"><a href="#cb13-49"></a><span class="fu">### **Agora vamos praticar:**</span></span>
+<span id="cb13-50"><a href="#cb13-50"></a></span>
+<span id="cb13-51"><a href="#cb13-51"></a><span class="fu">### Visualização e exportação de dados</span></span>
+<span id="cb13-52"><a href="#cb13-52"></a></span>
+<span id="cb13-53"><a href="#cb13-53"></a>Utilizando o conjunto de dados **magnésio**, foi criado um gráfico do tipo **boxplot** para representar a distribuição dos valores. Para complementar a visualização, utilizamos a função `annotate()` do **ggplot2**, que permite inserir anotações personalizadas diretamente no gráfico, facilitando a interpretação de pontos importantes ou destacando informações específicas.</span>
+<span id="cb13-54"><a href="#cb13-54"></a></span>
+<span id="cb13-57"><a href="#cb13-57"></a><span class="in">```{r}</span></span>
+<span id="cb13-58"><a href="#cb13-58"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-59"><a href="#cb13-59"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb13-60"><a href="#cb13-60"></a></span>
+<span id="cb13-61"><a href="#cb13-61"></a>mg <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"dados-diversos.xlsx"</span>)</span>
+<span id="cb13-62"><a href="#cb13-62"></a><span class="fu">names</span>(mg)</span>
+<span id="cb13-63"><a href="#cb13-63"></a>mg <span class="sc">|&gt;</span></span>
+<span id="cb13-64"><a href="#cb13-64"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(tratamento, severidade))<span class="sc">+</span></span>
+<span id="cb13-65"><a href="#cb13-65"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.05</span>)<span class="sc">+</span></span>
+<span id="cb13-66"><a href="#cb13-66"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="cn">NA</span>,</span>
+<span id="cb13-67"><a href="#cb13-67"></a>               <span class="at">outlier.colour =</span> <span class="cn">NA</span>)<span class="sc">+</span></span>
+<span id="cb13-68"><a href="#cb13-68"></a>  <span class="fu">ylim</span>(<span class="dv">5</span>, <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb13-69"><a href="#cb13-69"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,</span>
+<span id="cb13-70"><a href="#cb13-70"></a>           <span class="at">x =</span> <span class="fl">0.7</span>, <span class="at">y =</span> <span class="dv">19</span>,</span>
+<span id="cb13-71"><a href="#cb13-71"></a>           <span class="at">label =</span> <span class="st">"t = 8.15; p &lt; 0.001"</span>)</span>
+<span id="cb13-72"><a href="#cb13-72"></a><span class="in">```</span></span>
+<span id="cb13-73"><a href="#cb13-73"></a></span>
+<span id="cb13-74"><a href="#cb13-74"></a><span class="fu">### Teste T</span></span>
+<span id="cb13-75"><a href="#cb13-75"></a></span>
+<span id="cb13-78"><a href="#cb13-78"></a><span class="in">```{r}</span></span>
+<span id="cb13-79"><a href="#cb13-79"></a>mg2 <span class="ot">&lt;-</span> mg <span class="sc">|&gt;</span></span>
+<span id="cb13-80"><a href="#cb13-80"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="dv">1</span>,</span>
+<span id="cb13-81"><a href="#cb13-81"></a>              <span class="at">names_from =</span> tratamento,</span>
+<span id="cb13-82"><a href="#cb13-82"></a>              <span class="at">values_from =</span> severidade)</span>
+<span id="cb13-83"><a href="#cb13-83"></a><span class="in">```</span></span>
+<span id="cb13-84"><a href="#cb13-84"></a></span>
+<span id="cb13-85"><a href="#cb13-85"></a>Para aplicar o teste t, criamos um novo objeto chamado <span class="in">`mg2`</span>, copiando os dados do objeto <span class="in">`mg`</span>. Em seguida, utilizamos a função <span class="in">`pivot_wider()`</span> para reorganizar o formato da base de dados. Essa função é utilizada para transformar dados no formato "longo" em formato "largo", ou seja, ela aumenta o número de colunas e reduz o número de linhas.</span>
+<span id="cb13-86"><a href="#cb13-86"></a></span>
+<span id="cb13-87"><a href="#cb13-87"></a>No uso de <span class="in">`pivot_wider()`</span>, dois argumentos principais são essenciais:</span>
+<span id="cb13-88"><a href="#cb13-88"></a></span>
+<span id="cb13-89"><a href="#cb13-89"></a><span class="ss">-   </span>**`names_from`**: indica a coluna cujos valores serão transformados em nomes de novas colunas;</span>
+<span id="cb13-90"><a href="#cb13-90"></a></span>
+<span id="cb13-91"><a href="#cb13-91"></a><span class="ss">-   </span>**`values_from`**: indica a coluna cujos valores preencherão as células dessas novas colunas.</span>
+<span id="cb13-92"><a href="#cb13-92"></a></span>
+<span id="cb13-93"><a href="#cb13-93"></a>Essa transformação facilita a aplicação de testes estatísticos como o teste t, que muitas vezes requerem os dados organizados em colunas separadas para cada grupo comparado.</span>
+<span id="cb13-94"><a href="#cb13-94"></a></span>
+<span id="cb13-97"><a href="#cb13-97"></a><span class="in">```{r}</span></span>
+<span id="cb13-98"><a href="#cb13-98"></a>t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(mg2<span class="sc">$</span>tempo, mg2<span class="sc">$</span>severidade )</span>
+<span id="cb13-99"><a href="#cb13-99"></a><span class="co">#install.packages("report")</span></span>
+<span id="cb13-100"><a href="#cb13-100"></a><span class="fu">library</span>(report)</span>
+<span id="cb13-101"><a href="#cb13-101"></a><span class="fu">report</span>(t)</span>
+<span id="cb13-102"><a href="#cb13-102"></a></span>
+<span id="cb13-103"><a href="#cb13-103"></a><span class="in">```</span></span>
+<span id="cb13-104"><a href="#cb13-104"></a></span>
+<span id="cb13-105"><a href="#cb13-105"></a>Agora visualizaremos os nossos resultados:</span>
+<span id="cb13-106"><a href="#cb13-106"></a></span>
+<span id="cb13-109"><a href="#cb13-109"></a><span class="in">```{r}</span></span>
+<span id="cb13-110"><a href="#cb13-110"></a>mg <span class="sc">|&gt;</span></span>
+<span id="cb13-111"><a href="#cb13-111"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(tratamento, severidade))<span class="sc">+</span></span>
+<span id="cb13-112"><a href="#cb13-112"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> <span class="st">"mean_se"</span>)</span>
+<span id="cb13-113"><a href="#cb13-113"></a><span class="in">```</span></span>
+<span id="cb13-114"><a href="#cb13-114"></a></span>
+<span id="cb13-115"><a href="#cb13-115"></a><span class="fu">## **Pacote infer**</span></span>
+<span id="cb13-116"><a href="#cb13-116"></a></span>
+<span id="cb13-117"><a href="#cb13-117"></a>O pacote **infer** oferece uma abordagem moderna e elegante para realizar inferência estatística, utilizando uma sintaxe coerente com o estilo do **tidyverse**. Ele simplifica o processo de análise ao estruturar a inferência em quatro etapas principais, cada uma representada por uma função intuitiva:</span>
+<span id="cb13-118"><a href="#cb13-118"></a></span>
+<span id="cb13-119"><a href="#cb13-119"></a><span class="ss">-   </span>**`specify()`**: define a variável ou a relação entre variáveis que será foco da análise.</span>
+<span id="cb13-120"><a href="#cb13-120"></a></span>
+<span id="cb13-121"><a href="#cb13-121"></a><span class="ss">-   </span>**`hypothesize()`**: formula a hipótese nula que será testada.</span>
+<span id="cb13-122"><a href="#cb13-122"></a></span>
+<span id="cb13-123"><a href="#cb13-123"></a><span class="ss">-   </span>**`generate()`**: simula conjuntos de dados que seguem a hipótese nula, possibilitando a construção da distribuição nula.</span>
+<span id="cb13-124"><a href="#cb13-124"></a></span>
+<span id="cb13-125"><a href="#cb13-125"></a><span class="ss">-   </span>**`calculate()`**: computa as estatísticas de interesse sobre os dados simulados, permitindo a avaliação da evidência contra a hipótese nula.</span>
+<span id="cb13-126"><a href="#cb13-126"></a></span>
+<span id="cb13-127"><a href="#cb13-127"></a>Essa estrutura modular torna a inferência estatística mais transparente, reprodutível e integrada ao ecossistema tidyverse, facilitando o entendimento e a comunicação dos resultados.</span>
+<span id="cb13-128"><a href="#cb13-128"></a></span>
+<span id="cb13-131"><a href="#cb13-131"></a><span class="in">```{r}</span></span>
+<span id="cb13-132"><a href="#cb13-132"></a><span class="co">#install.packages("dplyr")</span></span>
+<span id="cb13-133"><a href="#cb13-133"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-134"><a href="#cb13-134"></a><span class="fu">library</span>(infer)</span>
+<span id="cb13-135"><a href="#cb13-135"></a></span>
+<span id="cb13-136"><a href="#cb13-136"></a><span class="co"># Verifique o nome das colunas</span></span>
+<span id="cb13-137"><a href="#cb13-137"></a><span class="fu">names</span>(mg)</span>
+<span id="cb13-138"><a href="#cb13-138"></a><span class="co">#comparação entre os tratamentos Gotejamento e Aspersor, porque teste T faz para 2 niveis.</span></span>
+<span id="cb13-139"><a href="#cb13-139"></a>mg_filtrado <span class="ot">&lt;-</span> mg <span class="sc">|&gt;</span></span>
+<span id="cb13-140"><a href="#cb13-140"></a>  <span class="fu">filter</span>(tratamento <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Gotejamento"</span>, <span class="st">"Aspersor"</span>))</span>
+<span id="cb13-141"><a href="#cb13-141"></a></span>
+<span id="cb13-142"><a href="#cb13-142"></a>mg_filtrado <span class="sc">|&gt;</span></span>
+<span id="cb13-143"><a href="#cb13-143"></a>  <span class="fu">t_test</span>(severidade <span class="sc">~</span> tratamento, <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"Gotejamento"</span>, <span class="st">"Aspersor"</span>))</span>
+<span id="cb13-144"><a href="#cb13-144"></a></span>
+<span id="cb13-145"><a href="#cb13-145"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© 2025 - Maria Izabel de Almeida Leite — Feito com <a href="https://quarto.org">Quarto</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introdução R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="INTRODUÇÃO_files/libs/clipboard/clipboard.min.js"></script>
+<script src="INTRODUÇÃO_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="INTRODUÇÃO_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="INTRODUÇÃO_files/libs/quarto-html/popper.min.js"></script>
+<script src="INTRODUÇÃO_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="INTRODUÇÃO_files/libs/quarto-html/anchor.min.js"></script>
+<link href="INTRODUÇÃO_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="INTRODUÇÃO_files/libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="INTRODUÇÃO_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="INTRODUÇÃO_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="INTRODUÇÃO_files/libs/bootstrap/bootstrap-2546a5edb573abd25b53f29b13f71942.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introdução R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introdução" class="level1">
+<h1>INTRODUÇÃO</h1>
+<section id="sofware-r---análise-de-dados" class="level2">
+<h2 class="anchored" data-anchor-id="sofware-r---análise-de-dados">Sofware R - Análise de Dados</h2>
+<p>A análise de dados tem se tornado cada vez mais essencial em diversas áreas do conhecimento, sendo uma ferramenta estratégica para tomada de decisões, identificação de padrões e geração de conhecimento a partir de informações brutas. Nesse contexto, o R se destaca como uma linguagem de programação poderosa e amplamente utilizada para análise estatística, visualização de dados e ciência de dados em geral. Gratuito e de código aberto, o R oferece uma ampla gama de pacotes e recursos que facilitam desde análises básicas até modelagens complexas.</p>
+<p>Ao iniciar sua jornada no universo da análise de dados com o RStudio, é fundamental saber por onde começar. Há uma variedade de materiais valiosos disponíveis, sendo essencial saber como acessá-los e aproveitá-los de forma estratégica. Uma obra recomendada para iniciantes é o livro <em>Introdução à Ciência de Dados no R</em>, que fornece uma base sólida para compreender os principais conceitos da área e aplicar técnicas de análise de dados de maneira eficiente.</p>
+<p>É importante destacar que os materiais disponibilizados neste site foram elaborados com o objetivo de apoiar o aprendizado. No entanto, devido à complexidade dos temas abordados, nem todos os conteúdos contam com anotações detalhadas. Por isso, esses recursos devem ser utilizados como material complementar, e não como fonte principal de estudo.</p>
+<p>Com isso em mente, damos início à nossa jornada no R, explorando seus objetos e funções mais básicas — etapa fundamental para quem deseja desenvolver habilidades sólidas em análise de dados.</p>
+</section>
+<section id="download-r-studio" class="level2">
+<h2 class="anchored" data-anchor-id="download-r-studio">Download R Studio</h2>
+<p>Link para instalação do R e do R Studio (https://posit.co/download/rstudio-desktop/)</p>
+</section>
+<section id="objetos-e-funções" class="level2">
+<h2 class="anchored" data-anchor-id="objetos-e-funções">Objetos e funções</h2>
+<section id="objetos-no-r" class="level3">
+<h3 class="anchored" data-anchor-id="objetos-no-r"><strong>Objetos no R</strong></h3>
+<p>Em R, <strong>objetos</strong> são estruturas que armazenam informações, podendo ser números, textos, funções ou até conjuntos de dados. Para criar um objeto, utiliza-se o operador de atribuição <code>&lt;-</code>. Por exemplo:</p>
+<p>a &lt;- 1</p>
+<p>Neste exemplo, o número 1 foi atribuído ao objeto chamado <code>a</code>. As bases de dados em R geralmente são armazenadas como <strong>data frames</strong>, que são objetos que organizam dados em forma de tabela (colunas e linhas).</p>
+</section>
+<section id="funções-e-argumentos" class="level3">
+<h3 class="anchored" data-anchor-id="funções-e-argumentos"><strong>Funções e Argumentos</strong></h3>
+<p><strong>Funções</strong> são blocos de código que realizam tarefas específicas. Ao chamar uma função, os valores passados entre parênteses são chamados de <strong>argumentos</strong>. Uma função pode receber um ou vários argumentos, separados por vírgulas. Por exemplo:</p>
+<p>sum(1, 2)</p>
+<p>Neste caso, a função <code>sum()</code> soma os valores 1 e 2, retornando o resultado 3.</p>
+</section>
+<section id="classes" class="level3">
+<h3 class="anchored" data-anchor-id="classes"><strong>Classes</strong></h3>
+<p>R trabalha com diferentes <strong>classes de dados</strong>, que determinam o tipo de informação armazenada. Os principais tipos são:</p>
+<ul>
+<li><p><code>numeric</code>: números (ex.: 3.14, -10, 7)</p></li>
+<li><p><code>character</code>: textos entre aspas (ex.: “banana”, “R é ótimo”)</p></li>
+<li><p><code>logical</code>: valores lógicos, como <code>TRUE</code> ou <code>FALSE</code></p></li>
+</ul>
+<p>Textos são geralmente utilizados em variáveis categóricas, e sempre devem ser inseridos entre aspas para diferenciá-los de nomes de objetos ou funções.</p>
+</section>
+<section id="vetores" class="level3">
+<h3 class="anchored" data-anchor-id="vetores"><strong>Vetores</strong></h3>
+<p>Um <strong>vetor</strong> é uma estrutura que armazena vários valores do mesmo tipo. Para criar um vetor, usamos a função <code>c()</code> com os valores separados por vírgulas:</p>
+<p>vetor1 &lt;- c(1, 5, 3, -10)</p>
+</section>
+<section id="operações-lógicas" class="level3">
+<h3 class="anchored" data-anchor-id="operações-lógicas"><strong>Operações Lógicas</strong></h3>
+<p>Operações lógicas verificam condições e retornam <strong>valores booleanos</strong>: <code>TRUE</code> (verdadeiro) ou <code>FALSE</code> (falso). Por exemplo:</p>
+<p>Principais operadores lógicos:</p>
+<ul>
+<li><p><code>x &lt; y</code>  (x é menor que y?)</p></li>
+<li><p><code>x &lt;= y</code> (x é menor ou igual a y?)</p></li>
+<li><p><code>x &gt; y</code>  (x é maior que y?)</p></li>
+<li><p><code>x &gt;= y</code> (x é maior ou igual a y?)</p></li>
+<li><p><code>x == y</code> (x é igual a y?)</p></li>
+<li><p><code>x != y</code> (x é diferente de y?)</p></li>
+<li><p><code>!x</code>   (negação de x)</p></li>
+<li><p><code>x | y</code> (x ou y são verdadeiros?)</p></li>
+<li><p><code>x &amp; y</code> (x e y são verdadeiros?)</p></li>
+<li><p><code>x %in% y</code> (x pertence ao vetor y?)</p></li>
+<li><p><code>xor(x, y)</code> (exclusão lógica: apenas um dos dois é verdadeiro)</p></li>
+</ul>
+</section>
+<section id="valores-especiais" class="level3">
+<h3 class="anchored" data-anchor-id="valores-especiais"><strong>Valores Especiais</strong></h3>
+<p><code>NA</code>: representa dados <strong>faltantes</strong> ou <strong>desconhecidos</strong>. Indica que o valor existe, mas não foi informado.</p>
+<p>Outros valores especiais incluem <code>NaN</code> (resultado indefinido), <code>Inf</code> (infinito positivo) e <code>-Inf</code> (infinito negativo).</p>
+</section>
+<section id="operador-pipe" class="level3">
+<h3 class="anchored" data-anchor-id="operador-pipe"><strong>Operador Pipe</strong></h3>
+<p>O <strong>pipe</strong> (<code>%&gt;%</code> do pacote <code>{magrittr}</code> ou <code>|&gt;</code> nativo do R) permite <strong>encadear comandos</strong> de forma mais clara, passando o resultado de uma operação como entrada da próxima. Isso facilita a leitura e a organização do código. Por exemplo:</p>
+<p>dados %&gt;% filter(categoria == “A”) %&gt;% summarise(media = mean(valor))</p>
+<p>Cada etapa ocorre de forma sequencial e legível.</p>
+</section>
+<section id="operador-cifrão" class="level3">
+<h3 class="anchored" data-anchor-id="operador-cifrão"><strong>Operador Cifrão (<code>$</code>)</strong></h3>
+<p>O operador <strong><code>$</code></strong> é utilizado para acessar colunas específicas de um data frame pelo nome. A sintaxe é:</p>
+<p>dados$variavel</p>
+<p>Por exemplo, para acessar a coluna <code>dados</code> de um data frame chamado <code>dad</code></p>
+<p>dad$dados</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
