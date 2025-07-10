@@ -1,0 +1,78 @@
+---
+title: "Box-Cox"
+author: "MARIA IZABEL
+format: html
+editor: visual
+---
+
+## Transformação de dados R tipo Boxcox
+
+A transformação Box-Cox é um método amplamente utilizado em estatística para ajustar dados contínuos positivos, facilitando o cumprimento dos pressupostos de normalidade e homogeneidade das variâncias em análises. Essa técnica é especialmente útil quando os dados apresentam assimetria ou variabilidade não constante.
+
+A transformação é expressa pela fórmula:
+
+**y(**λ**) = (x\^**λ**- 1) /** λ
+
+onde:
+
+-   x é o valor original da variável,
+
+-   y(λ) é o valor transformado;
+
+-   λ é o parâmetro que controla a transformação e pode assumir qualquer valor real.
+
+Dependendo do valor de λ, a transformação assume diferentes formas:
+
+-   Se 0λ=0, a transformação equivale ao logaritmo natural dos dados,
+
+-   Se λ=1, os dados permanecem praticamente inalterados (transformação linear),
+
+-   Para valores negativos de λ, a transformação é do tipo inversa.
+
+Para realizar essa transformação no R, o pacote **MASS** oferece funções específicas que facilitam a estimação do parâmetro λ ideal para os dados e a aplicação da transformação.
+
+```{r}
+
+library(MASS)
+rm(survey)
+head(MASS::survey)
+ls()
+
+
+```
+
+### `InsectSprays` do R
+
+Para a transformação Box-Cox, utilizaremos o conjunto de dados `InsectSprays`, disponível no R. A função `boxcox()` do pacote **MASS** é uma ferramenta que calcula a transformação de Box-Cox e ajuda a determinar o valor ideal do parâmetro lambda para uma variável específica. Além de fornecer o valor ótimo de lambda, essa função gera gráficos de diagnóstico que auxiliam na avaliação da adequação da transformação aos dados, facilitando a interpretação e a decisão sobre qual transformação aplicar.
+
+```{r}
+insects <- InsectSprays
+
+b <- boxcox(lm(insects$count+0.1 ~1))
+```
+
+Código para mostrar o valor de lambda, que maximiza a função log-verossimilhança, sendo esse o parâmetro ideal para a transformação Box-Cox dos dados.
+
+```{r}
+lambda <- b$x[which.max(b$y)]
+lambda
+```
+
+**Histograma para visualização dos dados**
+
+```{r}
+
+insects$count2 <- (insects$count ^ lambda - 1) / lambda
+
+hist(insects$count, col = "salmon", main = "Histograma de insects$count", xlab = "count")
+
+```
+
+```{r}
+hist(insects$count2, col = "pink", main = "Histograma de insects$count2 (transformada)", xlab = "count2")
+
+```
+
+```{r}
+insects$count2
+```

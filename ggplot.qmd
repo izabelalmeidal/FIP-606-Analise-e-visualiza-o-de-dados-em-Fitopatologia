@@ -1,0 +1,189 @@
+---
+title: "FIP-606-ANALISE E VISUALIZAÇÃO DE DADOS EM FITOPATOLOGIA"
+author: "MARIA IZABEL"
+format: html
+editor: visual
+  toc: true 
+warning: false 
+message: false
+---
+
+# **Visualização de dados**
+
+O **ggplot2** é um dos principais pacotes utilizados para a visualização de dados no R. Ele pode ser carregado de forma independente ou por meio do pacote **tidyverse**, que reúne diversas ferramentas para manipulação e análise de dados. Para criar gráficos, utiliza-se a função `ggplot()`, que serve como base para a construção de visualizações personalizadas e informativas.
+
+## **Importação de dados**
+
+Após carregar os pacotes necessários, o próximo passo é importar o banco de dados que será utilizado na análise. Para arquivos no formato **.csv**, recomenda-se o uso do pacote **tidyverse**, que oferece funções como `read_csv()` para facilitar a leitura dos dados. As variáveis presentes no conjunto podem ser **categóricas** ou **numéricas**. No R, as variáveis categóricas geralmente são interpretadas como **caracteres** (`character`) ou **fatores** (`factor`), dependendo do contexto e da forma de importação.
+
+```{r}
+
+library(tidyverse)
+library(readr)
+Mg <- read_csv("dados-diversos.csv")
+```
+
+### Sheet:
+
+```{r}
+# Instale (se ainda não tiver)
+install.packages("googlesheets4")
+
+# Carregue o pacote
+library(googlesheets4)
+
+# URL da planilha do Google Sheets
+url <- "https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit#gid=983033137"
+
+# Leia a planilha (por padrão lê a primeira aba ou use sheet= para especificar)
+mg <- read_sheet(url)
+
+```
+
+Se quiser ler uma aba específica pelo nome ou pelo número do `gid`, adicione o argumento `sheet =`:
+
+```{r}
+# Por nome da aba
+mg <- read_sheet(url, sheet = "magnesio")
+
+# Ou por posição da aba (ex: primeira aba)
+mg <- read_sheet(url, sheet = 1)
+
+```
+
+No **ggplot2**, os gráficos são construídos de forma **estrutural, camada por camada**. A primeira camada é criada com a função `ggplot()`, onde são definidas as **estéticas** (aesthetics), como os eixos e as variáveis a serem representadas. Em seguida, adiciona-se uma segunda camada com funções do tipo `geom_()`, que determinam o **tipo de gráfico** a ser gerado, como pontos (`geom_point()`), barras (`geom_bar()`), linhas (`geom_line()`), entre outros.
+
+Utiliza-se o operador **`+`**, que indica a adição de uma nova camada à visualização. Além disso, o operador **pipe (`|>`)** pode ser usado para representar uma **sequência lógica de comandos**, facilitando a leitura do código e evitando a repetição do nome do data frame dentro da função `ggplot()`. Na escrita do código, é recomendável deixar um **espaço antes do pipe** e iniciar uma **nova linha** após seu uso. Após a primeira linha com `ggplot()`, as camadas seguintes devem começar com **dois espaços de indentação**, o que ajuda na organização e torna mais simples adicionar, remover ou reorganizar etapas do gráfico.
+
+```{r}
+library(ggplot2)
+```
+
+**ggplot:**\
+A função `ggplot()` é o ponto de partida para criar gráficos com o pacote **ggplot2**. Ela define o **conjunto de dados** a ser utilizado (por exemplo, um data frame chamado `mg`) e estabelece o **plano inicial do gráfico**, com os eixos **x** e **y**.
+
+**aes:**\
+Em seguida, utiliza-se a função `aes()` (*aesthetic*) para mapear as **variáveis do conjunto de dados aos elementos visuais** do gráfico, como posições nos eixos, cores, formas e tamanhos. É dentro do `aes()` que se define, por exemplo, quais variáveis vão para os eixos x e y.
+
+Para aplicar **cores baseadas em variáveis**, adiciona-se o argumento `color = nome_da_variavel` dentro da função `aes()`. Isso informa ao `ggplot` que a cor dos elementos gráficos deve variar de acordo com os valores dessa variável, como no caso de um agrupamento por tipo de irrigação.
+
+**geom_point:**\
+Para representar os dados como pontos, utiliza-se a função `geom_point()`, que adiciona uma camada de **dispersão** ao gráfico.
+
+**alpha:**\
+O argumento `alpha` é usado para controlar a **transparência** dos pontos, permitindo melhor visualização em gráficos com sobreposição de dados.
+
+```{r}
+mg |>
+  ggplot(aes(Irrigation, severity, color = Irrigation))+
+  geom_point(alpha = 0.5)
+```
+
+A função **shape** é utilizada para adicionar diferentes formas ou tipos de marcadores para diferenciar as variáveis (ex. quadrado e triângulo).
+
+```{r}
+mg |>
+  ggplot(aes(Irrigation, severity, shape = Irrigation))+
+  geom_point(alpha = 0.5)
+```
+
+Vamos ajustar o gráfico substituindo a variável **`irrigation`** por **`day`** no argumento **`aes()`** do ggplot.
+
+Além disso:
+
+-   A função **`filter()`** seleciona apenas as linhas que atendem a um critério específico.
+
+-   A função **`geom_line()`** converte o gráfico em um de linhas, conectando os pontos sequencialmente.
+
+```{r}
+
+mg |> 
+  ggplot(aes(day, severity, shape = Irrigation))+
+  geom_point(alpha = 0.5)
+```
+
+### Deixando apenas 1 repetição - função filter e alterando para gráfico de linhas
+
+```{r}
+
+mg |> 
+  filter(rep == 1) |>
+  ggplot(aes(day, severity, shape = Irrigation))+
+  geom_point(alpha = 0.5)+geom_line()
+```
+
+### Função facet_wrap 
+
+A função **`facet_wrap()`** divide a visualização em múltiplos gráficos, criando um *subgráfico* para cada nível de uma variável categórica.
+
+```{r}
+mg |> 
+  ggplot(aes(day, severity, shape = Irrigation))+
+  geom_point(alpha = 0.5)+
+  geom_line()+
+  facet_wrap(~rep)
+```
+
+### Função select- seleciona colunas
+
+```{r}
+mg |> 
+select(Irrigation, severity) |>
+ggplot(aes(Irrigation, severity, shape = Irrigation))+geom_point(alpha = 0.5)
+```
+
+### Retirando group e geom_boxplot
+
+```{r}
+mg |> 
+  select(day, severity) |>
+  ggplot(aes(day, severity))+
+  geom_point()
+```
+
+### Agrupando por repetição: As primeiras 3 linhas separam a severidade por dia.
+
+```{r}
+mg |> 
+  select(day, rep, severity) |>
+  group_by(day) |>
+  summarise(sev = mean(severity)) |>
+  ggplot(aes(day, sev))+
+  geom_point()
+```
+
+```{r}
+mg |> 
+  select(Irrigation, severity) |>
+  ggplot(aes(Irrigation, severity, shape = Irrigation))+geom_boxplot()+
+  geom_point(alpha = 0.5)
+```
+
+```{r}
+# Mudando a variável irrigação por day
+mg |> 
+  select(day, severity) |>
+  ggplot(aes(day, severity))+
+  geom_boxplot()+
+  geom_point(alpha = 0.5)
+```
+
+```{r}
+# Separando por grupo - função group
+mg |> 
+  select(day, severity) |>
+  ggplot(aes(day, severity, group = day))+
+  geom_boxplot()+
+  geom_point()
+```
+
+```{r}
+##Criando um novo conjunto, fazendo a media e adicionando titulo no gráfico:
+
+mg2 <- mg  |> 
+  select(day, rep, severity) |>
+  group_by(day) |>
+  summarise(sev = mean(severity)) |>
+  ggplot(aes(day, sev))+
+  geom_point()
+```

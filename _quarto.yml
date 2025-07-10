@@ -1,0 +1,84 @@
+project:
+  type: website
+  output-dir: docs
+
+website: 
+  title: "FIP_606 - Análise e Visualização de Dados em Fitopatologia"
+
+  navbar:
+    background: "#DDA0DD"
+    foreground: "#000000"
+    left:
+      - text: "Sobre"
+        file: index.qmd
+        icon: info-circle
+      - text: "Introdução ao R"
+        file: "INTRODUÇÃO.qmd"
+      - text: "Manipulação de Dados"
+        file: "Aula 1.qmd"
+      - text: "Instalação de Pacotes"
+        file: "Aula 2.qmd"
+        icon: book
+      - text: "Visualização de Dados"
+        file: ggplot.qmd
+        icon: bar-chart
+      - text: "Gráficos"
+        menu:
+          - file: "GRAFICOS DISP.qmd"
+            text: "Dispersão, Histograma e Densidade"
+          - file: "GGPLOT2.qmd"
+            text: "BoxPlot"
+          - file: "BoxCox.qmd"
+            text: "Box-Cox"
+      - text: "Análises Estatísticas"
+        menu:
+          - file: "Teste de hipótese.qmd"
+            text: "Teste de Hipótese"
+          - file: "Transformação de dados (log e sqrt).qmd"
+            text: "Transformação de Dados"
+          - file: "Aula test T.qmd"
+            text: "Teste T"
+          - file: "Aula Anova.qmd"
+            text: "ANOVA"
+          - file: "Análise de Correlação.qmd"
+            text: "Correlação"
+          - file: "regressão.qmd"
+            text: "Regressão"
+
+    right:
+      - text: "Maria Izabel"
+        href: https://github.com/izabelalmeidal/FIP-606-Analise-e-visualiza-o-de-dados-em-Fitopatologia
+        icon: github
+      - icon: envelope
+        href: "mailto:maria.a.leite@ufv.br"
+
+  page-footer:
+    left: "© 2025 - Maria Izabel de Almeida Leite — Feito com [Quarto](https://quarto.org)"
+
+format:
+  html:
+    theme:
+      light: minty
+      dark: darkly
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    code-tools: true
+    code-fold: true
+    code-line-numbers: true
+    warning: false
+    message: false
+    echo: true
+
+metadata:
+  author: "Maria Izabel de Almeida Leite"
+
+editor: visual
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+  output: true
+  cache: false

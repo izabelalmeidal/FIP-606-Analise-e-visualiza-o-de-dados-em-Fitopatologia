@@ -1,0 +1,43 @@
+---
+title: "DATAFRAME"
+author: "MARIA IZABEL"
+format: html
+editor: visual
+---
+
+# **Data frame**
+
+No R, os conjuntos de dados são geralmente armazenados em **data frames**, que são estruturas organizadas em **linhas e colunas**, semelhantes a tabelas. Para importar dados, é necessário que o arquivo esteja salvo em um **formato compatível**, como `.csv`, `.xlsx` ou `.txt`, permitindo que o R leia e organize as informações corretamente para análise.
+
+### **Tipos de data frames e as funções de pacotes**
+
+Como discutido anteriormente no tópico sobre **pacotes no R**, alguns pacotes são fundamentais para realizar análises de dados, especialmente quando se trabalha com **data frames**.
+
+Para carregar um data frame, é possível utilizar pacotes nativos do R, como o **`datasets`**, que já vem com diversos conjuntos de dados prontos para uso. Um exemplo é o data frame **`cars`**, que pode ser acessado diretamente após o carregamento do pacote.
+
+```{r}
+cars
+```
+
+```{r}
+cars2 <- cars
+speed <- cars2$speed
+speed
+```
+
+Para utilizar um data frame disponível em um pacote, é necessário **carregar o pacote** com a função `library()` e, em seguida, **atribuir o conjunto de dados a um objeto** utilizando o operador `<-`.
+
+Por exemplo, ao buscar e carregar o pacote **`r4pde`**, é possível acessar o painel de ajuda desse pacote para visualizar os data frames incorporados, como o **`RustSoybean`**. Para utilizar esse conjunto de dados em sua análise, basta realizar a atribuição:
+
+```{r}
+if (!requireNamespace("pak", quietly = TRUE)) 
+  install.packages("pak")
+pak::pkg_install("emdelponte/r4pde")
+library(r4pde)
+df <- RustSoybean
+df
+```
+
+A função básica para leitura de dados no R é a **`read.table()`**, que permite importar arquivos estruturados em formato de tabela. O R também oferece diversas **variações dessa função**, adaptadas a diferentes formatos de arquivos. Entre as mais utilizadas estão **`read.csv()`** e **`read.csv2()`**, ideais para arquivos `.csv` com diferentes convenções de separadores. Para leitura de arquivos Excel (`.xlsx`), pode-se utilizar funções do pacote **`readxl`**.
+
+O **tidyverse** é uma coleção de pacotes integrados voltados à ciência de dados. Ele reúne ferramentas essenciais como **`dplyr`** (manipulação de dados), **`tidyr`** (organização de dados), **`readr`** (importação de dados), **`ggplot2`** (visualização), entre outros, proporcionando um fluxo de trabalho eficiente, coerente e moderno dentro do R.

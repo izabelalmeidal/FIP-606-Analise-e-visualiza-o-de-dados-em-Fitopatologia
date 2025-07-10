@@ -1,0 +1,46 @@
+---
+title: "FIP-606-ANALISE E VISUALIZAÇÃO DE DADOS EM FITOPATOLOGIA"
+format: yml
+editor: visual
+---
+
+```{r}
+project:
+  type: website
+
+website:
+  title: "Análise  e Visualização de dados em Fitopatologia"
+  navbar:
+    background: "#DDA0DD"
+    foreground: "#000000"
+    right:
+      - text: "Início"
+        file: index.qmd
+      - text: "Gráficos"
+        file: ggplot.qmd
+      - text: "Disp. de Gráficos"
+        file: "GRAFICOS DISP.qmd"
+      - text: "Teste de Hipótese"
+        file: "Teste de hipótese.qmd"
+      - text: "Transformação de Dados"
+        file: "Transformação de dados (log e sqrt).qmd"
+      - text: "ANOVA"
+        file: "Aula Anova.qmd"
+      - text: "Correlação"
+        file: "Análise de Correlação.qmd"
+      - text: "Regressão"
+        file: "regressão.qmd"
+      - text: "Dataframe"
+        file: "dataframe.qmd"
+      - text: "Sobre"
+        file: "sobre.qmd"
+
+format:
+  html:
+  INTRODU
+```
+
+**Maria Izabel**\
+Graduanda em Agronomia pela Universidade Federal de Campina Grande. Este site foi criado como parte do projeto da disciplina Análise e Visualização de dados em Fitopatologia (FIP606).
+
+Contato: maria.a.leite\@ufv.br Universidade Federal de Viçosa – MG
