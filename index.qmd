@@ -1,0 +1,13 @@
+---
+title: "Início"
+---
+
+## Maria Izabel
+
+Graduanda em Agronomia pela Universidade Federal de Campina Grande.
+
+Este site foi criado como parte do projeto da disciplina Análise e Visualização de dados em Fitopatologia (FIP606).
+
+Contato: maria.a.leite\@ufv.br
+
+Universidade Federal de Viçosa – MG

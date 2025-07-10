@@ -1,0 +1,360 @@
+---
+title: "BoxPlot"
+author: "MARIA IZABEL"
+format: html
+editor: visual
+ toc: true 
+warning: false 
+message: false
+---
+
+### **Tipos de Gráficos e Funções no ggplot2**
+
+Existem diversos tipos de gráficos para visualização de dados. Os mais utilizados em nossas aulas incluem: **boxplots, scatterplots (gráficos de dispersão), histogramas, gráficos de linha e gráficos de barra/coluna**.
+
+### **Boxplot**
+
+**Uso:** Ideal para analisar a **distribuição de variáveis numéricas**, comparando diferentes grupos. Mostra:
+
+-   Mediana, quartis (Q1 e Q3)
+
+-   Limites (mínimo e máximo)
+
+-   Possíveis **outliers** (pontos fora do padrão)
+
+**Função no ggplot2:**
+
+```{r}
+#install.packages("gsheet")
+#install.packages("ggplot2")
+library(gsheet)
+library(ggplot2)
+
+url <- "https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T"
+
+dados <- gsheet2tbl(url)
+
+head(dados)
+
+dat_mg <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=983033137#gid=983033137")
+dat_mg |>
+  ggplot(aes(x = trat, y = comp)) +
+  geom_point(width = 0.1, size = 2, alpha = 0.7, color = "orange") +
+  labs(title = "Dispersão com Point - dat_mg",
+       x = "Tratamento",
+       y = "Controle") +
+  theme_minimal()
+```
+
+```{r}
+dat_mg |>
+  ggplot(aes(x = trat, y = comp)) +
+  geom_point(size = 2, alpha = 0.7, color = "darkgreen") +
+  labs(title = "Dispersão simples - magnesio",
+       x = "Tratamento",
+       y = "Componente") +
+  theme_minimal()
+
+```
+
+**Personalizações comuns:**
+
+-   **`outlier.color = NA`** → Remove os outliers
+
+-   **`fill = "cor"`** → Define a cor de preenchimento (ex: **`"blue"`**)
+
+-   **`size = valor`** → Ajusta a espessura do boxplot
+
+### **Importação de Dados**
+
+**Passos essenciais:**
+
+1.  **Carregue o `tidyverse`** (contém o **`ggplot2`** para gráficos).
+
+2.  **Use pacotes específicos** para importação, como:
+
+    -   **`readxl`** → Para arquivos Excel (**`.xlsx`**, **`.xls`**)
+
+    -   **`readr`** → Para arquivos de texto (**`.csv`**, **`.txt`**)
+
+```{r}
+library(tidyverse)
+library(readxl)
+mg2 <- read_excel("dados-diversos.xlsx", sheet = "magnesio")
+
+```
+
+### **Visualização de Dados com ggplot2**
+
+Conforme abordado anteriormente, o **`ggplot2`** (parte do *tidyverse*) é o pacote padrão para criar visualizações de dados.
+
+#### **Passos Básicos:**
+
+1.  **Defina os eixos x e y** no **`ggplot()`**:
+
+    -   **x**: Variável categórica (ex: tratamentos como "controle" e "mg2").
+
+    -   **y**: Variável numérica (ex: comprimento da lesão).
+
+2.  **Mapeie as estéticas** com **`aes()`** (cor, forma, tamanho etc.).
+
+3.  **Adicione camadas geométricas** para definir o tipo de gráfico:
+
+    -   **`geom_point()`** para pontos (gráfico de dispersão).
+
+### **Exemplo Prático**
+
+```{r}
+mg2 |> 
+  ggplot(aes(trat, comp))+
+  geom_point()
+```
+
+#### **O que cada parte faz?**
+
+-   **`ggplot(dados, ...)`** → Indica o *data frame* usado.
+
+-   **`aes(x = tratamento, y = comprimento_lesao)`** → Mapeia:
+
+    -   **`x`**: Tratamentos (categórico).
+
+    -   **`y`**: Comprimento da lesão (numérico).
+
+-   **`geom_point()`** → Exibe os dados como pontos.
+
+```{r}
+install.packages("tidyr") # para o select
+library(tidyr) # para pivot_wider
+
+mg2 |>
+  pivot_wider (names_from = trat, values_from = comp) |> 
+  #Transformando o formato dos dados: O que era uma coluna "longa" vai virar várias colunas "largas".
+  ##   Pivot (passar de longo para largo)
+  dplyr::select(-rep)
+```
+
+### **Por Que Usar `geom_point()`?**
+
+-   Ideal para **visualizar relações brutas** entre variáveis.
+
+-   Permite identificar **padrões, outliers ou agrupamento**
+
+### **Evitando Sobreposição de Pontos com `geom_jitter()`**
+
+Em gráficos de dispersão, é comum que pontos com valores semelhantes se sobreponham (*overplotting*), dificultando a visualização. Para resolver isso, usamos a função **`geom_jitter()`**, que adiciona um pequeno ruído aleatório à posição dos pontos, "agitando-os" ligeiramente.
+
+#### **Como Funciona?**
+
+-   **Desloca pontos** de forma aleatória (mas controlada) para evitar sobreposição.
+
+-   **Preserva a relação original** entre os dados, apenas melhorando a visualização.
+
+-   **Parâmetros-chave**:
+
+    -   **`width`**: Controla o deslocamento **horizontal** (evita dispersão excessiva).
+
+    -   **`height`**: Controla o deslocamento **vertical** (opcional, se necessário).
+
+```{r}
+library(ggplot2)  # carregue o pacote antes de usar ggplot
+
+mg |>
+  ggplot(aes(x = trat, y = comp)) +
+  geom_jitter(width = 0.1, size = 2, alpha = 0.7, color = "blue") +
+  labs(title = "Gráfico com jitter",
+       x = "Tratamento",
+       y = "Comprimento") +
+  theme_minimal()
+
+```
+
+### **Comparação: `geom_point()` vs. `geom_jitter()`**
+
+| **Função**          | **Vantagem**                    | **Uso Ideal**                         |
+|:--------------------|:--------------------------------|:--------------------------------------|
+| **`geom_point()`**  | Precisão absoluta das posições. | Quando a sobreposição é mínima.       |
+| **`geom_jitter()`** | Evita *overplotting*.           | Dados densos ou categorias estreitas. |
+
+**Por que usar?**
+
+-   Mantém a integridade dos dados enquanto melhora a clareza visual.
+
+-   Especialmente útil para variáveis categóricas com muitos valores similares.
+
+### Boxplot
+
+Para adicionar Bloxplot iremos usar a função geom_boxplot, e mudar visão do gráfico pela união com geom_jitter.
+
+```{r}
+
+ ggplot(mg, aes(x = trat, y = comp)) +
+    geom_boxplot()+
+  geom_jitter(width = 0.1, color = "red") +
+  labs(title = "Gráfico Boxplot com jitter",
+       x = "Tratamento",
+       y = "Comprimento") +
+  theme_minimal()
+
+```
+
+Vamos personalisar nosso boxplot, tirar a cor do outlier, aumentar o tamanho dos pontos, mudar cor e colorir o boxplot:
+
+```{r}
+p_box <- mg |> 
+  ggplot(aes(trat, comp))+
+  geom_boxplot(outlier.color = NA,
+               fill = "pink",
+               size = 0.5)+
+  geom_jitter(width = 0.1,
+              height = 0,
+              color = "black")+
+  scale_y_continuous(limits = c(5,20), 
+                     n.breaks = 10)+
+  labs(y = "Lesion size (mm)",
+       x = " ")+
+  theme_bw()
+p_box
+```
+
+```{r}
+ggsave("figs/plot2.png", bg = "white")
+```
+
+Agora iremos sumarizar os dados, para isso usa-se a summarise e função media da variável comprimento. Em seguida, os dados são convertidos em um gráfico com o `ggplot2`, ajustando-se a estética conforme necessário. Para incluir as **barras de erro**, utiliza-se a função `geom_errorbar()`. Caso queira **desativar temporariamente alguma linha de código**, basta inserir o símbolo `#` no início da linha, o que faz com que ela seja ignorada durante a execução.
+
+```{r}
+#ative as funções:
+library(dplyr)
+library(ggplot2)
+
+p_means <- mg |>
+  group_by(trat) |>
+  summarise(
+    comp_mean = mean(comp),
+    comp_sd = sd(comp)
+  ) |>
+  ggplot(aes(x = trat, y = comp_mean)) +
+  # geom_col(fill = "orange", width = 0.5) +
+  geom_point(size = 3) +
+  scale_y_continuous(limits = c(7, 18), n.breaks = 6) +
+  geom_errorbar(
+    aes(ymin = comp_mean - comp_sd,
+        ymax = comp_mean + comp_sd),
+    width = 0.05
+  ) +
+  theme_bw() +
+  labs(
+    y = "Lesion size (mm)",
+    x = " "
+  )
+
+p_means
+
+```
+
+Vamos salvar o gráfico, com algumas especificações:
+
+```{r}
+ggsave("figs/mean_sd.png", 
+       width = 4,
+       bg = "white")
+```
+
+### Pacote PATCHWORK - combinando plots
+
+O pacote **`patchwork`** permite **combinar diferentes gráficos criados com `ggplot2`** em uma única visualização de forma simples e intuitiva. Após instalar e carregar o pacote, o primeiro passo é **criar cada gráfico separadamente**, atribuindo um **nome a cada um**. Essa nomeação deve ocorrer dentro do *chunk* correspondente a cada gráfico, onde o **banco de dados é utilizado junto com o operador pipe (`|>`)** para gerar o `ggplot`.
+
+Para **unir os gráficos**, basta usar os nomes atribuídos e conectá-los com os operadores **`+`** (para empilhar verticalmente ou combinar livremente).
+
+```{r}
+library(patchwork)
+p_box + p_means
+```
+
+Ou **`|`** (para alinhar horizontalmente). Com isso, é possível criar composições claras e organizadas de múltiplos gráficos em um único painel.
+
+```{r}
+p_box | p_means
+```
+
+Agora iremos adicionar letras em cada grafico e adicionar titulo:
+
+```{r}
+(p_box | p_means)+
+  plot_annotation(tag_levels = "A",
+                  title = 'Gráficos Plot')
+```
+
+e salvamos:
+
+```{r}
+ggsave("figs/combined.png")
+```
+
+## **Gráfico de Colunas**
+
+Gráficos de colunas são amplamente utilizados para **visualizar dados categóricos ou discretos**, ou seja, dados que podem ser organizados em grupos ou classes distintas. Esse tipo de gráfico é útil para **destacar padrões, comparações e variações entre categorias**, facilitando a interpretação visual de distribuições.
+
+Para gerar um gráfico de colunas no `ggplot2`, utiliza-se a função **`geom_col()`**, que constrói as barras com base nos valores fornecidos. Neste caso, será utilizado o conjunto de dados `survey` como exemplo. Se for necessário **inverter a orientação das barras** — tornando-as horizontais — basta aplicar a função **`coord_flip()`**, que troca os eixos X e Y, oferecendo uma alternativa visual mais adequada em alguns contextos.
+
+```{r}
+
+# Carrega os pacotes necessários
+library(gsheet)
+library(ggplot2)
+library(dplyr)
+
+# URL da planilha
+url <- "https://docs.google.com/spreadsheets/d/1bq2N19DcZdtax2fQW9OHSGMR0X2__Z9T/edit?gid=1118819738#gid=1118819738"
+
+# Importa os dados da aba "survey" da planilha
+dados_survey <- gsheet2tbl(url, sheet = "survey")
+
+# Verifica as primeiras linhas para conferência
+head(dados_survey)
+
+# Filtra os dados do estado RS e conta ocorrências por espécie
+dados_survey |>
+  filter(state == "RS") |>
+  count(species) |>
+  ggplot(aes(x = species, y = n)) +
+  geom_col(width = 0.4, fill = "yellow") +
+  coord_flip() +
+  labs(
+    x = "Species",
+    y = "Number of Isolates",
+    title = "Horizontal Bar Plot",
+    subtitle = "Filtered by state: RS"
+  ) +
+  theme_bw()
+
+```
+
+```{r}
+  ggsave("Figs/barplot.png", bg = "white")
+```
+
+### Função facet_wrap
+
+A função **`facet_wrap()`** do pacote `ggplot2` é usada para **criar múltiplos painéis (subgráficos)** de um gráfico, organizando-os em uma **grade**, a partir de uma variável categórica.
+
+```{r}
+dados_survey |> 
+  filter(state == "RS") |>
+  count(species, residue) |>
+  ggplot(aes(species, n))+
+  geom_col(width = 0.4,
+           fill = "yellow")+
+  coord_flip()+
+  facet_wrap(~residue, ncol = 1)+
+  labs(x = " ", y = "Number of isolates",
+       tiltle = "Horizontal bar plot",
+       subtitle = "Facet")+
+  theme_bw()
+```
+
+salvando:
+
+```{r}
+  ggsave("Figs/barplotfacet.png", bg = "white")
+```
