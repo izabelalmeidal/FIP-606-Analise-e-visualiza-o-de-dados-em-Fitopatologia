@@ -128,15 +128,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./aula2.html" rel="" target="">
- <span class="menu-text">Manipulação de Dados</span></a>
+ <span class="menu-text">Manipulação</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./dataframe.html" rel="" target="">
  <span class="menu-text">Dataframe</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./graficodisp.qmd" rel="" target="">
- <span class="menu-text">Dispersão, Histograma e Densidade</span></a>
+    <a class="nav-link" href="./graficosdisp.html" rel="" target="">
+ <span class="menu-text">Distribuição</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./ggplot2.html" rel="" target="" aria-current="page">
@@ -148,11 +148,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./hipotese.html" rel="" target="">
- <span class="menu-text">Teste de Hipótese</span></a>
+ <span class="menu-text">Hipótese</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./transformacao.html" rel="" target="">
- <span class="menu-text">Transformação de Dados</span></a>
+ <span class="menu-text">Transformação</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./testt.html" rel="" target="">
@@ -195,7 +195,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tipos-de-gráficos-e-funções-no-ggplot2" id="toc-tipos-de-gráficos-e-funções-no-ggplot2" class="nav-link active" data-scroll-target="#tipos-de-gráficos-e-funções-no-ggplot2"><strong>Tipos de Gráficos e Funções no ggplot2</strong></a></li>
+  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><strong>Boxplot</strong></a></li>
+  <li><a href="#importação-de-dados" id="toc-importação-de-dados" class="nav-link" data-scroll-target="#importação-de-dados"><strong>Importação de Dados</strong></a></li>
+  <li><a href="#visualização-de-dados-com-ggplot2" id="toc-visualização-de-dados-com-ggplot2" class="nav-link" data-scroll-target="#visualização-de-dados-com-ggplot2"><strong>Visualização de Dados com ggplot2</strong></a></li>
+  <li><a href="#exemplo-prático" id="toc-exemplo-prático" class="nav-link" data-scroll-target="#exemplo-prático"><strong>Exemplo Prático</strong></a></li>
+  <li><a href="#por-que-usar-geom_point" id="toc-por-que-usar-geom_point" class="nav-link" data-scroll-target="#por-que-usar-geom_point"><strong>Por Que Usar <code>geom_point()</code>?</strong></a></li>
+  <li><a href="#evitando-sobreposição-de-pontos-com-geom_jitter" id="toc-evitando-sobreposição-de-pontos-com-geom_jitter" class="nav-link" data-scroll-target="#evitando-sobreposição-de-pontos-com-geom_jitter"><strong>Evitando Sobreposição de Pontos com <code>geom_jitter()</code></strong></a></li>
+  <li><a href="#comparação-geom_point-vs.-geom_jitter" id="toc-comparação-geom_point-vs.-geom_jitter" class="nav-link" data-scroll-target="#comparação-geom_point-vs.-geom_jitter"><strong>Comparação: <code>geom_point()</code> vs.&nbsp;<code>geom_jitter()</code></strong></a></li>
+  <li><a href="#boxplot-1" id="toc-boxplot-1" class="nav-link" data-scroll-target="#boxplot-1">Boxplot</a></li>
+  <li><a href="#pacote-patchwork---combinando-plots" id="toc-pacote-patchwork---combinando-plots" class="nav-link" data-scroll-target="#pacote-patchwork---combinando-plots">Pacote PATCHWORK - combinando plots</a></li>
+  <li><a href="#gráfico-de-colunas" id="toc-gráfico-de-colunas" class="nav-link" data-scroll-target="#gráfico-de-colunas"><strong>Gráfico de Colunas</strong></a>
+  <ul class="collapse">
+  <li><a href="#função-facet_wrap" id="toc-função-facet_wrap" class="nav-link" data-scroll-target="#função-facet_wrap">Função facet_wrap</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><div class="quarto-title-block"><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>

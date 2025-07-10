@@ -128,15 +128,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./aula2.html" rel="" target="">
- <span class="menu-text">Manipulação de Dados</span></a>
+ <span class="menu-text">Manipulação</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./dataframe.html" rel="" target="">
  <span class="menu-text">Dataframe</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./graficodisp.qmd" rel="" target="">
- <span class="menu-text">Dispersão, Histograma e Densidade</span></a>
+    <a class="nav-link" href="./graficosdisp.html" rel="" target="">
+ <span class="menu-text">Distribuição</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./ggplot2.html" rel="" target="">
@@ -148,11 +148,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./hipotese.html" rel="" target="">
- <span class="menu-text">Teste de Hipótese</span></a>
+ <span class="menu-text">Hipótese</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./transformacao.html" rel="" target="">
- <span class="menu-text">Transformação de Dados</span></a>
+ <span class="menu-text">Transformação</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./testt.html" rel="" target="">
@@ -199,8 +199,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#anova-fatorial" id="toc-anova-fatorial" class="nav-link active" data-scroll-target="#anova-fatorial"><strong>Anova Fatorial</strong></a></li>
-  <li><a href="#anova-em-dbc-e-parcela-subdividida" id="toc-anova-em-dbc-e-parcela-subdividida" class="nav-link" data-scroll-target="#anova-em-dbc-e-parcela-subdividida"><strong>ANOVA em DBC e parcela subdividida</strong></a></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link active" data-scroll-target="#anova">ANOVA</a></li>
+  <li><a href="#comparação-entre-três-ou-mais-tratamentos" id="toc-comparação-entre-três-ou-mais-tratamentos" class="nav-link" data-scroll-target="#comparação-entre-três-ou-mais-tratamentos">Comparação entre Três ou Mais Tratamentos</a></li>
+  <li><a href="#anova-com-um-fator" id="toc-anova-com-um-fator" class="nav-link" data-scroll-target="#anova-com-um-fator">ANOVA com um Fator</a></li>
+  <li><a href="#aov" id="toc-aov" class="nav-link" data-scroll-target="#aov">aov()</a></li>
+  <li><a href="#premissas" id="toc-premissas" class="nav-link" data-scroll-target="#premissas"><strong>Premissas</strong></a></li>
+  <li><a href="#teste-das-premissas-após-a-anova" id="toc-teste-das-premissas-após-a-anova" class="nav-link" data-scroll-target="#teste-das-premissas-após-a-anova">Teste das Premissas Após a ANOVA</a></li>
+  <li><a href="#dados-não-paramétricos" id="toc-dados-não-paramétricos" class="nav-link" data-scroll-target="#dados-não-paramétricos">Dados Não Paramétricos</a></li>
+  <li><a href="#pacote-emmeans" id="toc-pacote-emmeans" class="nav-link" data-scroll-target="#pacote-emmeans">Pacote emmeans</a></li>
+  <li><a href="#anova-fatorial" id="toc-anova-fatorial" class="nav-link" data-scroll-target="#anova-fatorial"><strong>Anova Fatorial</strong></a>
+  <ul class="collapse">
+  <li><a href="#anova-com-dois-ou-mais-fatores" id="toc-anova-com-dois-ou-mais-fatores" class="nav-link" data-scroll-target="#anova-com-dois-ou-mais-fatores">ANOVA com Dois ou Mais Fatores</a></li>
+  <li><a href="#anova-com-três-fatores" id="toc-anova-com-três-fatores" class="nav-link" data-scroll-target="#anova-com-três-fatores"><strong>ANOVA com três fatores</strong></a>
+  <ul class="collapse">
+  <li><a href="#dados-não-paramétricos-com-dois-ou-mais-fatores-uso-de-ranks" id="toc-dados-não-paramétricos-com-dois-ou-mais-fatores-uso-de-ranks" class="nav-link" data-scroll-target="#dados-não-paramétricos-com-dois-ou-mais-fatores-uso-de-ranks">Dados Não Paramétricos com Dois ou Mais Fatores — Uso de Ranks</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#anova-em-dbc-e-parcela-subdividida" id="toc-anova-em-dbc-e-parcela-subdividida" class="nav-link" data-scroll-target="#anova-em-dbc-e-parcela-subdividida"><strong>ANOVA em DBC e parcela subdividida</strong></a>
+  <ul class="collapse">
+  <li><a href="#anova-com-bloco-dbc" id="toc-anova-com-bloco-dbc" class="nav-link" data-scroll-target="#anova-com-bloco-dbc">Anova com bloco (DBC)</a></li>
+  <li><a href="#modelo-anova-com-bloco" id="toc-modelo-anova-com-bloco" class="nav-link" data-scroll-target="#modelo-anova-com-bloco">Modelo Anova com bloco</a></li>
+  </ul></li>
   <li><a href="#delineamento-em-parcela-subdividida-split-plot" id="toc-delineamento-em-parcela-subdividida-split-plot" class="nav-link" data-scroll-target="#delineamento-em-parcela-subdividida-split-plot"><strong>Delineamento em parcela subdividida (Split-plot)</strong></a></li>
   </ul>
 </nav>

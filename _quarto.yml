@@ -14,19 +14,19 @@ website:
         icon: info-circle
       - text: "Introdução ao R"
         file: introducao.qmd
-      - text: "Manipulação de Dados"
+      - text: "Manipulação"
         file: aula2.qmd
       - text: "Dataframe"
         file: dataframe.qmd
-      - text: "Dispersão, Histograma e Densidade"
-        file: graficodisp.qmd
+      - text: "Distribuição"
+        file: graficosdisp.qmd
       - text: "BoxPlot"
         file: ggplot2.qmd
       - text: "Box-Cox"
         file: boxcox.qmd
-      - text: "Teste de Hipótese"
+      - text: "Hipótese"
         file: hipotese.qmd
-      - text: "Transformação de Dados"
+      - text: "Transformação"
         file: transformacao.qmd
       - text: "Teste T"   
         file: testt.qmd
