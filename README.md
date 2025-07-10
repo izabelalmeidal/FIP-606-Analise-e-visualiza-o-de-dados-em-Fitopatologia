@@ -55,11 +55,11 @@ website:
         file: "Análise de Correlação.qmd"
       - text: "Regressão"
         file: "regressão.qmd"
-heme: [minty, custom.scss]
-    css: styles.css
-    toc: true
-    toc-depth: 2
-    smooth-scroll: true
+ right:
+      - text: "GitHub"
+        href: https://github.com/izabelalmeidal/FIP-606-Analise-e-visualiza-o-de-dados-em-Fitopatologia
+        icon: github
+
 ---
 
 # FIP-606-Analise-e-visualiza-o-de-dados-em-Fitopatologia
